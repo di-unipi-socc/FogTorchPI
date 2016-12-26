@@ -26,7 +26,7 @@ import java.util.Random;
  *
  * @author Stefano
  */
-public class MainExp2_Extended {
+public class Main {
 
     public static Random rnd = new Random();
 
@@ -48,7 +48,7 @@ public class MainExp2_Extended {
         HashMap<Deployment, Couple<Double, Double>> histogram = new HashMap<>();
         
         String filename =
-                "C:\\Users\\Stefano\\Dropbox\\_Dottorato\\FogTorchMC_Ahmad_Stefano\\results\\Q1c.csv";
+                "C:\\Users\\Stefano\\Dropbox\\_Dottorato\\FogTorchMC_Ahmad_Stefano\\results\\Q1k.csv";
         boolean notFog3 = false;
         
         //Change the access to Internet

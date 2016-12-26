@@ -138,7 +138,7 @@ public class Search {
             return;
         }
         SoftwareComponent s = selectUndeployedComponent(deployment);
-        System.out.println("Selected :" + s);
+        //System.out.println("Selected :" + s);
         ArrayList<ComputationalNode> Ks = bestFirst(K.get(s.getId()),s);
         //System.out.println(K.get(s.getId()));
         for (ComputationalNode n : Ks) { // for all nodes compatible with s 
