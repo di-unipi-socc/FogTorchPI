@@ -217,7 +217,7 @@ public class Main {
 
         try {
             PrintWriter writer = new PrintWriter(filename, "UTF-8");
-            writer.println("Deployment, MonteCarlo %, Heuristic Rank, Consumed RAM, Consumed HDD, Sum H");
+            writer.println("Deployment, QoS-assurance, Heuristic Rank, Consumed RAM, Consumed HDD, Sum Hardware");
             for (Deployment dep : histogram.keySet()) {
                 histogram.replace(dep,  new Couple((100 * histogram.get(dep).getA() / ((double) TIMES)), (100*histogram.get(dep).getB() / (double) TIMES)));
                 writer.println(dep + ", " + histogram.get(dep) + "," + dep.consumedResources + ", " + (dep.consumedResources.getA() + dep.consumedResources.getB())/2);
