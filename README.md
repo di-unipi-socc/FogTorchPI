@@ -143,5 +143,5 @@ Deployment, QoS-assurance, Heuristic Rank, Consumed RAM, Consumed HDD, Sum Hardw
 To specify upon which Fog nodes QoS-assurance and resources consumption are evaluated, it is sufficient to add the line:
 
 ``` java
-s.addKeepLightNodes(asList("fog1", "fog2");
+s.addKeepLightNodes(asList("fog1", "fog2"));
 ``` 
