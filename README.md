@@ -14,6 +14,8 @@ Software capabilities are represented by a list of software names (operating sys
 It considers latency, and both download and upload bandwidths as QoS attributes. Latency is measured in milliseconds (ms), while bandwidth is given in Megabits per second (Mbps). 
 
 ## Quick User Guide
+FogTorchΠ can be run by importing the project in any IDE (e.g., NetBeans or Eclipse).
+
 To start with FogTorchΠ, simply create a main file and declare a new Fog infrastructure and application:
 
 ``` java
@@ -145,3 +147,7 @@ To specify upon which Fog nodes QoS-assurance and resources consumption are eval
 ``` java
 s.addKeepLightNodes(asList("fog1", "fog2"));
 ``` 
+# Example
+A full example is in file [Main.java](https://github.com/di-unipi-socc/FogTorchPI/blob/master/src/main/Main.java) and related results can be found in [resultsplotwithHD.xlsx](https://github.com/di-unipi-socc/FogTorchPI/tree/master/results).
+
+
