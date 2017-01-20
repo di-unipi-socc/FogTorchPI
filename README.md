@@ -1,5 +1,5 @@
 # FogTorchΠ
-A probabilistic prototype for deployment of Fog applications and QoS-assurance estimation of eligible deployments.
+A prototype for deployment of Fog applications and probabilistic QoS-assurance estimation of eligible deployments.
 
 ##Intro
 
