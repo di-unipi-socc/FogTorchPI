@@ -1,4 +1,4 @@
-# FogTorchΠ
+![FogTorchΠ](https://github.com/di-unipi-socc/FogTorchPI/blob/master/img/logoftpi.PNG)
 A prototype for deployment of Fog applications and probabilistic QoS-assurance estimation of eligible deployments.
 
 ##Intro
