@@ -1,6 +1,6 @@
 <img src="https://github.com/di-unipi-socc/FogTorchPI/blob/master/img/logoftpi.PNG" width="300">
 
-_A prototype for deployment of Fog applications and probabilistic QoS-assurance estimation of eligible deployments._
+_A tool for probabilistic QoS-assurance and resource consumption estimation of eligible deployments of Fog applications._
 
 FogTorchΠ is based upon the work described in
 
