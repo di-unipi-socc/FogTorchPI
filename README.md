@@ -5,7 +5,7 @@ _A tool for probabilistic QoS-assurance and resource consumption estimation of e
 FogTorchΠ is based upon the work described in
 
 > [Antonio Brogi](http://pages.di.unipi.it/brogi), [Stefano Forti](http://pages.di.unipi.it/forti), [Ahmad Ibrahim](http://pages.di.unipi.it/ibrahim) <br>
-> **How to best deploy your Fog applications, probably.** <br>
+> **[How to best deploy your Fog applications, probably.](http://pages.di.unipi.it/forti/pdf/icfec17.pdf)** <br>
 > _Accepted at_ [IEEE International Conference on Fog and Edge Computing (ICFEC’2017)](http://fec-conf.gforge.inria.fr/index.html), May 2017, Madrid, Spain
 
 If you wish to reuse source code in this repo, please cite the above mentioned article.
