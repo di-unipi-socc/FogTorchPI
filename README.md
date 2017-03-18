@@ -10,7 +10,7 @@ FogTorchΠ is based upon the work described in
 
 If you wish to reuse source code in this repo, please cite the above mentioned article.
 
-##Intro
+## Intro
 
 **FogTorchΠ** is an open source prototype, developed in Java, based on a model for Fog computing infrastructures and applications.
 
