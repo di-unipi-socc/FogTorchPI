@@ -5,13 +5,13 @@
  */
 package main;
 
+import edu.princeton.cs.introcs.StdDraw;
 import fogtorch.application.Application;
 import fogtorch.application.ExactThing;
 import fogtorch.application.ThingRequirement;
 import fogtorch.deployment.Deployment;
 import fogtorch.deployment.Search;
 import fogtorch.infrastructure.Infrastructure;
-import fogtorch.utils.Coordinates;
 import fogtorch.utils.Couple;
 import fogtorch.utils.Hardware;
 import fogtorch.utils.QoSProfile;
@@ -212,10 +212,13 @@ public class MainEsp2 {
             PrintWriter writer = new PrintWriter(filename, "UTF-8");
             writer.println("Deployment, MonteCarlo %, Heuristic Rank");
             for (Deployment dep : histogram.keySet()) {
-                histogram.replace(dep, new Couple((100 * histogram.get(dep).getA() / ((double) TIMES)), (100*histogram.get(dep).getB() / (double) TIMES)));
+                Couple point = new Couple((100 * histogram.get(dep).getA() / ((double) TIMES)), (100*histogram.get(dep).getB() / (double) TIMES));
+                histogram.replace(dep, point );
                 writer.println(dep + ", " + histogram.get(dep));
                 //System.out.println(dep + ", " + histogram.get(dep));
-
+                StdDraw.setPenRadius(10.0);
+                StdDraw.point((Double) point.getA(),(Double) point.getB());
+                StdDraw.show();
             }
             writer.close();
         } catch (IOException e) {

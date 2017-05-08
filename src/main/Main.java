@@ -5,6 +5,7 @@
  */
 package main;
 
+import edu.princeton.cs.introcs.StdDraw;
 import fogtorch.application.Application;
 import fogtorch.application.ExactThing;
 import fogtorch.application.ThingRequirement;
@@ -211,20 +212,36 @@ public class Main {
                 }
                 pos--;
             }
-            
             //System.out.println(I);
         }
-
+        double i = 0.0;
+        StdDraw.setXscale(50,100);
+        StdDraw.setYscale(0,30);
+        System.out.println(histogram.size());
+        for (Deployment dep : histogram.keySet()) {               
+                
+                StdDraw.setPenRadius(0.05);
+                StdDraw.point(100 * histogram.get(dep).getA() / ((double) TIMES),(dep.consumedResources.getA() + dep.consumedResources.getB())/2);
+                StdDraw.point(i,i);
+                //StdDraw.show();
+                i++;
+            }
+        
         try {
             PrintWriter writer = new PrintWriter(filename, "UTF-8");
             writer.println("Deployment, QoS-assurance, Heuristic Rank, Consumed RAM, Consumed HDD, Sum Hardware");
             for (Deployment dep : histogram.keySet()) {
+
                 histogram.replace(dep,  new Couple((100 * histogram.get(dep).getA() / ((double) TIMES)), (100*histogram.get(dep).getB() / (double) TIMES)));
                 writer.println(dep + ", " + histogram.get(dep) + "," + dep.consumedResources + ", " + (dep.consumedResources.getA() + dep.consumedResources.getB())/2);
                 System.out.println(dep + ", " + histogram.get(dep) + ", " + dep.consumedResources + ", " + (dep.consumedResources.getA() + dep.consumedResources.getB())/2);
+                
+                //drawing plot
 
             }
             writer.close();
+            
+
         } catch (IOException e) {
         }
         
