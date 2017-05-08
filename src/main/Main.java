@@ -215,14 +215,15 @@ public class Main {
             //System.out.println(I);
         }
         double i = 0.0;
-        StdDraw.setXscale(50,100);
-        StdDraw.setYscale(0,30);
+        StdDraw.setXscale(0,100);
+        StdDraw.setYscale(0,100);
         System.out.println(histogram.size());
         for (Deployment dep : histogram.keySet()) {               
                 
-                StdDraw.setPenRadius(0.05);
-                StdDraw.point(100 * histogram.get(dep).getA() / ((double) TIMES),(dep.consumedResources.getA() + dep.consumedResources.getB())/2);
-                StdDraw.point(i,i);
+                StdDraw.setPenRadius(0.01);
+                StdDraw.point(100 * histogram.get(dep).getA() / ((double) TIMES),100*(dep.consumedResources.getA() + dep.consumedResources.getB())/2);
+                StdDraw.point(i,0);
+                StdDraw.point(0,i);
                 //StdDraw.show();
                 i++;
             }
