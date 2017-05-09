@@ -1,0 +1,5 @@
+com.esotericsoftware.yamlbeans
+com.esotericsoftware.yamlbeans.emitter
+com.esotericsoftware.yamlbeans.parser
+com.esotericsoftware.yamlbeans.scalar
+com.esotericsoftware.yamlbeans.tokenizer

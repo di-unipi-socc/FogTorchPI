@@ -1,0 +1,2 @@
+classpath: lib|*.jar|!junit*.jar
+version: 1.06

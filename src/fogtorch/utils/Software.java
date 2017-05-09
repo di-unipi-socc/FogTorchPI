@@ -5,10 +5,25 @@
  */
 package fogtorch.utils;
 
+import java.util.Objects;
+
 /**
  *
  * @author Stefano
  */
 public class Software {
-    
+    public String name;
+
+    @Override
+    public boolean equals(Object o){
+        Software s = (Software) o;
+        return s.name.equals(this.name);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.name);
+        return hash;
+    }
 }

@@ -1,13 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package fogtorch.infrastructure;
 
-import fogtorch.application.SoftwareComponent;
 import fogtorch.utils.Coordinates;
-
 
 /**
  *
@@ -38,6 +31,7 @@ public class Thing {
     public void setCoordinates(Coordinates coords){
         this.coords = coords;
     }
+    
     
     @Override
     public String toString(){
