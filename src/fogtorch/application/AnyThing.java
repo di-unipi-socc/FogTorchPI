@@ -6,7 +6,7 @@
 package fogtorch.application;
 
 import fogtorch.utils.Coordinates;
-import fogtorch.utils.QoSProfile;
+import fogtorch.utils.QoS;
 
 /**
  *
@@ -17,7 +17,7 @@ public class AnyThing extends ThingRequirement{
     private double maxDist;
     private String type;
     
-    public AnyThing(String type, double x, double y, double maxDist, QoSProfile q){
+    public AnyThing(String type, double x, double y, double maxDist, QoS q){
         this.type = type;
         coord = new Coordinates(x,y);
         this.maxDist = maxDist;

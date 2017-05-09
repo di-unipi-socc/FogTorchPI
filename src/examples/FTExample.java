@@ -12,7 +12,7 @@ import fogtorch.application.Application;
 import fogtorch.application.ExactThing;
 import fogtorch.application.ThingRequirement;
 import fogtorch.infrastructure.Infrastructure;
-import fogtorch.utils.QoSProfile;
+import fogtorch.utils.QoS;
 
 /**
  *

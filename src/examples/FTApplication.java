@@ -9,7 +9,7 @@ import fogtorch.application.Application;
 import fogtorch.application.ExactThing;
 import fogtorch.application.ThingRequirement;
 import fogtorch.utils.Hardware;
-import fogtorch.utils.QoSProfile;
+import fogtorch.utils.QoS;
 import java.util.ArrayList;
 import static java.util.Arrays.asList;
 
@@ -22,8 +22,8 @@ public class FTApplication {
     public static Application createApplication(){
         Application A = new Application();
         ArrayList<ThingRequirement> fireThings = new ArrayList<>();
-        QoSProfile qThingNode = new QoSProfile(10, 1);
-        QoSProfile qNodeThing = new QoSProfile(10, 1);
+        QoS qThingNode = new QoS(10, 1);
+        QoS qNodeThing = new QoS(10, 1);
         
                 
         fireThings.add(new ExactThing("fire1", qNodeThing, qThingNode));

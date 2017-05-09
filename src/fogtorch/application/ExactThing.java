@@ -5,7 +5,7 @@
  */
 package fogtorch.application;
 
-import fogtorch.utils.QoSProfile;
+import fogtorch.utils.QoS;
 
 /**
  *
@@ -14,7 +14,7 @@ import fogtorch.utils.QoSProfile;
 public class ExactThing extends ThingRequirement{
     private String id;
 
-    public ExactThing(String type, QoSProfile qNodeThing, QoSProfile qThingNode) {
+    public ExactThing(String type, QoS qNodeThing, QoS qThingNode) {
         this.id = type;
         super.setQNodeThing(qNodeThing);
         super.setQThingNode(qThingNode);

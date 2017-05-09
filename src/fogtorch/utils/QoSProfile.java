@@ -1,21 +1,35 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package fogtorch.utils;
+
+import edu.princeton.cs.introcs.StdRandom;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
- * @author stefano
+ * @author Stefano
  */
 public class QoSProfile {
-    private int latency;
-    private double bandwidth;
+    public int latency;
+    public double bandwidth;
     
-    public QoSProfile (int latency, double bandwidth){
-        this.latency = latency;
-        this.bandwidth = bandwidth;
+    public ArrayList<QoS> QoS;
+    public double[] probabilities;
+    
+    public QoSProfile(int latency, double bandwidth) {
+        probabilities = new double[1];
+        probabilities[0] = 1;
+    }
+    
+    public QoSProfile(List<Couple<QoS, Double>> qos){
+        int size = qos.size();
+        probabilities = new double[size];
+        QoS = new ArrayList<>(size);
+        int i = 0;
+        for (Couple c : qos){
+            QoS.add(i, qos.get(i).getA());
+            probabilities[i] = qos.get(i).getB();
+            i++;
+        }
     }
     
     public void setLatency (int latency){
@@ -34,16 +48,23 @@ public class QoSProfile {
         return this.bandwidth;
     }
     
+    
+    public void sampleQoS(){
+        int sample = StdRandom.discrete(probabilities);
+        latency = QoS.get(sample).getLatency();
+        bandwidth = QoS.get(sample).getBandwidth();
+    }
+    
     @Override
     public String toString(){
         return "<" + latency + ", " + bandwidth + ">";
     }
     
-    public boolean supports(QoSProfile q){
+    public boolean supports(QoS q){
         boolean result = false;
         if (latency <= q.getLatency() && bandwidth >= q.getBandwidth())
             result = true;
         return result;
     }
-
+    
 }

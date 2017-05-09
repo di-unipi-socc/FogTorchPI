@@ -14,7 +14,7 @@ import fogtorch.deployment.Search;
 import fogtorch.infrastructure.Infrastructure;
 import fogtorch.utils.Couple;
 import fogtorch.utils.Hardware;
-import fogtorch.utils.QoSProfile;
+import fogtorch.utils.QoS;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -31,7 +31,7 @@ public class Main {
 
     public static Random rnd = new Random();
 
-    public static QoSProfile samplingFunction(double probability, QoSProfile q1, QoSProfile q2) {
+    public static QoS samplingFunction(double probability, QoS q1, QoS q2) {
 
         double rand = rnd.nextDouble();
         if (probability == 1) {
@@ -92,8 +92,8 @@ public class Main {
 
             //Links
             if (profile.equals("30M")) {
-                QoSProfile fogtoCloudDownload = samplingFunction(1, new QoSProfile(80, 21), null);
-                QoSProfile fogtoCloudUpload = samplingFunction(1, new QoSProfile(80, 1.2), null);
+                QoS fogtoCloudDownload = samplingFunction(1, new QoS(80, 21), null);
+                QoS fogtoCloudUpload = samplingFunction(1, new QoS(80, 1.2), null);
                 //fog1
                 I.addLink("fog1", "cloud1", fogtoCloudDownload, fogtoCloudUpload);
                 I.addLink("fog1", "cloud2", fogtoCloudDownload, fogtoCloudUpload);
@@ -102,8 +102,8 @@ public class Main {
                 //I.addLink("fog3", "cloud2", fogtoCloudDownload, fogtoCloudUpload);           
 
             } else if (profile.equals("20M")) {
-                QoSProfile fogtoCloudDownload = samplingFunction(0.98, new QoSProfile(40, 10.5), new QoSProfile(Integer.MAX_VALUE, 0.0));
-                QoSProfile fogtoCloudUpload = samplingFunction(0.98, new QoSProfile(40, 4.5), new QoSProfile(Integer.MAX_VALUE, 0.0));
+                QoS fogtoCloudDownload = samplingFunction(0.98, new QoS(40, 10.5), new QoS(Integer.MAX_VALUE, 0.0));
+                QoS fogtoCloudUpload = samplingFunction(0.98, new QoS(40, 4.5), new QoS(Integer.MAX_VALUE, 0.0));
                 //fog1
                 I.addLink("fog1", "cloud1", fogtoCloudDownload, fogtoCloudUpload);
                 I.addLink("fog1", "cloud2", fogtoCloudDownload, fogtoCloudUpload);
@@ -111,8 +111,8 @@ public class Main {
                 //I.addLink("fog3", "cloud1", fogtoCloudDownload, fogtoCloudUpload);
                 //I.addLink("fog3", "cloud2", fogtoCloudDownload, fogtoCloudUpload); 
             } else if (profile.equals("6M")) {
-                QoSProfile fogtoCloudDownload = samplingFunction(0.98, new QoSProfile(70, 6), new QoSProfile(Integer.MAX_VALUE, 0.0));
-                QoSProfile fogtoCloudUpload = samplingFunction(0.98, new QoSProfile(70, 0.75), new QoSProfile(Integer.MAX_VALUE, 0.0));
+                QoS fogtoCloudDownload = samplingFunction(0.98, new QoS(70, 6), new QoS(Integer.MAX_VALUE, 0.0));
+                QoS fogtoCloudUpload = samplingFunction(0.98, new QoS(70, 0.75), new QoS(Integer.MAX_VALUE, 0.0));
                 //fog1
                 I.addLink("fog1", "cloud1", fogtoCloudDownload, fogtoCloudUpload);
                 I.addLink("fog1", "cloud2", fogtoCloudDownload, fogtoCloudUpload);
@@ -121,22 +121,22 @@ public class Main {
                 //I.addLink("fog3", "cloud2", fogtoCloudDownload, fogtoCloudUpload);
             }
 
-            QoSProfile fogtoCloudDownloadVoda = samplingFunction(1, new QoSProfile(80, 21), null);
-            QoSProfile fogtoCloudUploadVoda = samplingFunction(1, new QoSProfile(80, 1.2), null);
+            QoS fogtoCloudDownloadVoda = samplingFunction(1, new QoS(80, 21), null);
+            QoS fogtoCloudUploadVoda = samplingFunction(1, new QoS(80, 1.2), null);
 
             I.addLink("fog3", "cloud1", fogtoCloudDownloadVoda, fogtoCloudUploadVoda);
             I.addLink("fog3", "cloud2", fogtoCloudDownloadVoda, fogtoCloudUploadVoda);
 
             if (profile2.equals("3G")) {
-                QoSProfile fogtoCloudDownload = samplingFunction(0.9957, new QoSProfile(54, 9.61), new QoSProfile(Integer.MAX_VALUE, 0.0));
-                QoSProfile fogtoCloudUpload = samplingFunction(0.9959, new QoSProfile(54, 2.89), new QoSProfile(Integer.MAX_VALUE, 0.0));
+                QoS fogtoCloudDownload = samplingFunction(0.9957, new QoS(54, 9.61), new QoS(Integer.MAX_VALUE, 0.0));
+                QoS fogtoCloudUpload = samplingFunction(0.9959, new QoS(54, 2.89), new QoS(Integer.MAX_VALUE, 0.0));
                 if (fog2up) {
                     I.addLink("fog2", "cloud1", fogtoCloudDownload, fogtoCloudUpload);
                     I.addLink("fog2", "cloud2", fogtoCloudDownload, fogtoCloudUpload);
                 }
             } else if (profile2.equals("4G")) {
-                QoSProfile fogtoCloudDownload = samplingFunction(0.9926, new QoSProfile(53, 22.67), new QoSProfile(Integer.MAX_VALUE, 0.0));
-                QoSProfile fogtoCloudUpload = samplingFunction(0.9937, new QoSProfile(53, 16.97), new QoSProfile(Integer.MAX_VALUE, 0.0));
+                QoS fogtoCloudDownload = samplingFunction(0.9926, new QoS(53, 22.67), new QoS(Integer.MAX_VALUE, 0.0));
+                QoS fogtoCloudUpload = samplingFunction(0.9937, new QoS(53, 16.97), new QoS(Integer.MAX_VALUE, 0.0));
                 if (fog2up) {
                     I.addLink("fog2", "cloud1", fogtoCloudDownload, fogtoCloudUpload);
                     I.addLink("fog2", "cloud2", fogtoCloudDownload, fogtoCloudUpload);
@@ -145,13 +145,13 @@ public class Main {
 
             //WLAN  
             if (fog2up) {
-                I.addLink("fog1", "fog2", samplingFunction(0.9, new QoSProfile(15, 32), new QoSProfile(15, 4)));
-                I.addLink("fog2", "fog3", samplingFunction(0.76, new QoSProfile(15, 18), new QoSProfile(15, 5.5)));
+                I.addLink("fog1", "fog2", samplingFunction(0.9, new QoS(15, 32), new QoS(15, 4)));
+                I.addLink("fog2", "fog3", samplingFunction(0.76, new QoS(15, 18), new QoS(15, 5.5)));
             }
-            I.addLink("fog1", "fog3", samplingFunction(0.64, new QoSProfile(25, 14), new QoSProfile(25, 3)));
+            I.addLink("fog1", "fog3", samplingFunction(0.64, new QoS(25, 14), new QoS(25, 3)));
 
             //inter-cloud
-            I.addLink("cloud1", "cloud2", samplingFunction(1, new QoSProfile(5, 1000), null));
+            I.addLink("cloud1", "cloud2", samplingFunction(1, new QoS(5, 1000), null));
 
             //Things for local
             I.addThing("water0", "water", 43.7464449, 10.4615923, "fog1");
@@ -163,12 +163,12 @@ public class Main {
             Application A = new Application();
             ArrayList<ThingRequirement> neededThings = new ArrayList<>();
             //QoSProfile qNodeThing, QoSProfile qThingNode
-            neededThings.add(new ExactThing("water0", new QoSProfile(1000, 0.1), new QoSProfile(1000,0.1))); // 1 s and 1 Mbps
+            neededThings.add(new ExactThing("water0", new QoS(1000, 0.1), new QoS(1000,0.1))); // 1 s and 1 Mbps
             if (video) {
-                neededThings.add(new ExactThing("video0", new QoSProfile(25,0.1), new QoSProfile(25, 5))); // 25 ms and 4Mbps for the HD videostreaming
+                neededThings.add(new ExactThing("video0", new QoS(25,0.1), new QoS(25, 5))); // 25 ms and 4Mbps for the HD videostreaming
             }
-            neededThings.add(new ExactThing("moisture0", new QoSProfile(500,0.1), new QoSProfile(500, 0.1))); // 0.5 s and 1 Mbps
-            neededThings.add(new ExactThing("temperature0", new QoSProfile(65,0.1), new QoSProfile(65, 0.1))); // 110 ms and 1 Mbps
+            neededThings.add(new ExactThing("moisture0", new QoS(500,0.1), new QoS(500, 0.1))); // 0.5 s and 1 Mbps
+            neededThings.add(new ExactThing("temperature0", new QoS(65,0.1), new QoS(65, 0.1))); // 110 ms and 1 Mbps
 
             //components
             A.addComponent("A", asList("linux"), new Hardware(1, 1.2, 8), neededThings);

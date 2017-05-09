@@ -5,34 +5,34 @@
  */
 package fogtorch.application;
 
-import fogtorch.utils.QoSProfile;
+import fogtorch.utils.QoS;
 
 /**
  *
  * @author stefano
  */
 public abstract class ThingRequirement {
-    private QoSProfile qThingNode;
-    private QoSProfile qNodeThing;
+    private QoS qThingNode;
+    private QoS qNodeThing;
     
-    public void ThingRequirement(QoSProfile qNodeThing , QoSProfile qThingNode ) {
+    public void ThingRequirement(QoS qNodeThing , QoS qThingNode ) {
         this.qThingNode = qThingNode;
         this.qNodeThing = qNodeThing;
     }
     
-    public QoSProfile getQThingNode() {
+    public QoS getQThingNode() {
         return qThingNode;
     }
 
-    public QoSProfile getQNodeThing() {
+    public QoS getQNodeThing() {
         return qNodeThing;
     }
     
-    public void setQThingNode(QoSProfile qThingNode ) {
+    public void setQThingNode(QoS qThingNode ) {
        this.qThingNode = qThingNode;
     }
 
-    public void setQNodeThing(QoSProfile qNodeThing) {
+    public void setQNodeThing(QoS qNodeThing) {
         this.qNodeThing = qNodeThing;   
     }
 }

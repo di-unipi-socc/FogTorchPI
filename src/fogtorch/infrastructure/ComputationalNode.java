@@ -10,7 +10,7 @@ import java.util.Collection;
 import fogtorch.application.SoftwareComponent;
 import fogtorch.utils.Coordinates;
 import fogtorch.utils.Couple;
-import fogtorch.utils.QoSProfile;
+import fogtorch.utils.QoS;
 import java.util.Objects;
 
 /**
@@ -84,13 +84,13 @@ public abstract class ComputationalNode implements Comparable{
         return hash;
     }
     
-    public boolean isReachable(String t, Infrastructure I, QoSProfile qNodeThing, QoSProfile qThingNode) {
+    public boolean isReachable(String t, Infrastructure I, QoS qNodeThing, QoS qThingNode) {
         boolean reach = false;
         
         if (I.L.containsKey(new Couple<String,String>(this.getId(), t))){
             
-            QoSProfile q1 = I.L.get(new Couple(this.getId(), t)); //nodeThing
-            QoSProfile q2 = I.L.get(new Couple(t, this.getId())); //thingNode
+            QoS q1 = I.L.get(new Couple(this.getId(), t)); //nodeThing
+            QoS q2 = I.L.get(new Couple(t, this.getId())); //thingNode
             reach = q1.supports(qNodeThing) && q2.supports(qThingNode);
             //System.out.println(new Couple(this.getId(), t) + " "+ reach);
         }
