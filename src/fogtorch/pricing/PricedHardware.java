@@ -1,4 +1,4 @@
-package fogtorch.pricing;
+ package fogtorch.pricing;
 
 import fogtorch.utils.Hardware;
 
@@ -6,7 +6,13 @@ import fogtorch.utils.Hardware;
  *
  * @author Stefano
  */
-public class PricedHardware {
+public class PricedHardware extends Hardware {
     public Hardware hardware;
-    public Pricing prices;
+    public Pricing ramCost;
+    public Pricing cpuCost;
+    public Pricing storageCost;
+
+    public PricedHardware(Hardware r) {
+        super(r);
+    }
 }

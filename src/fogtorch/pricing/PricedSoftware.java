@@ -6,7 +6,7 @@ import fogtorch.utils.Software;
  *
  * @author Stefano
  */
-public class PricedSoftware {
+public class PricedSoftware extends Software {
     public Software s;
     public Pricing prices;
 }
