@@ -1,6 +1,8 @@
 package fogtorch.pricing;
 
+import fogtorch.utils.Couple;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  *
@@ -8,4 +10,11 @@ import java.util.HashMap;
  */
 public class Pricing {
     public HashMap<Stakeholder, Cost> price;
+    
+    public Pricing(List<Couple<Stakeholder, Cost>> prices){
+        price = new HashMap<>();
+        for (Couple<Stakeholder, Cost>  p : prices){
+            this.price.put(p.getA(), p.getB());
+        }
+    }
 }
