@@ -13,6 +13,10 @@ import java.util.Objects;
  */
 public class Software {
     public String name;
+    
+    public Software (String name){
+        this.name = name;
+    }
 
     @Override
     public boolean equals(Object o){
