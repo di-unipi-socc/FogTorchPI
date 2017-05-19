@@ -1,13 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package fogtorch.montecarlo;
+package fogtorch.deployment;
 
 import fogtorch.application.Application;
+import fogtorch.deployment.Deployment;
 import fogtorch.deployment.Search;
 import fogtorch.infrastructure.Infrastructure;
+import fogtorch.utils.Couple;
 import fogtorch.utils.QoSProfile;
 import static java.util.Arrays.asList;
 import java.util.HashMap;
@@ -22,32 +19,62 @@ public class MonteCarloSearch {
     private int times;
     private Application A;
     private Infrastructure I;
-    private HashMap<String, HashSet<String>> deploymentPolicies;
+
+    private HashMap<String, HashSet<String>> businessPolicies;
     private Search search;
     
     
     public MonteCarloSearch(
             int times, 
             Application A,
-            Infrastructure I,
-            HashMap<String, HashSet<String>> deploymentPolicies){
+            Infrastructure I){
         
         this.times = times;
         this.A = A;
         this.I = I;
-        this.deploymentPolicies = deploymentPolicies;
-        
-        search = new Search(A, I);
-        for (String component : deploymentPolicies.keySet()){
-            List l = asList(deploymentPolicies.get(component));
-            search.addBusinessPolicies(component, l);
-        }    
+        businessPolicies = new HashMap<String, HashSet<String>>();
     }
     
-    public void estimateQoSAssurance(){
-        for (QoSProfile q : I.L.values()){
+    public void addBusinessPolicies(String component, List<String> allowedNodes) {
+        HashSet<String> policies = new HashSet<>();
+        policies.addAll(allowedNodes);
+        this.businessPolicies.put(component, policies);
+    }
+
+    public HashMap<Deployment, Couple<Double, Double>> startSimulation(){
+        HashMap<Deployment, Couple<Double, Double>> histogram = new HashMap<>();
+        for (int j = 0; j < times; j++){
             
+            search = new Search(A, I, businessPolicies);
             
+
+            
+            for (QoSProfile q : I.L.values()){
+                q.sampleQoS();
+            }
+            
+            search.findDeployments(true);
+            
+            double pos = search.D.size();
+            double size = search.D.size();
+            
+            for (Deployment d : search.D) {
+                if (histogram.containsKey(d)) {
+                    Double newCount = histogram.get(d).getA() + 1.0; //montecarlo frequency
+                    Double newPos = histogram.get(d).getB() + (pos/size);
+                    histogram.replace(d, new Couple(newCount, newPos));
+                } else {
+                    histogram.put(d, new Couple(1.0, pos/size));
+                }
+                pos--;
+            }
         }
+        
+        for (Deployment dep : histogram.keySet()) {
+                histogram.replace(dep, new Couple((100 * histogram.get(dep).getA() / ((double) times)), (100 * histogram.get(dep).getB() / (double) times)));
+            }
+        
+       
+        return histogram;
     }
 }

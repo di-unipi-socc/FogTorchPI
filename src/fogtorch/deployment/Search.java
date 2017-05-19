@@ -27,10 +27,8 @@ public class Search {
     private Infrastructure I;
     private HashMap<String, ArrayList<ComputationalNode>> K;
     private HashMap<String, HashSet<String>> businessPolicies;
-    //private ArrayList<String> keepLight;
     int steps;
     public ArrayList<Deployment> D;
-   // public Coordinates deploymentLocation;
 
     public Search(Application A, Infrastructure I) { //, Coordinates deploymentLocation
         this.A = A;
@@ -43,6 +41,18 @@ public class Search {
              K.put(s.getId(), new ArrayList<>());
         }
         //this.deploymentLocation = deploymentLocation;
+    }
+
+    Search(Application A, Infrastructure I, HashMap<String, HashSet<String>> businessPolicies) {
+            this.A = A;
+            this.I = I;
+            K = new HashMap<>();
+            D = new ArrayList<>();
+            this.businessPolicies = businessPolicies;
+            //keepLight = new ArrayList<>();
+            for (SoftwareComponent s: A.S){
+                 K.put(s.getId(), new ArrayList<>());
+            }
     }
 
     private boolean findCompatibleNodes() {

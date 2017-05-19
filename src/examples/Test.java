@@ -20,9 +20,14 @@ public class Test {
                new Couple(new QoS(15, 6.0), 0.2), 
                new Couple(new QoS(30, 3.0), 0.5))); 
        
+       
+       QoSProfile q1 = new QoSProfile(10, 5.0);
+       StdOut.println(q1);
+       
        for (int i =0; i<15; i++){
            q.sampleQoS();
            StdOut.println(q);
+           
        }
     }
     

@@ -17,6 +17,12 @@ public class QoSProfile {
     
     public QoSProfile(int latency, double bandwidth) {
         probabilities = new double[1];
+        QoS = new ArrayList<>(1);
+        
+        this.latency = latency;
+        this.bandwidth = bandwidth;
+        
+        QoS.add(0, new QoS(latency, bandwidth));
         probabilities[0] = 1;
     }
     
@@ -30,6 +36,8 @@ public class QoSProfile {
             probabilities[i] = qos.get(i).getB();
             i++;
         }
+        
+        this.sampleQoS();
     }
     
     public void setLatency (int latency){
@@ -49,10 +57,11 @@ public class QoSProfile {
     }
     
     
-    public void sampleQoS(){
+    public final void sampleQoS(){
         int sample = StdRandom.discrete(probabilities);
         latency = QoS.get(sample).getLatency();
         bandwidth = QoS.get(sample).getBandwidth();
+        //System.out.println("Sampling: " + this);
     }
     
     @Override

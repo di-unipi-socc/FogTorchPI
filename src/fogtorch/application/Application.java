@@ -63,14 +63,6 @@ public class Application {
         
         return result;
     }
+    
 
-//    public void addLink(String a, String b, QoSProfile q) {
-//        L.put(new Couple(a,b), q);
-//        L.put(new Couple(b,a), q);
-//    }
-//
-//    public void addLink(String a, String b, QoSProfile q1, QoSProfile q2) {
-//        L.put(new Couple(b,a), q1);
-//        L.put(new Couple(a,b), q2);
-//    }
 }

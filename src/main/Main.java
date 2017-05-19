@@ -22,7 +22,6 @@ import static java.util.Arrays.asList;
 import java.util.HashMap;
 import java.util.Random;
 
-
 /**
  *
  * @author Stefano
@@ -47,14 +46,14 @@ public class Main {
     public static void main(String[] args) {
         int TIMES = 100000;
         HashMap<Deployment, Couple<Double, Double>> histogram = new HashMap<>();
-        
-        String filename =
-                "C:\\Users\\Stefano\\Dropbox\\_Dottorato\\FogTorchMC_Ahmad_Stefano\\results\\Q1k.csv";
+
+        String filename
+                = "C:\\Users\\Stefano\\Dropbox\\_Dottorato\\FogTorchMC_Ahmad_Stefano\\results\\Q1k.csv";
         boolean notFog3 = false;
-        
+
         //Change the access to Internet
         String profile = "6M";
-       
+
         //String profile2 = "4G";
         String profile2 = "3G";
 
@@ -64,7 +63,7 @@ public class Main {
 
         int Bstorage = 8; //8, 10, 32, 1000
         double Bram = 1;
-        
+
         boolean dell32 = true;
 
         boolean fog2up = true;
@@ -88,7 +87,7 @@ public class Main {
             if (fog2up) {
                 I.addFogNode("fog2", asList("linux", "php"), fogHW, 43.7464449, 10.4615923);
             }
-            I.addFogNode("fog3", asList("linux", "mySQL"), new Hardware(4,2,64), 43.7381285, 10.4552213);
+            I.addFogNode("fog3", asList("linux", "mySQL"), new Hardware(4, 2, 64), 43.7381285, 10.4552213);
 
             //Links
             if (profile.equals("30M")) {
@@ -163,12 +162,12 @@ public class Main {
             Application A = new Application();
             ArrayList<ThingRequirement> neededThings = new ArrayList<>();
             //QoSProfile qNodeThing, QoSProfile qThingNode
-            neededThings.add(new ExactThing("water0", new QoSProfile(1000, 0.1), new QoSProfile(1000,0.1))); // 1 s and 1 Mbps
+            neededThings.add(new ExactThing("water0", new QoSProfile(1000, 0.1), new QoSProfile(1000, 0.1))); // 1 s and 1 Mbps
             if (video) {
-                neededThings.add(new ExactThing("video0", new QoSProfile(25,0.1), new QoSProfile(25, 5))); // 25 ms and 4Mbps for the HD videostreaming
+                neededThings.add(new ExactThing("video0", new QoSProfile(25, 0.1), new QoSProfile(25, 5))); // 25 ms and 4Mbps for the HD videostreaming
             }
-            neededThings.add(new ExactThing("moisture0", new QoSProfile(500,0.1), new QoSProfile(500, 0.1))); // 0.5 s and 1 Mbps
-            neededThings.add(new ExactThing("temperature0", new QoSProfile(65,0.1), new QoSProfile(65, 0.1))); // 110 ms and 1 Mbps
+            neededThings.add(new ExactThing("moisture0", new QoSProfile(500, 0.1), new QoSProfile(500, 0.1))); // 0.5 s and 1 Mbps
+            neededThings.add(new ExactThing("temperature0", new QoSProfile(65, 0.1), new QoSProfile(65, 0.1))); // 110 ms and 1 Mbps
 
             //components
             A.addComponent("A", asList("linux"), new Hardware(1, 1.2, 8), neededThings);
@@ -187,11 +186,10 @@ public class Main {
             A.addLink("B", "C", 100, 0.8, 1);
 
             Search s = new Search(A, I); //new Coordinates(43.740186, 10.364619));
-            
+
             //s.addBusinessPolicies("C", asList("cloud2", "cloud1"));
             //s.addKeepLightNodes(asList("fog3"));
-            
-            if(notFog3){
+            if (notFog3) {
                 s.addBusinessPolicies("A", asList("cloud2", "cloud1", "fog1", "fog2"));
                 s.addBusinessPolicies("B", asList("cloud2", "cloud1", "fog1", "fog2"));
                 s.addBusinessPolicies("C", asList("cloud2", "cloud1", "fog1", "fog2"));
@@ -199,54 +197,50 @@ public class Main {
             s.findDeployments(true);
             double pos = s.D.size();
             double size = s.D.size();
-            
+
             for (Deployment d : s.D) {
                 d.consumedResources = I.consumedResources(d, asList("fog1", "fog2")); //computes over all fog nodes ...
                 if (histogram.containsKey(d)) {
                     Double newCount = histogram.get(d).getA() + 1.0; //montecarlo frequency
-                    Double newPos = histogram.get(d).getB() + (pos/size);
+                    Double newPos = histogram.get(d).getB() + (pos / size);
                     //System.out.println(newPos + " " + pos/size);
                     histogram.replace(d, new Couple(newCount, newPos));
                 } else {
-                    histogram.put(d, new Couple(1.0, pos/size));
+                    histogram.put(d, new Couple(1.0, pos / size));
                 }
                 pos--;
             }
             //System.out.println(I);
         }
         double i = 0.0;
-        StdDraw.setXscale(0,100);
-        StdDraw.setYscale(0,100);
+        StdDraw.setXscale(0, 100);
+        StdDraw.setYscale(0, 100);
         System.out.println(histogram.size());
-        for (Deployment dep : histogram.keySet()) {               
-                
-                StdDraw.setPenRadius(0.01);
-                StdDraw.point(100 * histogram.get(dep).getA() / ((double) TIMES),100*(dep.consumedResources.getA() + dep.consumedResources.getB())/2);
-                StdDraw.point(i,0);
-                StdDraw.point(0,i);
-                //StdDraw.show();
-                i++;
-            }
-        
+        for (Deployment dep : histogram.keySet()) {
+            System.out.println(dep);
+            StdDraw.setPenRadius(0.01);
+            StdDraw.point(100 * histogram.get(dep).getA() / ((double) TIMES), 100 * (dep.consumedResources.getA() + dep.consumedResources.getB()) / 2);
+            StdDraw.point(i, 0);
+            StdDraw.point(0, i);
+            //StdDraw.show();
+            i++;
+        }
+
         try {
             PrintWriter writer = new PrintWriter(filename, "UTF-8");
             writer.println("Deployment, QoS-assurance, Heuristic Rank, Consumed RAM, Consumed HDD, Sum Hardware");
             for (Deployment dep : histogram.keySet()) {
 
-                histogram.replace(dep,  new Couple((100 * histogram.get(dep).getA() / ((double) TIMES)), (100*histogram.get(dep).getB() / (double) TIMES)));
-                writer.println(dep + ", " + histogram.get(dep) + "," + dep.consumedResources + ", " + (dep.consumedResources.getA() + dep.consumedResources.getB())/2);
-                System.out.println(dep + ", " + histogram.get(dep) + ", " + dep.consumedResources + ", " + (dep.consumedResources.getA() + dep.consumedResources.getB())/2);
-                
-                //drawing plot
+                histogram.replace(dep, new Couple((100 * histogram.get(dep).getA() / ((double) TIMES)), (100 * histogram.get(dep).getB() / (double) TIMES)));
+                writer.println(dep + ", " + histogram.get(dep) + "," + dep.consumedResources + ", " + (dep.consumedResources.getA() + dep.consumedResources.getB()) / 2);
+                System.out.println(dep + ", " + histogram.get(dep) + ", " + dep.consumedResources + ", " + (dep.consumedResources.getA() + dep.consumedResources.getB()) / 2);
 
+                //drawing plot
             }
             writer.close();
-            
 
         } catch (IOException e) {
         }
-        
-        
 
     }
 }
