@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import fogtorch.utils.Couple;
 import fogtorch.utils.Hardware;
-import fogtorch.utils.QoS;
+import fogtorch.utils.QoSProfile;
 
 /**
  *
@@ -18,7 +18,7 @@ import fogtorch.utils.QoS;
  */
 public class Application {
     public ArrayList<SoftwareComponent> S;
-    public HashMap<Couple, QoS> L;
+    public HashMap<Couple, QoSProfile> L;
     
     public Application(){
         S = new ArrayList<>();
@@ -26,13 +26,13 @@ public class Application {
     }
 
     public void addLink(String a, String b, int latency, double bandwidth) {
-        L.put(new Couple(a,b), new QoS(latency,bandwidth));
-        L.put(new Couple(b,a), new QoS(latency,bandwidth));
+        L.put(new Couple(a,b), new QoSProfile(latency,bandwidth));
+        L.put(new Couple(b,a), new QoSProfile(latency,bandwidth));
     }
 
     public void addLink(String a, String b, int latency, double downlink, double uplink) {
-        L.put(new Couple(a,b), new QoS(latency,uplink));
-        L.put(new Couple(b,a), new QoS(latency,downlink));
+        L.put(new Couple(a,b), new QoSProfile(latency,uplink));
+        L.put(new Couple(b,a), new QoSProfile(latency,downlink));
     }
 
     public void addComponent(String id, List<String> softwareReqs, Hardware hardwareReqs, ArrayList<ThingRequirement> Theta) {
@@ -54,7 +54,7 @@ public class Application {
         
         result+="}\n\nLambda = {\n";
         
-        for (QoS l : L.values()){
+        for (QoSProfile l : L.values()){
             result+="\t"+l;
             result+="\n";
         }

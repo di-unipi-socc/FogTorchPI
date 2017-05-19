@@ -17,7 +17,7 @@ import fogtorch.infrastructure.FogNode;
 import fogtorch.infrastructure.Infrastructure;
 import fogtorch.utils.Couple;
 import fogtorch.infrastructure.ComputationalNode;
-import fogtorch.utils.QoS;
+import fogtorch.utils.QoSProfile;
 import java.util.Collections;
 import java.util.List;
 
@@ -169,14 +169,14 @@ public class Search {
             Couple couple1 = new Couple(c.getId(), s.getId());
             Couple couple2 = new Couple(s.getId(), c.getId());
             if (A.L.containsKey(couple1)) {
-                QoS req1 = A.L.get(couple1);
-                QoS req2 = A.L.get(couple2);
+                QoSProfile req1 = A.L.get(couple1);
+                QoSProfile req2 = A.L.get(couple2);
                 Couple c1 = new Couple(m.getId(), n.getId());
                 Couple c2 = new Couple(n.getId(), m.getId());
                 //System.out.println("Finding a link for " + couple1 + " between " + c1);
                 if (I.L.containsKey(c1)) {
-                    QoS off1 = I.L.get(c1);
-                    QoS off2 = I.L.get(c2);
+                    QoSProfile off1 = I.L.get(c1);
+                    QoSProfile off2 = I.L.get(c2);
                     
                     if (!off1.supports(req1) || !off2.supports(req2)) {
                         return false;
@@ -197,13 +197,13 @@ public class Search {
             Couple couple2 = new Couple(s.getId(), c.getId());
 
             if (A.L.containsKey(couple1) && A.L.containsKey(couple2)) {
-                QoS req1 = A.L.get(couple1); //c,s
-                QoS req2 = A.L.get(couple2); //s,c
+                QoSProfile req1 = A.L.get(couple1); //c,s
+                QoSProfile req2 = A.L.get(couple2); //s,c
                 Couple c1 = new Couple(m.getId(), n.getId()); // m,n
                 Couple c2 = new Couple(n.getId(), m.getId()); // n,m
                 if (I.L.containsKey(c1)) {
-                    QoS pl1 = I.L.get(c1);
-                    QoS pl2 = I.L.get(c2);
+                    QoSProfile pl1 = I.L.get(c1);
+                    QoSProfile pl2 = I.L.get(c2);
                     pl1.setBandwidth(pl1.getBandwidth() - req1.getBandwidth());
                     pl2.setBandwidth(pl2.getBandwidth() - req2.getBandwidth());
                 }
@@ -215,8 +215,8 @@ public class Search {
             if (n.isReachable(e.getId(), I, e.getQNodeThing(), e.getQThingNode())) {
                 Couple c1 = new Couple(n.getId(), e.getId()); //c1 nodeThing
 
-                QoS pl1 = I.L.get(c1);
-                QoS pl2 = I.L.get(new Couple(e.getId(), n.getId()));
+                QoSProfile pl1 = I.L.get(c1);
+                QoSProfile pl2 = I.L.get(new Couple(e.getId(), n.getId()));
 
                 pl1.setBandwidth(pl1.getBandwidth() - e.getQNodeThing().getBandwidth());
                 pl2.setBandwidth(pl2.getBandwidth() - e.getQThingNode().getBandwidth());
@@ -248,13 +248,13 @@ public class Search {
             Couple couple2 = new Couple(s.getId(), c.getId());
 
             if (A.L.containsKey(couple1) && A.L.containsKey(couple2)) {
-                QoS al1 = A.L.get(couple1);
-                QoS al2 = A.L.get(couple2);
+                QoSProfile al1 = A.L.get(couple1);
+                QoSProfile al2 = A.L.get(couple2);
                 Couple c1 = new Couple(m.getId(), n.getId());
                 Couple c2 = new Couple(n.getId(), m.getId());
                 if (I.L.containsKey(c1)) {
-                    QoS pl1 = I.L.get(c1);
-                    QoS pl2 = I.L.get(c2);
+                    QoSProfile pl1 = I.L.get(c1);
+                    QoSProfile pl2 = I.L.get(c2);
 
                     pl1.setBandwidth(pl1.getBandwidth() + al1.getBandwidth());
                     pl2.setBandwidth(pl2.getBandwidth() + al2.getBandwidth());
@@ -269,8 +269,8 @@ public class Search {
             if (n.isReachable(e.getId(), I, e.getQNodeThing(), e.getQThingNode())) {
                 Couple c1 = new Couple(n.getId(), e.getId());
 
-                QoS pl1 = I.L.get(c1);
-                QoS pl2 = I.L.get(new Couple(e.getId(), n.getId()));
+                QoSProfile pl1 = I.L.get(c1);
+                QoSProfile pl2 = I.L.get(new Couple(e.getId(), n.getId()));
 
                 pl1.setBandwidth(pl1.getBandwidth() + e.getQNodeThing().getBandwidth());
                 pl2.setBandwidth(pl2.getBandwidth() + e.getQThingNode().getBandwidth());

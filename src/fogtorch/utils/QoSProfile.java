@@ -60,7 +60,7 @@ public class QoSProfile {
         return "<" + latency + ", " + bandwidth + ">";
     }
     
-    public boolean supports(QoS q){
+    public boolean supports(QoSProfile q){
         boolean result = false;
         if (latency <= q.getLatency() && bandwidth >= q.getBandwidth())
             result = true;
