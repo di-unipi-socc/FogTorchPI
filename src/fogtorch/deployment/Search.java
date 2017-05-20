@@ -59,7 +59,8 @@ public class Search {
         for (SoftwareComponent s : A.S) {
             for (CloudDatacentre n : I.C.values()) {
                 if (n.isCompatible(s) && checkThings(s, n)
-                        && ((businessPolicies.containsKey(s.getId()) && businessPolicies.get(s.getId()).contains(n.getId()))
+                        && ((businessPolicies.containsKey(s.getId()) 
+                        && businessPolicies.get(s.getId()).contains(n.getId()))
                         || !businessPolicies.containsKey(s.getId()))) {
                   
                     K.get(s.getId()).add(n);

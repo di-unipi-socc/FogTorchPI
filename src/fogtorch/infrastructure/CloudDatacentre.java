@@ -8,6 +8,7 @@ package fogtorch.infrastructure;
 import java.util.Collection;
 import java.util.List;
 import fogtorch.application.SoftwareComponent;
+import fogtorch.utils.Software;
 
 /**
  *
@@ -24,9 +25,17 @@ public class CloudDatacentre extends ComputationalNode {
 
     @Override
     public boolean isCompatible(SoftwareComponent component) {
-        List<String> softwareRequirements = component.getSoftwareRequirements();
-        return softwareRequirements.stream().noneMatch((s) 
-                -> (!super.getSoftware().contains(s)));
+        List<Software> softwareRequirements = component.getSoftwareRequirements();
+        
+        for (Software s : softwareRequirements){
+            //System.out.println(s);
+            if (!(this.getSoftware().contains(s)))
+                return false;
+        }
+        
+        return true;
+        //return softwareRequirements.stream().noneMatch((s) 
+              //  -> (!super.getSoftware().contains(s)));
     }
 
     @Override

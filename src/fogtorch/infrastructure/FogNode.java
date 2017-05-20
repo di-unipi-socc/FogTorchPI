@@ -15,6 +15,7 @@ import fogtorch.utils.Constants;
 import fogtorch.utils.Coordinates;
 import fogtorch.utils.Couple;
 import fogtorch.utils.Hardware;
+import fogtorch.utils.Software;
 
 /**
  *
@@ -47,7 +48,7 @@ public class FogNode extends ComputationalNode{
     @Override
     public boolean isCompatible(SoftwareComponent component){
         Hardware hardwareRequest = component.getHardwareRequirements();
-        Collection<String> softwareRequest = component.getSoftwareRequirements();
+        Collection<Software> softwareRequest = component.getSoftwareRequirements();
         
         return hw.supports(hardwareRequest) && 
                 softwareRequest.stream().noneMatch(

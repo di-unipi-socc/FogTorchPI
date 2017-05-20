@@ -9,13 +9,13 @@ import fogtorch.application.Application;
 import fogtorch.application.ExactThing;
 import fogtorch.application.ThingRequirement;
 import fogtorch.deployment.Deployment;
-import fogtorch.deployment.Search;
 import fogtorch.infrastructure.Infrastructure;
 import fogtorch.deployment.MonteCarloSearch;
 import fogtorch.utils.Couple;
 import fogtorch.utils.Hardware;
 import fogtorch.utils.QoS;
 import fogtorch.utils.QoSProfile;
+import fogtorch.utils.Software;
 import java.util.ArrayList;
 import static java.util.Arrays.asList;
 import java.util.HashMap;
@@ -30,7 +30,7 @@ public class MainRefactoring {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        boolean notFog3 = true;
+        boolean notFog3 = false;
 
         //Change the access to Internet
         String profile = "6M";
@@ -58,7 +58,7 @@ public class MainRefactoring {
         }
 
         Infrastructure I = new Infrastructure();
-
+        
         I.addCloudDatacentre("cloud1", asList("linux", "php", "mySQL", "python"), 52.195097, 3.0364791);
         I.addCloudDatacentre("cloud2", asList("linux", "php", "mySQL", "java"), 44.123896, -122.781555);
 
@@ -158,6 +158,7 @@ public class MainRefactoring {
         neededThings.add(new ExactThing("temperature0", new QoSProfile(65, 0.1), new QoSProfile(65, 0.1))); // 110 ms and 1 Mbps
 
         //components
+        
         A.addComponent("A", asList("linux"), new Hardware(1, 1.2, 8), neededThings);
 
         A.addComponent("B", asList("linux", "mySQL"), new Hardware(1, Bram, Bstorage)); //cores ram storage
@@ -181,8 +182,9 @@ public class MainRefactoring {
             s.addBusinessPolicies("C", asList("cloud2", "cloud1", "fog1", "fog2"));
         }
         
-        HashMap<Deployment, Couple<Double, Double>> histogram = s.startSimulation();
+        HashMap<Deployment, Couple<Double, Double>> histogram = s.startSimulation(asList());
         
+        System.out.println(histogram.size());
         System.out.println(histogram);
 
     }

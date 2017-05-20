@@ -41,8 +41,9 @@ public class MonteCarloSearch {
         this.businessPolicies.put(component, policies);
     }
 
-    public HashMap<Deployment, Couple<Double, Double>> startSimulation(){
+    public HashMap<Deployment, Couple<Double, Double>> startSimulation(List<String> fogNodes){
         HashMap<Deployment, Couple<Double, Double>> histogram = new HashMap<>();
+        
         for (int j = 0; j < times; j++){
             
             search = new Search(A, I, businessPolicies);
@@ -70,8 +71,15 @@ public class MonteCarloSearch {
             }
         }
         
-        for (Deployment dep : histogram.keySet()) {
-                histogram.replace(dep, new Couple((100 * histogram.get(dep).getA() / ((double) times)), (100 * histogram.get(dep).getB() / (double) times)));
+        
+        
+        for (Deployment dep : histogram.keySet()) { 
+            if (!fogNodes.isEmpty())
+                dep.consumedResources = I.consumedResources(dep, fogNodes);
+            else 
+                dep.consumedResources = I.consumedResources(dep);
+            
+            histogram.replace(dep, new Couple((100 * histogram.get(dep).getA() / ((double) times)), (dep.consumedResources.getA() + dep.consumedResources.getB()) / 2));
             }
         
        

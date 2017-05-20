@@ -230,12 +230,9 @@ public class Main {
             PrintWriter writer = new PrintWriter(filename, "UTF-8");
             writer.println("Deployment, QoS-assurance, Heuristic Rank, Consumed RAM, Consumed HDD, Sum Hardware");
             for (Deployment dep : histogram.keySet()) {
-
                 histogram.replace(dep, new Couple((100 * histogram.get(dep).getA() / ((double) TIMES)), (100 * histogram.get(dep).getB() / (double) TIMES)));
                 writer.println(dep + ", " + histogram.get(dep) + "," + dep.consumedResources + ", " + (dep.consumedResources.getA() + dep.consumedResources.getB()) / 2);
                 System.out.println(dep + ", " + histogram.get(dep) + ", " + dep.consumedResources + ", " + (dep.consumedResources.getA() + dep.consumedResources.getB()) / 2);
-
-                //drawing plot
             }
             writer.close();
 

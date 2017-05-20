@@ -6,7 +6,9 @@
 package fogtorch.application;
 
 import fogtorch.utils.Hardware;
+import fogtorch.utils.Software;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 
@@ -16,18 +18,25 @@ import java.util.List;
  */
 public class SoftwareComponent implements Comparable {
     String identifier;
-    List<String> softwareReqs;
+    List<Software> softwareReqs;
     Hardware hw;
     public ArrayList<ThingRequirement> Theta;
 
     public SoftwareComponent(String identifier, List<String> softwareReqs, Hardware hardwareReqs, ArrayList<ThingRequirement> Theta){
         this.identifier = identifier;
-        this.softwareReqs = softwareReqs;
+        this.setSoftware(softwareReqs);
         this.Theta = new ArrayList<>(Theta);
         this.hw = new Hardware(hardwareReqs);
     }
+    
+    public void setSoftware(Collection<String> software){
+        this.softwareReqs = new ArrayList<>();
+        for (String s : software){
+            boolean add = this.softwareReqs.add(new Software(s));
+        }
+    }
 
-    public List<String> getSoftwareRequirements() {
+    public List<Software> getSoftwareRequirements() {
         return softwareReqs;
     }
 

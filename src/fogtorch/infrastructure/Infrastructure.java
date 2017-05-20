@@ -15,6 +15,7 @@ import java.util.Set;
 import fogtorch.utils.Couple;
 import fogtorch.utils.Hardware;
 import fogtorch.utils.QoSProfile;
+import fogtorch.utils.Software;
 
 /**
  *

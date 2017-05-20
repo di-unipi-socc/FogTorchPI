@@ -13,9 +13,18 @@ import fogtorch.utils.QoSProfile;
  */
 public class ExactThing extends ThingRequirement{
     private String id;
+    private int monthlyInvoke;
 
     public ExactThing(String type, QoSProfile qNodeThing, QoSProfile qThingNode) {
         this.id = type;
+        this.monthlyInvoke = 0;
+        super.setQNodeThing(qNodeThing);
+        super.setQThingNode(qThingNode);
+    }
+    
+    public ExactThing(String type, QoSProfile qNodeThing, QoSProfile qThingNode, int monthlyInvoke) {
+        this.id = type;
+        this.monthlyInvoke = monthlyInvoke;
         super.setQNodeThing(qNodeThing);
         super.setQThingNode(qThingNode);
     }
