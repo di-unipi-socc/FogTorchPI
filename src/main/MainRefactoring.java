@@ -183,9 +183,6 @@ public class MainRefactoring {
         }
         
         HashMap<Deployment, Couple<Double, Double>> histogram = s.startSimulation(asList());
-        
-        System.out.println(histogram.size());
-        System.out.println(histogram);
 
     }
 }
