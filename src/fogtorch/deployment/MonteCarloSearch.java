@@ -78,8 +78,7 @@ public class MonteCarloSearch {
             
             histogram.replace(dep, new Couple((100 * histogram.get(dep).getA() / ((double) times)), (dep.consumedResources.getA() + dep.consumedResources.getB()) / 2));
             }
-        
-       
+
         return histogram;
     }
 }
