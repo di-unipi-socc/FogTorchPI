@@ -294,7 +294,7 @@ public class Search {
 
     private void deploy(Deployment deployment, SoftwareComponent s, ComputationalNode n) {
         deployment.put(s, n);
-        deployment.addCost(s,n);
+        deployment.addCost(s,n, I);
         //System.out.println(deployment + " " + deployment.size());
         n.deploy(s);
         deployLinks(deployment, s, n);
@@ -303,7 +303,7 @@ public class Search {
     private void undeploy(Deployment deployment, SoftwareComponent s, ComputationalNode n) {
         if (deployment.containsKey(s)) {
             deployment.remove(s);
-            deployment.removeCost(s, n);
+            deployment.removeCost(s, n, I);
             n.undeploy(s);
             undeployLinks(deployment, s, n);
         }

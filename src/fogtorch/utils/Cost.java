@@ -1,5 +1,6 @@
 package fogtorch.utils;
 
+import java.text.DecimalFormat;
 import java.util.Objects;
 
 /**
@@ -39,7 +40,10 @@ public class Cost {
     
     @Override
     public String toString(){
-        return currency + " " + this.monthlyCost;
+        DecimalFormat df = new DecimalFormat();
+        df.setMaximumFractionDigits(2);
+        String formattedCost = df.format(monthlyCost);
+        return currency + " " + formattedCost;
     }
     
     @Override

@@ -32,6 +32,12 @@ public class ExactThing extends ThingRequirement{
     public String getId(){
         return id;
     }
+    
+    
+    
+    public int getMonthlyInvoke(){
+        return this.monthlyInvoke;
+    }
 
     public String toString(){
         return "(" + id + ", "+super.getQNodeThing()+ " " + super.getQThingNode()+")" ;

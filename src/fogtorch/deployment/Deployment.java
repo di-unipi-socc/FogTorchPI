@@ -11,8 +11,10 @@ import fogtorch.application.SoftwareComponent;
 import fogtorch.infrastructure.CloudDatacentre;
 import fogtorch.infrastructure.ComputationalNode;
 import fogtorch.infrastructure.FogNode;
+import fogtorch.infrastructure.Infrastructure;
 import fogtorch.utils.Cost;
 import fogtorch.utils.Couple;
+import java.text.DecimalFormat;
 import java.util.TreeMap;
 
 /**
@@ -46,6 +48,7 @@ public class Deployment extends TreeMap<SoftwareComponent, ComputationalNode> {
     @Override
     public String toString(){
         String result ="";
+        
         result += this.deploymentMonthlyCost + ": ";
         for (SoftwareComponent s : super.keySet()){
             result+="["+s.getId()+"->" +super.get(s).getId()+"]" ;
@@ -75,12 +78,12 @@ public class Deployment extends TreeMap<SoftwareComponent, ComputationalNode> {
         return hash;
     }
 
-    void addCost(SoftwareComponent s, ComputationalNode n) {
-        this.deploymentMonthlyCost.add(n.computeCost(s));
+    void addCost(SoftwareComponent s, ComputationalNode n, Infrastructure I) {
+        this.deploymentMonthlyCost.add(n.computeCost(s, I));
     }
     
-    void removeCost(SoftwareComponent s, ComputationalNode n){
-        this.deploymentMonthlyCost.remove(n.computeCost(s));
+    void removeCost(SoftwareComponent s, ComputationalNode n, Infrastructure I){
+        this.deploymentMonthlyCost.remove(n.computeCost(s, I));
     }
 
 }

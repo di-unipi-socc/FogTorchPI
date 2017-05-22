@@ -65,6 +65,33 @@ public class Infrastructure {
         f.connectedThings.add(identifier);
     }
     
+    public void addThing(String identifier, String type, double x, double y, String fogNode, double cost) {   
+        Thing t = new Thing(identifier, type, x, y, cost);
+        T.put(identifier, t);
+        FogNode f = F.get(fogNode);
+        Set<Couple> allLinks = new HashSet(L.keySet()); //all available links
+        for (Couple l: allLinks){ 
+            if (l.getA().equals(fogNode)){
+                String fogNode2 = (String) l.getB();
+                if(F.containsKey(fogNode2) && !fogNode2.equals(fogNode)){    
+                    QoSProfile r = L.get(l);
+                    L.put(new Couple(identifier, fogNode2), r);
+                    QoSProfile r2 = L.get(new Couple(fogNode2, fogNode));
+                    L.put(new Couple(fogNode2,identifier), r2);
+                }
+                if(C.containsKey(fogNode2) && !fogNode2.equals(fogNode)){  
+                    QoSProfile r = L.get(l);
+                    L.put(new Couple(identifier, fogNode2), r);
+                    QoSProfile r2 = L.get(new Couple(fogNode2, fogNode));
+                    L.put(new Couple(fogNode2,identifier), r2);
+                }
+            }
+        } 
+        addLink(identifier, fogNode, 0, Double.MAX_VALUE);
+        addLink(fogNode, identifier, 0, Double.MAX_VALUE);
+        f.connectedThings.add(identifier);
+    }
+    
     public void addLink(String a, String b, int latency, double bandwidth) {
         L.put(new Couple(a,b), new QoSProfile(latency,bandwidth));
         L.put(new Couple(b,a), new QoSProfile(latency,bandwidth));
@@ -182,6 +209,7 @@ public class Infrastructure {
         
         return result;
     }
+
 
 
     

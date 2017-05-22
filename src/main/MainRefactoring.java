@@ -143,20 +143,20 @@ public class MainRefactoring {
         I.addLink("cloud1", "cloud2", new QoSProfile(5, 1000));
 
         //Things 
-        I.addThing("water0", "water", 43.7464449, 10.4615923, "fog1");
-        I.addThing("video0", "video", 43.7464449, 10.4615923, "fog1");
-        I.addThing("moisture0", "moisture", 43.7464449, 10.4615923, "fog1");
-        I.addThing("temperature0", "temperature", 43.7464449, 10.4615923, "fog3");
+        I.addThing("water0", "water", 43.7464449, 10.4615923, "fog1", 0.05);
+        I.addThing("video0", "video", 43.7464449, 10.4615923, "fog1", 0.03);
+        I.addThing("moisture0", "moisture", 43.7464449, 10.4615923, "fog1", 0.01);
+        I.addThing("temperature0", "temperature", 43.7464449, 10.4615923, "fog3", 0.01);
 
         Application A = new Application();
         ArrayList<ThingRequirement> neededThings = new ArrayList<>();
         //QoSProfile qNodeThing, QoSProfile qThingNode
-        neededThings.add(new ExactThing("water0", new QoSProfile(1000, 0.1), new QoSProfile(1000, 0.1))); // 1 s and 1 Mbps
+        neededThings.add(new ExactThing("water0", new QoSProfile(1000, 0.1), new QoSProfile(1000, 0.1), 500)); // 1 s and 1 Mbps
         if (video) {
-            neededThings.add(new ExactThing("video0", new QoSProfile(25, 0.1), new QoSProfile(25, 5))); // 25 ms and 4Mbps for the HD videostreaming
+            neededThings.add(new ExactThing("video0", new QoSProfile(25, 0.1), new QoSProfile(25, 5), 32)); // 25 ms and 4Mbps for the HD videostreaming
         }
-        neededThings.add(new ExactThing("moisture0", new QoSProfile(500, 0.1), new QoSProfile(500, 0.1))); // 0.5 s and 1 Mbps
-        neededThings.add(new ExactThing("temperature0", new QoSProfile(65, 0.1), new QoSProfile(65, 0.1))); // 110 ms and 1 Mbps
+        neededThings.add(new ExactThing("moisture0", new QoSProfile(500, 0.1), new QoSProfile(500, 0.1), 150)); // 0.5 s and 1 Mbps
+        neededThings.add(new ExactThing("temperature0", new QoSProfile(65, 0.1), new QoSProfile(65, 0.1), 1)); // 110 ms and 1 Mbps
 
         //components
         
