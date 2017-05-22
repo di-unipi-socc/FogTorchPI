@@ -9,13 +9,16 @@ public class Software {
     
     public Software (String name){
         this.name = name;
+        this.cost = new Cost(0.0);
     }
     
     public Software (Software software2){
         this.name = software2.getName();
+        this.cost = new Cost(software2.getCost());
     }
 
     public Software(String r, double cost) {
+        this.name = r;
         this.cost = new Cost(cost);
     }
 
@@ -40,7 +43,6 @@ public class Software {
     public String toString(){
         return this.name;
     }
-    
 
     
     public void setCost(double cost){

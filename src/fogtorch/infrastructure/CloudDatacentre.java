@@ -18,6 +18,7 @@ import fogtorch.utils.Software;
 public class CloudDatacentre extends ComputationalNode {
     
     public CloudDatacentre(String identifier, Collection<String> software, double x, double y, Hardware h){
+        super.setHardware(h);
         super.setId(identifier);
         super.setSoftware(software);
         super.setCoordinates(x,y);
@@ -30,7 +31,7 @@ public class CloudDatacentre extends ComputationalNode {
         
         for (Software s : softwareRequirements){
             //System.out.println(s);
-            if (!(this.getSoftware().contains(s)))
+            if (!(this.getSoftware().containsValue(s)))
                 return false;
         }
         

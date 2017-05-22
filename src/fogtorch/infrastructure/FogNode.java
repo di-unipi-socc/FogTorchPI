@@ -35,7 +35,7 @@ public class FogNode extends ComputationalNode{
         
         return super.getHardware().supports(hardwareRequest) && 
                 softwareRequest.stream().noneMatch(
-                        (s) -> (!super.getSoftware().contains(s))
+                        (s) -> (!super.getSoftware().containsValue(s))
                 );
     }
    

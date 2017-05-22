@@ -140,6 +140,7 @@ public class Search {
     private void exhaustiveSearch(Deployment deployment) {
         if (isComplete(deployment)) {
             D.add((Deployment) deployment.clone());
+            System.out.println(deployment.deploymentMonthlyCost);
             //System.out.println(deployment);
             return;
         }
@@ -303,6 +304,7 @@ public class Search {
     private void undeploy(Deployment deployment, SoftwareComponent s, ComputationalNode n) {
         if (deployment.containsKey(s)) {
             deployment.remove(s);
+            deployment.removeCost(s, n);
             n.undeploy(s);
             undeployLinks(deployment, s, n);
         }

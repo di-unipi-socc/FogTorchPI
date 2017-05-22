@@ -19,7 +19,8 @@ public class Cost {
         this.monthlyCost = monthlyCost;
         this.currency = currency;
     }
-    
+
+
     public double getCost(){
         return this.monthlyCost;
     }
@@ -59,6 +60,12 @@ public class Cost {
     public void add(Cost c){
         if (c.getCurrency().equals(this.currency)){
             this.monthlyCost += c.getCost();
+        }
+    }
+    
+    public void remove(Cost c){
+        if (c.getCurrency().equals(this.currency)){
+            this.monthlyCost -= c.getCost();
         }
     }
 }

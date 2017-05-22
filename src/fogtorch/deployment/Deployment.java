@@ -35,11 +35,22 @@ public class Deployment extends TreeMap<SoftwareComponent, ComputationalNode> {
     }
     
     @Override
+    public Object clone(){
+        Deployment d = new Deployment (this);
+        d.deploymentMonthlyCost = new Cost(deploymentMonthlyCost.getCost());
+        d.consumedResources = this.consumedResources;
+        d.businessPolicies = this.businessPolicies;
+        return d;
+    }
+    
+    @Override
     public String toString(){
         String result ="";
+        result += this.deploymentMonthlyCost + ": ";
         for (SoftwareComponent s : super.keySet()){
-            result+="["+s.getId()+"->" +super.get(s).getId()+"]";
+            result+="["+s.getId()+"->" +super.get(s).getId()+"]" ;
         }
+        
         return result;   
     }
     
@@ -65,13 +76,11 @@ public class Deployment extends TreeMap<SoftwareComponent, ComputationalNode> {
     }
 
     void addCost(SoftwareComponent s, ComputationalNode n) {
-        
-        if (n instanceof CloudDatacentre){
-            
-        }
-        if (n instanceof FogNode){
-            
-        }
+        this.deploymentMonthlyCost.add(n.computeCost(s));
+    }
+    
+    void removeCost(SoftwareComponent s, ComputationalNode n){
+        this.deploymentMonthlyCost.remove(n.computeCost(s));
     }
 
 }

@@ -28,8 +28,8 @@ public class Infrastructure {
         L = new HashMap<>();
     }
 
-    public void addCloudDatacentre(String identifier, List<String> software, double x, double y) {
-        C.put(identifier,new CloudDatacentre(identifier, software, x, y));
+    public void addCloudDatacentre(String identifier, List<String> software, double x, double y, Hardware h) {
+        C.put(identifier,new CloudDatacentre(identifier, software, x, y, h));
         L.put(new Couple(identifier,identifier), new QoSProfile(0, Double.MAX_VALUE));
     }
 

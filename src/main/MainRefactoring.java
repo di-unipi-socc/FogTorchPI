@@ -58,9 +58,10 @@ public class MainRefactoring {
         }
 
         Infrastructure I = new Infrastructure();
+        Hardware h = new Hardware(2, 2, 1000, 1.0, 1.0, 1.0);
         
-        I.addCloudDatacentre("cloud1", asList("linux", "php", "mySQL", "python"), 52.195097, 3.0364791);
-        I.addCloudDatacentre("cloud2", asList("linux", "php", "mySQL", "java"), 44.123896, -122.781555);
+        I.addCloudDatacentre("cloud1", asList("linux", "php", "mySQL", "python"), 52.195097, 3.0364791, h);
+        I.addCloudDatacentre("cloud2", asList("linux", "php", "mySQL", "java"), 44.123896, -122.781555, h);
 
         I.addFogNode("fog1", asList("linux", "php", "mySQL"), fogHW, 43.740186, 10.364619);
         I.addFogNode("fog2", asList("linux", "php"), fogHW, 43.7464449, 10.4615923);
@@ -174,7 +175,7 @@ public class MainRefactoring {
         A.addLink("A", "C", 140, 0.4, 1.1);
         A.addLink("B", "C", 100, 0.8, 1);
         
-        MonteCarloSearch s = new MonteCarloSearch(100000, A, I); //new Coordinates(43.740186, 10.364619));
+        MonteCarloSearch s = new MonteCarloSearch(1, A, I); //new Coordinates(43.740186, 10.364619));
         
         if(notFog3){
             s.addBusinessPolicies("A", asList("cloud2", "cloud1", "fog1", "fog2"));
@@ -183,6 +184,7 @@ public class MainRefactoring {
         }
         
         HashMap<Deployment, Couple<Double, Double>> histogram = s.startSimulation(asList());
+        System.out.println(histogram);
 
     }
 }

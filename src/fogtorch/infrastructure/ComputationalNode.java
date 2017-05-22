@@ -9,10 +9,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 import fogtorch.application.SoftwareComponent;
 import fogtorch.utils.Coordinates;
+import fogtorch.utils.Cost;
 import fogtorch.utils.Couple;
 import fogtorch.utils.Hardware;
 import fogtorch.utils.QoSProfile;
 import fogtorch.utils.Software;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -21,7 +24,7 @@ import java.util.Objects;
  */
 public abstract class ComputationalNode implements Comparable{
     private String identifier;
-    private ArrayList<Software> software;
+    private HashMap<String, Software> software;
     private Coordinates coords;
     private Hardware hw;
     public double heuristic;
@@ -33,9 +36,9 @@ public abstract class ComputationalNode implements Comparable{
 
     
     public void setSoftware(Collection<String> software){
-        this.software = new ArrayList<>();
+        this.software = new HashMap<>();
         for (String s : software){
-            boolean add = this.software.add(new Software(s));
+            this.software.put(s, new Software(s));
         }
     }
     
@@ -47,7 +50,7 @@ public abstract class ComputationalNode implements Comparable{
         return hw;
     }
    
-    public ArrayList<Software> getSoftware(){
+    public HashMap<String, Software> getSoftware(){
         return this.software;
     }
     
@@ -119,6 +122,19 @@ public abstract class ComputationalNode implements Comparable{
     public int compareTo(Object o) {
         ComputationalNode s2 = (ComputationalNode) o;
         return Double.compare(s2.heuristic, this.heuristic);
+    }
+    
+    public Cost computeCost(SoftwareComponent s){
+        
+        double cost = 0.0;
+
+        cost+=this.getHardware().getMonthlyCost(s);
+        
+        for (Software soft : s.getSoftwareRequirements()){
+            cost += this.software.get(soft.getName()).getCost();
+        }
+
+        return new Cost(cost);
     }
 
         
