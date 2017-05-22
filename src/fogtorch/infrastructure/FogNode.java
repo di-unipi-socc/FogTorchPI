@@ -16,7 +16,7 @@ public class FogNode extends ComputationalNode{
     public HashSet<String> connectedThings;
 
     
-    public FogNode(String identifier, Collection<String> software, Hardware hw, double x, double y){
+    public FogNode(String identifier, Collection<Couple<String, Double>> software, Hardware hw, double x, double y){
         super.setId(identifier);
         super.setHardware(hw);
         super.setSoftware(software);

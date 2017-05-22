@@ -59,13 +59,13 @@ public class MainRefactoring {
 
         Infrastructure I = new Infrastructure();
         Hardware h = new Hardware(2, 2, 1000, 1.0, 1.0, 1.0);
-        
-        I.addCloudDatacentre("cloud1", asList("linux", "php", "mySQL", "python"), 52.195097, 3.0364791, h);
-        I.addCloudDatacentre("cloud2", asList("linux", "php", "mySQL", "java"), 44.123896, -122.781555, h);
 
-        I.addFogNode("fog1", asList("linux", "php", "mySQL"), fogHW, 43.740186, 10.364619);
-        I.addFogNode("fog2", asList("linux", "php"), fogHW, 43.7464449, 10.4615923);
-        I.addFogNode("fog3", asList("linux", "mySQL"), new Hardware(4, 2, 64), 43.7381285, 10.4552213);
+        I.addCloudDatacentre("cloud1", asList(new Couple("linux", 0.0), new Couple("php", 0.0), new Couple("mySQL", 100.0),new Couple("python", 100.0)), 52.195097, 3.0364791, h);
+        I.addCloudDatacentre("cloud2", asList(new Couple("linux", 0.0), new Couple("php", 0.0), new Couple("mySQL", 100.0), new Couple("java", 0.0)), 44.123896, -122.781555, h);
+
+        I.addFogNode("fog1", asList(new Couple("linux", 0.0), new Couple("php", 0.0), new Couple("mySQL", 100.0)), fogHW, 43.740186, 10.364619);
+        I.addFogNode("fog2", asList(new Couple("linux", 0.0), new Couple("php", 0.0)), fogHW, 43.7464449, 10.4615923);
+        I.addFogNode("fog3", asList(new Couple("linux", 0.0), new Couple("mySQL", 100.0)), new Hardware(4, 2, 64), 43.7381285, 10.4552213);
 
         //Links
         if (profile.equals("30M")) {

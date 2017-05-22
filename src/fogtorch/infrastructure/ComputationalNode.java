@@ -35,10 +35,11 @@ public abstract class ComputationalNode implements Comparable{
     }
 
     
-    public void setSoftware(Collection<String> software){
+    public void setSoftware(Collection<Couple<String, Double>> software){
         this.software = new HashMap<>();
-        for (String s : software){
-            this.software.put(s, new Software(s));
+        for (Couple s : software){
+                Software value = new Software(((Couple) s).getA().toString(), (double) ((Couple) s).getB());
+                this.software.put(((Couple) s).getA().toString(), value);
         }
     }
     

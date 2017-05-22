@@ -140,7 +140,6 @@ public class Search {
     private void exhaustiveSearch(Deployment deployment) {
         if (isComplete(deployment)) {
             D.add((Deployment) deployment.clone());
-            System.out.println(deployment.deploymentMonthlyCost);
             //System.out.println(deployment);
             return;
         }
