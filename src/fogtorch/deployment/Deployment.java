@@ -8,8 +8,10 @@ package fogtorch.deployment;
 import java.util.HashMap;
 import java.util.HashSet;
 import fogtorch.application.SoftwareComponent;
+import fogtorch.infrastructure.CloudDatacentre;
 import fogtorch.infrastructure.ComputationalNode;
-import fogtorch.pricing.Cost;
+import fogtorch.infrastructure.FogNode;
+import fogtorch.utils.Cost;
 import fogtorch.utils.Couple;
 import java.util.TreeMap;
 
@@ -60,6 +62,16 @@ public class Deployment extends TreeMap<SoftwareComponent, ComputationalNode> {
         String s = this.toString();
         hash = 47 * hash + s.hashCode();
         return hash;
+    }
+
+    void addCost(SoftwareComponent s, ComputationalNode n) {
+        
+        if (n instanceof CloudDatacentre){
+            
+        }
+        if (n instanceof FogNode){
+            
+        }
     }
 
 }

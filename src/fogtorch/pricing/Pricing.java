@@ -1,5 +1,6 @@
 package fogtorch.pricing;
 
+import fogtorch.utils.Cost;
 import fogtorch.utils.Couple;
 import java.util.HashMap;
 import java.util.List;

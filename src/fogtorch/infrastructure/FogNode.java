@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package fogtorch.infrastructure;
 
-import fogtorch.application.ExactThing;
 import java.util.Collection;
 import java.util.HashSet;
 import fogtorch.application.SoftwareComponent;
-import fogtorch.application.ThingRequirement;
-import fogtorch.deployment.Deployment;
 import fogtorch.utils.Constants;
-import fogtorch.utils.Coordinates;
 import fogtorch.utils.Couple;
 import fogtorch.utils.Hardware;
 import fogtorch.utils.Software;
@@ -23,11 +14,11 @@ import fogtorch.utils.Software;
  */
 public class FogNode extends ComputationalNode{
     public HashSet<String> connectedThings;
-    private Hardware hw;
+
     
     public FogNode(String identifier, Collection<String> software, Hardware hw, double x, double y){
         super.setId(identifier);
-        this.hw = new Hardware(hw);
+        super.setHardware(hw);
         super.setSoftware(software);
         super.setCoordinates(x,y);
         connectedThings = new HashSet<>();
@@ -35,22 +26,14 @@ public class FogNode extends ComputationalNode{
     }
 
 
-    public void setHardware(Hardware h){
-       hw = new Hardware(h);
-    }
-    
 
-    
-    public Hardware getHardware(){
-        return hw;
-    }
     
     @Override
     public boolean isCompatible(SoftwareComponent component){
         Hardware hardwareRequest = component.getHardwareRequirements();
         Collection<Software> softwareRequest = component.getSoftwareRequirements();
         
-        return hw.supports(hardwareRequest) && 
+        return super.getHardware().supports(hardwareRequest) && 
                 softwareRequest.stream().noneMatch(
                         (s) -> (!super.getSoftware().contains(s))
                 );
@@ -59,18 +42,18 @@ public class FogNode extends ComputationalNode{
 
     @Override
     public void deploy(SoftwareComponent s) {
-        hw.deploy(s.getHardwareRequirements());
+        super.getHardware().deploy(s.getHardwareRequirements());
     }
 
     @Override
     public void undeploy(SoftwareComponent s) {
-        hw.undeploy(s.getHardwareRequirements());
+        super.getHardware().undeploy(s.getHardwareRequirements());
     }
     
         @Override
     public String toString(){
         String result = "<";
-        result = result + getId() + ", " + super.getSoftware() + ", "+ hw +", "+this.getCoordinates();        
+        result = result + getId() + ", " + super.getSoftware() + ", "+ super.getHardware() +", "+this.getCoordinates();        
         result += ">";
         return result; 
     }
@@ -102,9 +85,9 @@ public class FogNode extends ComputationalNode{
     @Override
     public double computeHeuristic(SoftwareComponent s) { //Coordinates deploymentLocation
         
-        this.heuristic = this.hw.cores/Constants.MAX_CORES + 
-                this.hw.ram/Constants.MAX_RAM + 
-                this.hw.storage/Constants.MAX_HDD; //+ 1/(deploymentLocation.distance(this.getCoordinates()));
+        this.heuristic = super.getHardware().cores/Constants.MAX_CORES + 
+                super.getHardware().ram/Constants.MAX_RAM + 
+                super.getHardware().storage/Constants.MAX_HDD; //+ 1/(deploymentLocation.distance(this.getCoordinates()));
         
         if (this.getKeepLight()){
             heuristic = heuristic - 4;

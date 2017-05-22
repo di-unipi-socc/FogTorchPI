@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package fogtorch.infrastructure;
 
 import fogtorch.application.SoftwareComponent;
@@ -15,7 +10,6 @@ import java.util.Set;
 import fogtorch.utils.Couple;
 import fogtorch.utils.Hardware;
 import fogtorch.utils.QoSProfile;
-import fogtorch.utils.Software;
 
 /**
  *

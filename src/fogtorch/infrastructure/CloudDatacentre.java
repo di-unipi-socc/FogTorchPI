@@ -8,6 +8,7 @@ package fogtorch.infrastructure;
 import java.util.Collection;
 import java.util.List;
 import fogtorch.application.SoftwareComponent;
+import fogtorch.utils.Hardware;
 import fogtorch.utils.Software;
 
 /**
@@ -16,7 +17,7 @@ import fogtorch.utils.Software;
  */
 public class CloudDatacentre extends ComputationalNode {
     
-    public CloudDatacentre(String identifier, Collection<String> software, double x, double y){
+    public CloudDatacentre(String identifier, Collection<String> software, double x, double y, Hardware h){
         super.setId(identifier);
         super.setSoftware(software);
         super.setCoordinates(x,y);

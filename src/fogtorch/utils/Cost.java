@@ -1,4 +1,4 @@
-package fogtorch.pricing;
+package fogtorch.utils;
 
 import java.util.Objects;
 

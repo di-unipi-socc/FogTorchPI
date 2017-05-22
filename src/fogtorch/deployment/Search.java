@@ -294,6 +294,7 @@ public class Search {
 
     private void deploy(Deployment deployment, SoftwareComponent s, ComputationalNode n) {
         deployment.put(s, n);
+        deployment.addCost(s,n);
         //System.out.println(deployment + " " + deployment.size());
         n.deploy(s);
         deployLinks(deployment, s, n);

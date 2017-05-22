@@ -1,9 +1,11 @@
 package fogtorch.utils;
 
+import fogtorch.application.SoftwareComponent;
 import java.util.Objects;
 
 public class Software {
     private String name;
+    private Cost cost;
     
     public Software (String name){
         this.name = name;
@@ -11,6 +13,10 @@ public class Software {
     
     public Software (Software software2){
         this.name = software2.getName();
+    }
+
+    public Software(String r, double cost) {
+        this.cost = new Cost(cost);
     }
 
     @Override
@@ -33,5 +39,22 @@ public class Software {
     @Override
     public String toString(){
         return this.name;
+    }
+    
+
+    
+    public void setCost(double cost){
+        this.cost = new Cost(cost);
+    }
+    
+    public double getCost(){
+        return cost.getCost();
+    }
+    
+    public double getMonthlyCost(SoftwareComponent s){
+        if (s.getSoftwareRequirements().contains(s.getId())){
+            return cost.getCost();
+        }
+        return 0.0;
     }
 }

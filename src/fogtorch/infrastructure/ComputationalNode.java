@@ -10,6 +10,7 @@ import java.util.Collection;
 import fogtorch.application.SoftwareComponent;
 import fogtorch.utils.Coordinates;
 import fogtorch.utils.Couple;
+import fogtorch.utils.Hardware;
 import fogtorch.utils.QoSProfile;
 import fogtorch.utils.Software;
 import java.util.Objects;
@@ -22,6 +23,7 @@ public abstract class ComputationalNode implements Comparable{
     private String identifier;
     private ArrayList<Software> software;
     private Coordinates coords;
+    private Hardware hw;
     public double heuristic;
     private boolean keepLight;
     
@@ -35,6 +37,14 @@ public abstract class ComputationalNode implements Comparable{
         for (String s : software){
             boolean add = this.software.add(new Software(s));
         }
+    }
+    
+    public void setHardware(Hardware h){
+       hw = new Hardware(h);
+    }
+    
+    public Hardware getHardware(){
+        return hw;
     }
    
     public ArrayList<Software> getSoftware(){
