@@ -12,6 +12,7 @@ public class Cost {
     
     public Cost(double monthlyCost){
         this.monthlyCost = monthlyCost;
+        this.currency = "€";
     }
     
     public Cost(double monthlyCost, String currency){
@@ -53,5 +54,11 @@ public class Cost {
         hash = 17 * hash + (int) (Double.doubleToLongBits(this.monthlyCost) ^ (Double.doubleToLongBits(this.monthlyCost) >>> 32));
         hash = 17 * hash + Objects.hashCode(this.currency);
         return hash;
+    }
+    
+    public void add(Cost c){
+        if (c.getCurrency().equals(this.currency)){
+            this.monthlyCost += c.getCost();
+        }
     }
 }

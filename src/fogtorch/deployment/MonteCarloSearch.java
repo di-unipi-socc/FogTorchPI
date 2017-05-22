@@ -1,12 +1,9 @@
 package fogtorch.deployment;
 
 import fogtorch.application.Application;
-import fogtorch.deployment.Deployment;
-import fogtorch.deployment.Search;
 import fogtorch.infrastructure.Infrastructure;
 import fogtorch.utils.Couple;
 import fogtorch.utils.QoSProfile;
-import static java.util.Arrays.asList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;

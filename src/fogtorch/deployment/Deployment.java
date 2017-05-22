@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import fogtorch.application.SoftwareComponent;
 import fogtorch.infrastructure.ComputationalNode;
+import fogtorch.pricing.Cost;
 import fogtorch.utils.Couple;
 import java.util.TreeMap;
 
@@ -19,10 +20,12 @@ import java.util.TreeMap;
 public class Deployment extends TreeMap<SoftwareComponent, ComputationalNode> {
     HashMap<String, HashSet<String>> businessPolicies;
     public Couple<Double, Double> consumedResources;
+    public Cost deploymentMonthlyCost;
     
     public Deployment(){
         super();
         businessPolicies = new HashMap<>();   
+        deploymentMonthlyCost = new Cost(0);
     }
 
     Deployment(Deployment deployment) {
