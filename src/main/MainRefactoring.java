@@ -177,30 +177,21 @@ public class MainRefactoring {
             s.addBusinessPolicies("B", asList("cloud2", "cloud1", "fog1", "fog2"));
             s.addBusinessPolicies("C", asList("cloud2", "cloud1", "fog1", "fog2"));
         }
+        
+        while (true){
+            HashMap<Deployment, Couple<Double, Double>> histogram = s.startSimulation(asList());
+            System.out.println(histogram);
 
-        HashMap<Deployment, Couple<Double, Double>> histogram = s.startSimulation(asList());
-        System.out.println(histogram);
-        
-        Scanner reader = new Scanner(System.in);  // Reading from System.in
-        ArrayList<Deployment> l = new ArrayList(histogram.keySet());
-        System.out.println(l);
-        System.out.println("Enter a deployment number: ");
-        int n = reader.nextInt();
+            Scanner reader = new Scanner(System.in);  // Reading from System.in
+            ArrayList<Deployment> l = new ArrayList(histogram.keySet());
+            System.out.println(l);
+            System.out.println("Enter a deployment number: ");
+            int n = reader.nextInt();
 
-        s.executeDeployment(l.get(n));
-        
-        System.out.println(I);
-        
-        histogram = s.startSimulation(asList());
-        System.out.println(histogram);
-        
-        reader = new Scanner(System.in);  // Reading from System.in
-        l = new ArrayList(histogram.keySet());
-        System.out.println(l);
-        System.out.println("Enter a deployment number: ");
-        n = reader.nextInt();
+            s.executeDeployment(l.get(n));
 
-        s.executeDeployment(l.get(n));
+            System.out.println(I);
+        }
 
     }
 }
