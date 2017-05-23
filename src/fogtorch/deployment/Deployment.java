@@ -85,5 +85,6 @@ public class Deployment extends TreeMap<SoftwareComponent, ComputationalNode> {
     void removeCost(SoftwareComponent s, ComputationalNode n, Infrastructure I){
         this.deploymentMonthlyCost.remove(n.computeCost(s, I));
     }
+    
 
 }

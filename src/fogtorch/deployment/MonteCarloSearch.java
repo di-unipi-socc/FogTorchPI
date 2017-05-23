@@ -81,4 +81,8 @@ public class MonteCarloSearch {
 
         return histogram;
     }
+    
+    public void executeDeployment(Deployment d){
+        search.executeDeployment(d);
+    }
 }

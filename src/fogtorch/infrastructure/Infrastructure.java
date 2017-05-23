@@ -28,6 +28,10 @@ public class Infrastructure {
         L = new HashMap<>();
     }
 
+    public Infrastructure(Infrastructure I) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public void addCloudDatacentre(String identifier, List<Couple<String, Double>> software, double x, double y, Hardware h) {
         C.put(identifier,new CloudDatacentre(identifier, software, x, y, h));
         L.put(new Couple(identifier,identifier), new QoSProfile(0, Double.MAX_VALUE));

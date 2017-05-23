@@ -336,6 +336,21 @@ public class Search {
                 
         }
     }
+    
+    
+    public void executeDeployment(Deployment d){
+
+        Deployment dep = new Deployment();
+        dep.deploymentMonthlyCost = d.deploymentMonthlyCost;
+        
+        for (SoftwareComponent component : d.keySet()){
+            ComputationalNode n = d.get(component);
+            dep.put(component, n);
+            n.deploy(component);
+            deployLinks(dep, component, n);
+        }
+
+    }
 
     
 

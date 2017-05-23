@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package main;
 
 import fogtorch.application.Application;
@@ -15,10 +10,10 @@ import fogtorch.utils.Couple;
 import fogtorch.utils.Hardware;
 import fogtorch.utils.QoS;
 import fogtorch.utils.QoSProfile;
-import fogtorch.utils.Software;
 import java.util.ArrayList;
 import static java.util.Arrays.asList;
 import java.util.HashMap;
+import java.util.Scanner;
 
 /**
  *
@@ -175,16 +170,37 @@ public class MainRefactoring {
         A.addLink("A", "C", 140, 0.4, 1.1);
         A.addLink("B", "C", 100, 0.8, 1);
         
-        MonteCarloSearch s = new MonteCarloSearch(1, A, I); //new Coordinates(43.740186, 10.364619));
+        MonteCarloSearch s = new MonteCarloSearch(100000, A, I); //new Coordinates(43.740186, 10.364619));
         
         if(notFog3){
             s.addBusinessPolicies("A", asList("cloud2", "cloud1", "fog1", "fog2"));
             s.addBusinessPolicies("B", asList("cloud2", "cloud1", "fog1", "fog2"));
             s.addBusinessPolicies("C", asList("cloud2", "cloud1", "fog1", "fog2"));
         }
-        
+
         HashMap<Deployment, Couple<Double, Double>> histogram = s.startSimulation(asList());
         System.out.println(histogram);
+        
+        Scanner reader = new Scanner(System.in);  // Reading from System.in
+        ArrayList<Deployment> l = new ArrayList(histogram.keySet());
+        System.out.println(l);
+        System.out.println("Enter a deployment number: ");
+        int n = reader.nextInt();
+
+        s.executeDeployment(l.get(n));
+        
+        System.out.println(I);
+        
+        histogram = s.startSimulation(asList());
+        System.out.println(histogram);
+        
+        reader = new Scanner(System.in);  // Reading from System.in
+        l = new ArrayList(histogram.keySet());
+        System.out.println(l);
+        System.out.println("Enter a deployment number: ");
+        n = reader.nextInt();
+
+        s.executeDeployment(l.get(n));
 
     }
 }
