@@ -177,20 +177,27 @@ public class MainRefactoring {
             s.addBusinessPolicies("B", asList("cloud2", "cloud1", "fog1", "fog2"));
             s.addBusinessPolicies("C", asList("cloud2", "cloud1", "fog1", "fog2"));
         }
-        
-        while (true){
+        boolean goOn = true;
+        while (goOn){
             HashMap<Deployment, Couple<Double, Double>> histogram = s.startSimulation(asList());
             System.out.println(histogram);
 
             Scanner reader = new Scanner(System.in);  // Reading from System.in
             ArrayList<Deployment> l = new ArrayList(histogram.keySet());
             System.out.println(l);
-            System.out.println("Enter a deployment number: ");
-            int n = reader.nextInt();
+            
+            if (l.isEmpty())
+                goOn = false;
+            else {
+                System.out.println("FogTorchΠ found "+ l.size() +" eligible deployments.\nEnter a deployment number to execute it: ");
+                int n = reader.nextInt();
+                 s.executeDeployment(l.get(n));
+            }
+            
 
-            s.executeDeployment(l.get(n));
+           
 
-            System.out.println(I);
+            //System.out.println(I);
         }
 
     }
