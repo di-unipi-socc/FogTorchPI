@@ -9,8 +9,8 @@ import java.util.List;
  * @author Stefano
  */
 public class QoSProfile {
-    public int latency;
-    public double bandwidth;
+    private int latency;
+    private double bandwidth;
     
     public ArrayList<QoS> QoS;
     public double[] probabilities;

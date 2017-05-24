@@ -48,8 +48,7 @@ public class Deployment extends TreeMap<SoftwareComponent, ComputationalNode> {
     @Override
     public String toString(){
         String result ="";
-        
-        result += this.deploymentMonthlyCost + ": ";
+
         for (SoftwareComponent s : super.keySet()){
             result+="["+s.getId()+"->" +super.get(s).getId()+"]" ;
         }

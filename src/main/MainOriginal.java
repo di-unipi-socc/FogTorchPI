@@ -1,11 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Original file of paper revised according to FT refactoring with cost.
  */
 package main;
 
-import edu.princeton.cs.introcs.StdDraw;
 import fogtorch.application.Application;
 import fogtorch.application.ExactThing;
 import fogtorch.application.ThingRequirement;
@@ -22,11 +19,12 @@ import static java.util.Arrays.asList;
 import java.util.HashMap;
 import java.util.Random;
 
+
 /**
  *
  * @author Stefano
  */
-public class Main {
+public class MainOriginal {
 
     public static Random rnd = new Random();
 
@@ -46,14 +44,14 @@ public class Main {
     public static void main(String[] args) {
         int TIMES = 100000;
         HashMap<Deployment, Couple<Double, Double>> histogram = new HashMap<>();
-
-        String filename
-                = "C:\\Users\\Stefano\\Dropbox\\_Dottorato\\FogTorchMC_Ahmad_Stefano\\results\\Q1k.csv";
+        
+        String filename =
+                "C:\\Users\\Stefano\\Dropbox\\dddd.csv";
         boolean notFog3 = false;
-
+        
         //Change the access to Internet
         String profile = "6M";
-
+       
         //String profile2 = "4G";
         String profile2 = "3G";
 
@@ -63,7 +61,7 @@ public class Main {
 
         int Bstorage = 8; //8, 10, 32, 1000
         double Bram = 1;
-
+        
         boolean dell32 = true;
 
         boolean fog2up = true;
@@ -80,14 +78,43 @@ public class Main {
 
             Infrastructure I = new Infrastructure();
             //fog1 43.7464449,10.4615923 fog2 43.7381285,10.4552213
-            I.addCloudDatacentre("cloud1", asList("linux", "php", "mySQL", "python"), 52.195097, 3.0364791);
-            I.addCloudDatacentre("cloud2", asList("linux", "php", "mySQL", "java"), 44.123896, -122.781555);
+            //double coreCost, double ramCost, double storageCost
+            I.addCloudDatacentre("cloud1", asList(
+                    new Couple("linux", 0.0), 
+                    new Couple("php", 0.0), 
+                    new Couple("mySQL", 45.0), 
+                    new Couple("python", 0.0)), 
+                    52.195097, 3.0364791,
+                    new Hardware(0,0,0, 3.0, 12.0, 2.0)
+            );
+            I.addCloudDatacentre("cloud2", asList(
+                     new Couple("linux", 0.0),
+                     new Couple("php", 0.0),
+                     new Couple("mySQL", 50.0),
+                     new Couple("java", 0.0)),
+                    44.123896, -122.781555,
+                    new Hardware(0,0,0, 5.0, 10.0, 1.0)
+                    );
             //Fog nodes
-            I.addFogNode("fog1", asList("linux", "php", "mySQL"), fogHW, 43.740186, 10.364619);
+            I.addFogNode("fog1", asList(
+                    new Couple("linux", 0.0), 
+                    new Couple("php", 0.0), 
+                    new Couple("mySQL", 15.0)), 
+                    new Hardware(2, 2, 32, 12.0, 2.0, 3.0), 
+                    43.740186, 10.364619);
             if (fog2up) {
-                I.addFogNode("fog2", asList("linux", "php"), fogHW, 43.7464449, 10.4615923);
+                I.addFogNode("fog2", asList(
+                    new Couple("linux", 0.0), 
+                    new Couple("php", 0.0)), 
+                        new Hardware(2, 2, 32, 0.0, 0.0, 0.0), 
+                        43.7464449, 10.4615923);
             }
-            I.addFogNode("fog3", asList("linux", "mySQL"), new Hardware(4, 2, 64), 43.7381285, 10.4552213);
+            
+            I.addFogNode("fog3", asList(
+                    new Couple("linux", 0.0), 
+                    new Couple("mySQL", 0.0)), 
+                    new Hardware(4, 2, 64, 8.0, 3.0, 2.0), 
+                    43.7381285, 10.4552213);
 
             //Links
             if (profile.equals("30M")) {
@@ -153,21 +180,21 @@ public class Main {
             I.addLink("cloud1", "cloud2", samplingFunction(1, new QoSProfile(5, 1000), null));
 
             //Things for local
-            I.addThing("water0", "water", 43.7464449, 10.4615923, "fog1");
-            I.addThing("video0", "video", 43.7464449, 10.4615923, "fog1");
-            I.addThing("moisture0", "moisture", 43.7464449, 10.4615923, "fog1");
-            I.addThing("temperature0", "temperature", 43.7464449, 10.4615923, "fog3");
+            I.addThing("water0", "water", 43.7464449, 10.4615923, "fog1", 3.50);
+            I.addThing("video0", "video", 43.7464449, 10.4615923, "fog1", 30.0);
+            I.addThing("moisture0", "moisture", 43.7464449, 10.4615923, "fog1", 0.01 );
+            I.addThing("temperature0", "temperature", 43.7464449, 10.4615923, "fog3", 0.001);
 
             // System.out.println(I.L);
             Application A = new Application();
             ArrayList<ThingRequirement> neededThings = new ArrayList<>();
             //QoSProfile qNodeThing, QoSProfile qThingNode
-            neededThings.add(new ExactThing("water0", new QoSProfile(1000, 0.1), new QoSProfile(1000, 0.1))); // 1 s and 1 Mbps
+            neededThings.add(new ExactThing("water0", new QoSProfile(1000, 0.1), new QoSProfile(1000,0.1), 60)); // 1 s and 1 Mbps
             if (video) {
-                neededThings.add(new ExactThing("video0", new QoSProfile(25, 0.1), new QoSProfile(25, 5))); // 25 ms and 4Mbps for the HD videostreaming
+                neededThings.add(new ExactThing("video0", new QoSProfile(25,0.1), new QoSProfile(25, 5), 1)); // 25 ms and 4Mbps for the HD videostreaming
             }
-            neededThings.add(new ExactThing("moisture0", new QoSProfile(500, 0.1), new QoSProfile(500, 0.1))); // 0.5 s and 1 Mbps
-            neededThings.add(new ExactThing("temperature0", new QoSProfile(65, 0.1), new QoSProfile(65, 0.1))); // 110 ms and 1 Mbps
+            neededThings.add(new ExactThing("moisture0", new QoSProfile(500,0.1), new QoSProfile(500, 0.1), 1440)); // 0.5 s and 1 Mbps
+            neededThings.add(new ExactThing("temperature0", new QoSProfile(65,0.1), new QoSProfile(65, 0.1), 43200)); // 110 ms and 1 Mbps
 
             //components
             A.addComponent("A", asList("linux"), new Hardware(1, 1.2, 8), neededThings);
@@ -186,10 +213,11 @@ public class Main {
             A.addLink("B", "C", 100, 0.8, 1);
 
             Search s = new Search(A, I); //new Coordinates(43.740186, 10.364619));
-
+            
             //s.addBusinessPolicies("C", asList("cloud2", "cloud1"));
             //s.addKeepLightNodes(asList("fog3"));
-            if (notFog3) {
+            
+            if(notFog3){
                 s.addBusinessPolicies("A", asList("cloud2", "cloud1", "fog1", "fog2"));
                 s.addBusinessPolicies("B", asList("cloud2", "cloud1", "fog1", "fog2"));
                 s.addBusinessPolicies("C", asList("cloud2", "cloud1", "fog1", "fog2"));
@@ -197,47 +225,38 @@ public class Main {
             s.findDeployments(true);
             double pos = s.D.size();
             double size = s.D.size();
-
+            
             for (Deployment d : s.D) {
-                d.consumedResources = I.consumedResources(d, asList("fog1", "fog2")); //computes over all fog nodes ...
+                d.consumedResources = I.consumedResources(d); //asList("fog1", "fog2")); //computes over all fog nodes ...
                 if (histogram.containsKey(d)) {
                     Double newCount = histogram.get(d).getA() + 1.0; //montecarlo frequency
-                    Double newPos = histogram.get(d).getB() + (pos / size);
+                    Double newPos = histogram.get(d).getB() + (pos/size);
                     //System.out.println(newPos + " " + pos/size);
                     histogram.replace(d, new Couple(newCount, newPos));
                 } else {
-                    histogram.put(d, new Couple(1.0, pos / size));
+                    histogram.put(d, new Couple(1.0, pos/size));
                 }
                 pos--;
             }
+            
             //System.out.println(I);
-        }
-        double i = 0.0;
-        StdDraw.setXscale(0, 100);
-        StdDraw.setYscale(0, 100);
-        System.out.println(histogram.size());
-        for (Deployment dep : histogram.keySet()) {
-            System.out.println(dep);
-            StdDraw.setPenRadius(0.01);
-            StdDraw.point(100 * histogram.get(dep).getA() / ((double) TIMES), 100 * (dep.consumedResources.getA() + dep.consumedResources.getB()) / 2);
-            StdDraw.point(i, 0);
-            StdDraw.point(0, i);
-            //StdDraw.show();
-            i++;
         }
 
         try {
             PrintWriter writer = new PrintWriter(filename, "UTF-8");
-            writer.println("Deployment, QoS-assurance, Heuristic Rank, Consumed RAM, Consumed HDD, Sum Hardware");
+            writer.println("Deployment ; QoS-assurance; Hardware %;Cost");
+            System.out.println("Deployment ; QoS-assurance ; Hardware %;Cost");
             for (Deployment dep : histogram.keySet()) {
-                histogram.replace(dep, new Couple((100 * histogram.get(dep).getA() / ((double) TIMES)), (100 * histogram.get(dep).getB() / (double) TIMES)));
-                writer.println(dep + ", " + histogram.get(dep) + "," + dep.consumedResources + ", " + (dep.consumedResources.getA() + dep.consumedResources.getB()) / 2);
-                System.out.println(dep + ", " + histogram.get(dep) + ", " + dep.consumedResources + ", " + (dep.consumedResources.getA() + dep.consumedResources.getB()) / 2);
+                histogram.replace(dep,  new Couple((100 * histogram.get(dep).getA() / ((double) TIMES)), (100*histogram.get(dep).getB() / (double) TIMES)));
+                writer.println(dep + "; " + histogram.get(dep).getA() + ";"  + 100*(dep.consumedResources.getA() + dep.consumedResources.getB())/2 + "; " + dep.deploymentMonthlyCost );
+                System.out.println(dep + "; " + histogram.get(dep).getA() + "; "  + 100*(dep.consumedResources.getA() + dep.consumedResources.getB())/2 + "; " + dep.deploymentMonthlyCost);
+
             }
             writer.close();
-
         } catch (IOException e) {
         }
+        
+        
 
     }
 }

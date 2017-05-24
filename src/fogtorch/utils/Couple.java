@@ -56,7 +56,7 @@ public class Couple<F, S> {
     
     @Override
     public String toString(){
-        return  a + ", "+ b ;
+        return  a + "; "+ b ;
     }
 
 }
