@@ -85,35 +85,35 @@ public class MainOriginal {
                     new Couple("mySQL", 45.0), 
                     new Couple("python", 0.0)), 
                     52.195097, 3.0364791,
-                    new Hardware(0,0,0, 3.0, 12.0, 2.0)
+                    new Hardware(0,0,0, 4.0, 9.0, 2.0)
             );
             I.addCloudDatacentre("cloud2", asList(
-                     new Couple("linux", 0.0),
+                     new Couple("linux", 45.0),
                      new Couple("php", 0.0),
-                     new Couple("mySQL", 50.0),
+                     new Couple("mySQL", 60.0),
                      new Couple("java", 0.0)),
                     44.123896, -122.781555,
-                    new Hardware(0,0,0, 5.0, 10.0, 1.0)
+                    new Hardware(0,0,0, 4.0, 8.0, 1.0)
                     );
             //Fog nodes
             I.addFogNode("fog1", asList(
                     new Couple("linux", 0.0), 
                     new Couple("php", 0.0), 
                     new Couple("mySQL", 15.0)), 
-                    new Hardware(2, 2, 32, 12.0, 2.0, 3.0), 
+                    new Hardware(2, 2, 32, 4.0, 5.0, 3.0), 
                     43.740186, 10.364619);
             if (fog2up) {
                 I.addFogNode("fog2", asList(
                     new Couple("linux", 0.0), 
                     new Couple("php", 0.0)), 
-                        new Hardware(2, 2, 32, 0.0, 0.0, 0.0), 
+                        new Hardware(2, 2, 32, 0.0, 0.0, 0.0), //owned by us 0 $
                         43.7464449, 10.4615923);
             }
             
             I.addFogNode("fog3", asList(
                     new Couple("linux", 0.0), 
                     new Couple("mySQL", 0.0)), 
-                    new Hardware(4, 2, 64, 8.0, 3.0, 2.0), 
+                    new Hardware(4, 2, 64, 5.0, 6.0, 2.0), 
                     43.7381285, 10.4552213);
 
             //Links
@@ -250,7 +250,7 @@ public class MainOriginal {
                 histogram.replace(dep,  new Couple((100 * histogram.get(dep).getA() / ((double) TIMES)), (100*histogram.get(dep).getB() / (double) TIMES)));
                 writer.println(dep + "; " + histogram.get(dep).getA() + ";"  + 100*(dep.consumedResources.getA() + dep.consumedResources.getB())/2 + "; " + dep.deploymentMonthlyCost );
                 System.out.println(dep + "; " + histogram.get(dep).getA() + "; "  + 100*(dep.consumedResources.getA() + dep.consumedResources.getB())/2 + "; " + dep.deploymentMonthlyCost);
-
+                
             }
             writer.close();
         } catch (IOException e) {

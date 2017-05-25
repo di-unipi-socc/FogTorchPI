@@ -34,6 +34,7 @@ public abstract class ComputationalNode implements Comparable {
     private Hardware hw;
     public double heuristic;
     private boolean keepLight;
+    
 
     public ComputationalNode() {
 
@@ -92,6 +93,8 @@ public abstract class ComputationalNode implements Comparable {
     public abstract void deploy(SoftwareComponent s);
 
     public abstract void undeploy(SoftwareComponent s);
+    
+    public abstract Cost computeCost(SoftwareComponent s, Infrastructure I);
 
     public abstract double computeHeuristic(SoftwareComponent s); //, Coordinates deploymentLocation
 
@@ -129,22 +132,7 @@ public abstract class ComputationalNode implements Comparable {
         return Double.compare(s2.heuristic, this.heuristic);
     }
 
-    public Cost computeCost(SoftwareComponent s, Infrastructure I) {
 
-        double cost = 0.0;
-
-        cost += this.getHardware().getMonthlyCost(s);
-
-        for (Software soft : s.getSoftwareRequirements()) {
-            cost += this.software.get(soft.getName()).getCost();
-        }
-
-        for (ThingRequirement thing : s.getThingsRequirements()) {
-            cost += ((ExactThing) thing).getMonthlyInvoke() * I.T.get(((ExactThing) thing).getId()).getMonthlyCost(s);
-        }
-
-        return new Cost(cost);
-    }
 
 
 }

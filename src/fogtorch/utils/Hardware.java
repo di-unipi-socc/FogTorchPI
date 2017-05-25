@@ -13,6 +13,11 @@ import fogtorch.application.SoftwareComponent;
  */
 public class Hardware {
     
+    public boolean stringDescribed;
+    public String vmType;
+    
+    
+    
     public int cores; //CPU cores
     public double ram; //needed RAM
     public int storage; //neededStorage
@@ -21,6 +26,7 @@ public class Hardware {
     private Cost ramCost;
     private Cost cpuCost;
     private Cost storageCost;
+    private Cost fixedCost;
     
     public Hardware(int cores, double ram, int storage){
         this.cores = cores;
@@ -40,7 +46,6 @@ public class Hardware {
         this.cpuCost = new Cost(coreCost);
     }
 
-
     public Hardware(Hardware r) {
         this.cores = r.cores;
         this.ram = r.ram;
@@ -49,6 +54,29 @@ public class Hardware {
         this.ramCost = r.ramCost;
         this.storageCost = r.storageCost;
     }
+    
+    public Hardware(String vmType){
+        this.stringDescribed = true;
+        this.vmType = vmType;
+        
+        Hardware h = Constants.getVMHardwareSpec(vmType);
+        this.fixedCost = new Cost(0.0);
+        this.cores = h.cores;
+        this.ram = h.ram;
+        this.storage = h.storage;
+    }
+    
+    public Hardware(String vmType, double cost){
+        this.stringDescribed = true;
+        this.vmType = vmType;
+        
+        Hardware h = Constants.getVMHardwareSpec(vmType);
+        this.fixedCost = new Cost(cost);
+        this.cores = h.cores;
+        this.ram = h.ram;
+        this.storage = h.storage;
+    }
+    
 
     public Hardware() {
     }
@@ -86,9 +114,17 @@ public class Hardware {
     
     public double getMonthlyCost(SoftwareComponent s){
         Hardware requiredHardware = s.getHardwareRequirements();
-        return requiredHardware.ram * this.ramCost.getCost() +
+        double cost = 0.0;
+        
+        if (this.stringDescribed){
+            cost += this.fixedCost.getCost();
+        } else {
+            cost += requiredHardware.ram * this.ramCost.getCost() +
                 requiredHardware.cores * this.cpuCost.getCost() +
                 requiredHardware.storage * this.storageCost.getCost();
+        }
+        
+        return cost;
         
     }
     

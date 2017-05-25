@@ -1,9 +1,12 @@
 package fogtorch.infrastructure;
 
+import fogtorch.application.ExactThing;
 import java.util.Collection;
 import java.util.HashSet;
 import fogtorch.application.SoftwareComponent;
+import fogtorch.application.ThingRequirement;
 import fogtorch.utils.Constants;
+import fogtorch.utils.Cost;
 import fogtorch.utils.Couple;
 import fogtorch.utils.Hardware;
 import fogtorch.utils.Software;
@@ -24,8 +27,6 @@ public class FogNode extends ComputationalNode{
         connectedThings = new HashSet<>();
         super.setKeepLight(false);
     }
-
-
 
     
     @Override
@@ -75,9 +76,6 @@ public class FogNode extends ComputationalNode{
         Hardware used = s.getHardwareRequirements();
         result.setA(result.getA() + used.ram);
         result.setB(result.getB() + used.storage);
-
-        //result.setA(result.getA()/this.getHardware().ram);
-        //result.setB(result.getB()/this.getHardware().storage);
         
         return result;
     }
@@ -95,6 +93,26 @@ public class FogNode extends ComputationalNode{
 
         return heuristic;
     }
+    
+    @Override
+        public Cost computeCost(SoftwareComponent s, Infrastructure I) {
+        double cost = 0.0;
+        Hardware sHardwareReqs = s.getHardwareRequirements();
+
+        cost += this.getHardware().getMonthlyCost(s);
+
+        for (Software soft : s.getSoftwareRequirements()) {
+            cost += super.getSoftware().get(soft.getName()).getCost();
+        }
+
+        for (ThingRequirement thing : s.getThingsRequirements()) {
+            cost += ((ExactThing) thing).getMonthlyInvoke() * I.T.get(((ExactThing) thing).getId()).getMonthlyCost(s);
+        }
+
+        return new Cost(cost);
+    }
+    
+    
 }
 
 
