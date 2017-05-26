@@ -93,7 +93,14 @@ public class MainOriginal {
                      new Couple("mySQL", 60.0),
                      new Couple("java", 0.0)),
                     44.123896, -122.781555,
-                    new Hardware(0,0,0, 4.0, 8.0, 1.0)
+                    new Hardware(0,0,0, 4.0, 8.0, 1.0),
+                    asList(
+                            new Couple("tiny", 7.0),
+                            new Couple("small", 10.0),
+                            new Couple("medium", 15.0),
+                            new Couple("large", 20.0),
+                            new Couple("xlarge", 25.0)
+                    )
                     );
             //Fog nodes
             I.addFogNode("fog1", asList(
@@ -198,9 +205,11 @@ public class MainOriginal {
 
             //components
             A.addComponent("A", asList("linux"), new Hardware(1, 1.2, 8), neededThings);
-
+            //A.addComponent("A", asList("linux"), new Hardware("tiny", 0.0), neededThings);
+            
             A.addComponent("B", asList("linux", "mySQL"), new Hardware(1, Bram, Bstorage)); //cores ram storage
-
+            //A.addComponent("B", asList("linux", "mySQL"), new Hardware("small", 0.0));
+            
             A.addComponent("C", asList("linux", "php"), new Hardware(2, 0.7, 4));
 
             if (quality.equals("HD")) {

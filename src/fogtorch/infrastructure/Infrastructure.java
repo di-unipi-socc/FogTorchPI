@@ -39,6 +39,11 @@ public class Infrastructure {
         C.put(identifier,new CloudDatacentre(identifier, software, x, y, h));
         L.put(new Couple(identifier,identifier), new QoSProfile(0, Double.MAX_VALUE));
     }
+    
+    public void addCloudDatacentre(String identifier, List<Couple<String, Double>> software, double x, double y, Hardware h, List<Couple<String, Double>> vmTypes) {
+        C.put(identifier,new CloudDatacentre(identifier, software, x, y, h, vmTypes));
+        L.put(new Couple(identifier,identifier), new QoSProfile(0, Double.MAX_VALUE));
+    }
 
     public void addFogNode(String identifier, List<Couple<String, Double>> software, Hardware hardware, double x, double y) {
         F.put(identifier,new FogNode(identifier, software, hardware, x, y));
@@ -216,6 +221,8 @@ public class Infrastructure {
         
         return result;
     }
+
+
 
 
 
