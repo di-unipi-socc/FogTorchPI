@@ -24,7 +24,7 @@ import java.util.Random;
  *
  * @author Stefano
  */
-public class MainOriginal_Links {
+public class MainOriginal_Links_MSSearch {
 
     public static Random rnd = new Random();
 
