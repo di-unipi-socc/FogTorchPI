@@ -53,7 +53,7 @@ public class MainOriginal_Links {
         String profile = "6M";
 
         //String profile2 = "4G";
-        String profile2 = "3G";
+        String profile2 = "4G";
 
         boolean video = false;
         //String quality = "HD";
@@ -132,25 +132,42 @@ public class MainOriginal_Links {
                 I.addLink("fog1", "cloud2", fogtoCloudDownload, fogtoCloudUpload);
 
             } else if (profile.equals("20M")) {
-                QoSProfile fogtoCloudDownload = new QoSProfile(asList(
-                        new Couple(new QoS(40, 10.5), 0.98),
-                        new Couple(new QoS(Integer.MAX_VALUE, 0.0), 0.02)));  //samplingFunction(0.98, new QoSProfile(40, 10.5), new QoSProfile(Integer.MAX_VALUE, 0.0));
-                QoSProfile fogtoCloudUpload = new QoSProfile(asList(
-                        new Couple(new QoS(40, 4.5), 0.98),
-                        new Couple(new QoS(Integer.MAX_VALUE, 0.0), 0.02)));
-                I.addLink("fog1", "cloud1", fogtoCloudDownload, fogtoCloudUpload);
-                I.addLink("fog1", "cloud2", fogtoCloudDownload, fogtoCloudUpload);
+                //fog1
+                I.addLink("fog1", "cloud1", new QoSProfile(asList(
+                        //download
+                        new Couple(new QoS(70, 3), 0.98),
+                        new Couple(new QoS(Integer.MAX_VALUE, 0.0), 0.02))),
+                        //upload
+                        new QoSProfile(asList(
+                        new Couple(new QoS(40, 0.375), 0.98),
+                        new Couple(new QoS(Integer.MAX_VALUE, 0.0), 0.02))));
+                I.addLink("fog1", "cloud2", new QoSProfile(asList(
+                        //download
+                        new Couple(new QoS(70, 3), 0.98),
+                        new Couple(new QoS(Integer.MAX_VALUE, 0.0), 0.02))),
+                        //upload
+                        new QoSProfile(asList(
+                        new Couple(new QoS(40, 0.375), 0.98),
+                        new Couple(new QoS(Integer.MAX_VALUE, 0.0), 0.02))));
 
             } else if (profile.equals("6M")) {
-                QoSProfile fogtoCloudDownload = new QoSProfile(asList(
-                        new Couple(new QoS(70, 6), 0.98),
-                        new Couple(new QoS(Integer.MAX_VALUE, 0.0), 0.02)));
-                QoSProfile fogtoCloudUpload = new QoSProfile(asList(
-                        new Couple(new QoS(40, 0.75), 0.98),
-                        new Couple(new QoS(Integer.MAX_VALUE, 0.0), 0.02)));
                 //fog1
-                I.addLink("fog1", "cloud1", fogtoCloudDownload, fogtoCloudUpload);
-                I.addLink("fog1", "cloud2", fogtoCloudDownload, fogtoCloudUpload);
+                I.addLink("fog1", "cloud1", new QoSProfile(asList(
+                        //download
+                        new Couple(new QoS(70, 3), 0.98),
+                        new Couple(new QoS(Integer.MAX_VALUE, 0.0), 0.02))),
+                        //upload
+                        new QoSProfile(asList(
+                        new Couple(new QoS(40, 0.375), 0.98),
+                        new Couple(new QoS(Integer.MAX_VALUE, 0.0), 0.02))));
+                I.addLink("fog1", "cloud2", new QoSProfile(asList(
+                        //download
+                        new Couple(new QoS(70, 3), 0.98),
+                        new Couple(new QoS(Integer.MAX_VALUE, 0.0), 0.02))),
+                        //upload
+                        new QoSProfile(asList(
+                        new Couple(new QoS(40, 0.375), 0.98),
+                        new Couple(new QoS(Integer.MAX_VALUE, 0.0), 0.02))));
 
             }
 
@@ -176,7 +193,7 @@ public class MainOriginal_Links {
                         new Couple(new QoS(Integer.MAX_VALUE, 0.0), 0.0074)));
 
                 QoSProfile fogtoCloudUpload = new QoSProfile(asList(
-                        new Couple(new QoS(53, 22.67), 0.9937),
+                        new Couple(new QoS(53, 16.97), 0.9937),
                         new Couple(new QoS(Integer.MAX_VALUE, 0.0), 0.0063)));
                 I.addLink("fog2", "cloud1", fogtoCloudDownload, fogtoCloudUpload);
                 I.addLink("fog2", "cloud2", fogtoCloudDownload, fogtoCloudUpload);
