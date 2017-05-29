@@ -3,8 +3,10 @@
  */
 package main;
 
+import examples.SmallApp;
 import fogtorch.application.Application;
 import fogtorch.application.ExactThing;
+import fogtorch.application.SoftwareComponent;
 import fogtorch.application.ThingRequirement;
 import fogtorch.deployment.Deployment;
 import fogtorch.deployment.MonteCarloSearch;
@@ -28,34 +30,18 @@ import java.util.Scanner;
  */
 public class MainOriginal_Links_MSSearch {
 
-    public static Random rnd = new Random();
-
-    public static QoSProfile samplingFunction(double probability, QoSProfile q1, QoSProfile q2) {
-
-        double rand = rnd.nextDouble();
-        if (probability == 1) {
-            return q1;
-        }
-        if (rand < probability) {
-            return q1;
-        } else {
-            return q2;
-        }
-    }
-
     public static void main(String[] args) {
-        int TIMES = 100000;
         HashMap<Deployment, Couple<Double, Double>> histogram = new HashMap<>();
 
         boolean notFog3 = false;
 
         //Change the access to Internet
-        String profile = "6M";
+        String profile = "20M";
 
         //String profile2 = "4G";
         String profile2 = "4G";
 
-        boolean video = false;
+        boolean video = true;
         //String quality = "HD";
         String quality = "SD";
 
@@ -172,7 +158,7 @@ public class MainOriginal_Links_MSSearch {
                     new QoSProfile(asList(
                             new Couple(new QoS(70, 0.375), 0.98),
                             new Couple(new QoS(Integer.MAX_VALUE, 0.0), 0.02))));
-//                
+                
 //                I.addLink("fog1", "fog3", new QoSProfile(asList(
 //                        //download
 //                        new Couple(new QoS(70, 3), 0.98),
@@ -201,7 +187,7 @@ public class MainOriginal_Links_MSSearch {
                     new QoSProfile(asList(
                             new Couple(new QoS(54, 2.89 / 2.0), 0.9959),
                             new Couple(new QoS(Integer.MAX_VALUE, 0.0), 0.0041))));
-
+//
 //                I.addLink("fog2", "fog3", new QoSProfile(asList(
 //                        new Couple(new QoS(54, 9.61/2.0), 0.9957),
 //                        new Couple(new QoS(Integer.MAX_VALUE, 0.0), 0.0043))), 
@@ -221,7 +207,7 @@ public class MainOriginal_Links_MSSearch {
                     new QoSProfile(asList(
                             new Couple(new QoS(53, 16.97 / 2.0), 0.9937),
                             new Couple(new QoS(Integer.MAX_VALUE, 0.0), 0.0063))));
-
+//
 //                I.addLink("fog2", "fog3", new QoSProfile(asList(
 //                        new Couple(new QoS(53, 22.67/2.0), 0.9926),
 //                        new Couple(new QoS(Integer.MAX_VALUE, 0.0), 0.0074))),
@@ -233,50 +219,73 @@ public class MainOriginal_Links_MSSearch {
         //WLAN
         I.addLink("fog1", "fog2", new QoSProfile(asList(
                 new Couple(new QoS(15, 32), 0.9),
-                new Couple(new QoS(15, 4), 0.09),
-                new Couple(new QoS(15, 0), 0.01)
+                new Couple(new QoS(15, 16), 0.1)
+               // ,new Couple(new QoS(15, 0), 0.01)
         )));
-
-        I.addLink("fog2", "fog3", new QoSProfile(asList(
-                new Couple(new QoS(15, 18), 0.76),
-                new Couple(new QoS(15, 5.5), 0.24)
-        //,new Couple(new QoS(15, 0), 0.01)
-        )));
-
+        
         I.addLink("fog1", "fog3", new QoSProfile(asList(
-                new Couple(new QoS(25, 14), 0.64),
-                new Couple(new QoS(25, 3), 0.36)
-        //, new Couple(new QoS(25, 0), 0.01)
+                new Couple(new QoS(15, 32), 0.9),
+                new Couple(new QoS(15, 16), 0.1)
+                //,new Couple(new QoS(15, 0), 0.01)
         )));
+        
+        I.addLink("fog2", "fog3", new QoSProfile(asList(
+                new Couple(new QoS(15, 32), 0.9),
+                new Couple(new QoS(15, 16), 0.1)
+                //,new Couple(new QoS(15, 0), 0.01)
+        )));
+//
+//        I.addLink("fog2", "fog3", new QoSProfile(asList(
+//                new Couple(new QoS(15, 18), 0.76),
+//                new Couple(new QoS(15, 5.5), 0.24)
+//        //,new Couple(new QoS(15, 0), 0.01)
+//        )));
+//
+//        I.addLink("fog1", "fog3", new QoSProfile(asList(
+//                new Couple(new QoS(25, 14), 0.64),
+//                new Couple(new QoS(25, 3), 0.36)
+//        //, new Couple(new QoS(25, 0), 0.01)
+//        )));
 
         //inter-cloud
         I.addLink("cloud1", "cloud2", new QoSProfile(5, 1000));
 
         //Things for local
-        I.addThing("water0", "water", 43.7464449, 10.4615923, "fog1", 3.50);
-        I.addThing("video0", "video", 43.7464449, 10.4615923, "fog1", 30.0);
-        I.addThing("moisture0", "moisture", 43.7464449, 10.4615923, "fog1", 0.01);
-        I.addThing("temperature0", "temperature", 43.7464449, 10.4615923, "fog3", 0.001);
+        I.addThing("fire_sensor_1", "fire", 43.7464449, 10.4615923, "fog1", 0.01);
+        I.addThing("lights_control_1", "lights_control", 43.7464449, 10.4615923, "fog1", 0.03);
+        I.addThing("thermostate_1", "thermostate", 43.7464449, 10.4615923, "fog1", 0.01);
+        I.addThing("videocamera_1", "videocamera", 43.7464449, 10.4615923, "fog1", 30);
+        
+        I.addThing("fire_sensor_2", "fire", 43.7464449, 10.4615923, "fog2", 0.01);
+        I.addThing("lights_control_2", "lights_control", 43.7464449, 10.4615923, "fog2", 0.03);
+        I.addThing("thermostate_2", "thermostate", 43.7464449, 10.4615923, "fog2", 0.01);
+        I.addThing("videocamera_2", "videocamera", 43.7464449, 10.4615923, "fog2", 30);
+        
+        I.addThing("weather_station_3", "weather_station", 43.7464449, 10.4615923, "fog3", 0.01);
+
 
         // System.out.println(I.L);
         Application A = new Application();
         ArrayList<ThingRequirement> neededThings = new ArrayList<>();
         //QoSProfile qNodeThing, QoSProfile qThingNode
-        neededThings.add(new ExactThing("water0", new QoSProfile(1000, 0.1), new QoSProfile(1000, 0.1), 60)); // 1 s and 1 Mbps
+        
+        neededThings.add(new ExactThing("fire_sensor_1", new QoSProfile(100, 0.1), new QoSProfile(100, 0.5), 43200)); // 1 s and 1 Mbps
+        neededThings.add(new ExactThing("lights_control_1", new QoSProfile(200, 0.9), new QoSProfile(200, 1.0), 2160)); // 110 ms and 1 Mbps
+        neededThings.add(new ExactThing("thermostate_1", new QoSProfile(2000, 0.1), new QoSProfile(2000, 0.1), 1440)); // 0.5 s and 1 Mbps
         if (video) {
-            neededThings.add(new ExactThing("video0", new QoSProfile(25, 0.1), new QoSProfile(25, 5), 1)); // 25 ms and 4Mbps for the HD videostreaming
+            neededThings.add(new ExactThing("videocamera_1", new QoSProfile(25, 0.1), new QoSProfile(50, 5), 1)); // 25 ms and 4Mbps for the HD videostreaming
         }
-        neededThings.add(new ExactThing("moisture0", new QoSProfile(500, 0.1), new QoSProfile(500, 0.1), 1440)); // 0.5 s and 1 Mbps
-        neededThings.add(new ExactThing("temperature0", new QoSProfile(65, 0.1), new QoSProfile(65, 0.1), 43200)); // 110 ms and 1 Mbps
-
+        neededThings.add(new ExactThing("weather_station_3", new QoSProfile(500, 0.1), new QoSProfile(5000, 0.2), 150));
+        
+        
         //components
         //A.addComponent("A", asList("linux"), new Hardware(1, 1.2, 8), neededThings);
         A.addComponent("A", asList("linux"), new Hardware("tiny", 0.0), neededThings);
 
-        A.addComponent("B", asList("linux", "mySQL"), new Hardware(1, Bram, Bstorage)); //cores ram storage
+        A.addComponent("B", asList("linux", "mySQL"), new Hardware("small", 0.0)); //cores ram storage
         //A.addComponent("B", asList("linux", "mySQL"), new Hardware("small", 0.0));
 
-        A.addComponent("C", asList("linux", "php"), new Hardware(2, 0.7, 4));
+        A.addComponent("C", asList("linux", "php"), new Hardware("small", 0.0));
 
         if (quality.equals("HD")) {
             A.addLink("A", "B", 160, 0.5, 3.5); //160 ms and 10Mbps down and 1 Mbps up
@@ -310,11 +319,12 @@ public class MainOriginal_Links_MSSearch {
                 PrintWriter writer = new PrintWriter(name, "UTF-8");
                 writer.println("Deployment ; QoS-assurance; Hardware %;Cost");
                 System.out.println("Deployment ; QoS-assurance ; Hardware %;Cost");
+                int j = 0;
                 for (Deployment dep : histogram.keySet()) {
                     // histogram.replace(dep, new Couple((100 * histogram.get(dep).getA() / ((double) TIMES)), (100 * histogram.get(dep).getB() / (double) TIMES)));
                     writer.println(dep + "; " + histogram.get(dep).getA() + ";" + histogram.get(dep).getB() + "; " + dep.deploymentMonthlyCost);
-                    System.out.println(dep + "; " + histogram.get(dep).getA() + "; " + histogram.get(dep).getB() + "; " + dep.deploymentMonthlyCost);
-
+                    System.out.println(j + " - "+dep + "; " + histogram.get(dep).getA() + "; " + histogram.get(dep).getB() + "; " + dep.deploymentMonthlyCost);
+                    j++;
                 }
                 writer.close();
             } catch (IOException e) {
@@ -329,11 +339,22 @@ public class MainOriginal_Links_MSSearch {
                 System.out.println(l);
                 System.out.println("Enter a deployment number: ");
                 int n = reader.nextInt();
+                
+                
+                Deployment chosenDeployment = l.get(n);
+                s.executeDeployment(chosenDeployment);
+                s.addBusinessPolicies("B", asList(chosenDeployment.get(new SoftwareComponent("B")).getId()));
+                s.addBusinessPolicies("C", asList(chosenDeployment.get(new SoftwareComponent("B")).getId()));
 
-                s.executeDeployment(l.get(n));
             } else {
                 over = true;
             }
+            
+
+            
+            
+            
+            s.A = new SmallApp().SmallAppCreate();
 
         }
 

@@ -15,7 +15,7 @@ import java.util.List;
 public class MonteCarloSearch {
 
     private int times;
-    private Application A;
+    public Application A;
     private Infrastructure I;
 
     private HashMap<String, HashSet<String>> businessPolicies;

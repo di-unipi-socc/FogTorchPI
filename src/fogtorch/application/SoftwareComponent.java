@@ -29,6 +29,10 @@ public class SoftwareComponent implements Comparable {
         this.hw = new Hardware(hardwareReqs);
     }
     
+    public SoftwareComponent(String id){
+        this.identifier  = id;
+    }
+    
     public void setSoftware(Collection<String> software){
         this.softwareReqs = new ArrayList<>();
         for (String s : software){
