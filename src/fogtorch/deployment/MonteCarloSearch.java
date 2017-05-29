@@ -73,7 +73,7 @@ public class MonteCarloSearch {
                 dep.consumedResources = I.consumedResources(dep);
             }
 
-            histogram.replace(dep, new Couple((100 * histogram.get(dep).getA() / ((double) times)), (dep.consumedResources.getA() + dep.consumedResources.getB()) / 2));
+            histogram.replace(dep, new Couple((100 * histogram.get(dep).getA() / ((double) times)), 100*(dep.consumedResources.getA() + dep.consumedResources.getB()) / 2));
         }
 
         return histogram;
