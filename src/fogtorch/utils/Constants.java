@@ -11,15 +11,15 @@ package fogtorch.utils;
  */
 public class Constants {
     public static final int MAX_RAM = 4;
-    public static final int MAX_HDD = 64;
-    public static final int MAX_CORES = 4;
+    public static final int MAX_HDD = 128;
+    public static final int MAX_CORES = 8;
     
     
    public static Hardware getVMHardwareSpec(String vmName){  
         Hardware result = null;
         switch (vmName) {
                 case "tiny": 
-                    result = new Hardware(1, 0.5, 1);
+                    result = new Hardware(1, 1, 10);
                     break;
                 case "small": 
                     result = new Hardware(1, 2, 20);

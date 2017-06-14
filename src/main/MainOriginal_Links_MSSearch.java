@@ -10,7 +10,6 @@ import fogtorch.application.SoftwareComponent;
 import fogtorch.application.ThingRequirement;
 import fogtorch.deployment.Deployment;
 import fogtorch.deployment.MonteCarloSearch;
-import fogtorch.deployment.Search;
 import fogtorch.infrastructure.Infrastructure;
 import fogtorch.utils.Couple;
 import fogtorch.utils.Hardware;
@@ -21,7 +20,6 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import static java.util.Arrays.asList;
 import java.util.HashMap;
-import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -33,7 +31,6 @@ public class MainOriginal_Links_MSSearch {
     public static void main(String[] args) {
         HashMap<Deployment, Couple<Double, Double>> histogram = new HashMap<>();
 
-        boolean notFog3 = false;
 
         //Change the access to Internet
         String profile = "20M";
@@ -41,24 +38,6 @@ public class MainOriginal_Links_MSSearch {
         //String profile2 = "4G";
         String profile2 = "4G";
 
-        boolean video = true;
-        //String quality = "HD";
-        String quality = "SD";
-
-        int Bstorage = 8; //8, 10, 32, 1000
-        double Bram = 1;
-
-        boolean dell32 = true;
-
-        boolean fog2up = true;
-
-        Hardware fogHW;
-        if (dell32) {
-            //cores, ram, storage
-            fogHW = new Hardware(2, 2, 32);
-        } else {
-            fogHW = new Hardware(2, 2, 1000);
-        }
 
         Infrastructure I = new Infrastructure();
         //fog1 43.7464449,10.4615923 fog2 43.7381285,10.4552213
@@ -69,21 +48,21 @@ public class MainOriginal_Links_MSSearch {
                 new Couple("mySQL", 45.0),
                 new Couple("python", 0.0)),
                 52.195097, 3.0364791,
-                new Hardware(0, 0, 0, 4.0, 9.0, 2.0)
+                new Hardware(0, 0, 0, 2.0, 3.0, 1.0)
         );
         I.addCloudDatacentre("cloud2", asList(
-                new Couple("linux", 45.0),
+                new Couple("linux", 50.0),
                 new Couple("php", 0.0),
                 new Couple("mySQL", 60.0),
                 new Couple("java", 0.0)),
                 44.123896, -122.781555,
-                new Hardware(0, 0, 0, 4.0, 8.0, 1.0),
+                new Hardware(0, 0, 0, 4.0, 6.0, 1.0),
                 asList(
                         new Couple("tiny", 7.0),
-                        new Couple("small", 10.0),
-                        new Couple("medium", 15.0),
-                        new Couple("large", 20.0),
-                        new Couple("xlarge", 25.0)
+                        new Couple("small", 25.0),
+                        new Couple("medium", 50.0),
+                        new Couple("large", 100.0),
+                        new Couple("xlarge", 200.0)
                 )
         );
         //Fog nodes
@@ -91,29 +70,24 @@ public class MainOriginal_Links_MSSearch {
                 new Couple("linux", 0.0),
                 new Couple("php", 0.0),
                 new Couple("mySQL", 15.0)),
-                new Hardware(2, 2, 32, 4.0, 5.0, 3.0),
+                new Hardware(2, 4, 32, 4.0, 5.0, 3.0),
                 43.740186, 10.364619);
-        if (fog2up) {
-            I.addFogNode("fog2", asList(
-                    new Couple("linux", 0.0),
-                    new Couple("php", 0.0)),
-                    new Hardware(2, 2, 32, 0.0, 0.0, 0.0), //owned by us 0 $
-                    43.7464449, 10.4615923);
-        }
+
+        I.addFogNode("fog2", asList(
+                new Couple("linux", 0.0),
+                new Couple("php", 0.0)),
+                new Hardware(2, 2, 32, 0.0, 0.0, 0.0), //owned by us 0 $
+                43.7464449, 10.4615923);
+
 
         I.addFogNode("fog3", asList(
                 new Couple("linux", 0.0),
                 new Couple("mySQL", 0.0)),
-                new Hardware(4, 2, 64, 5.0, 6.0, 2.0),
+                new Hardware(4, 12, 128, 5.0, 6.0, 2.0),
                 43.7381285, 10.4552213);
 
         //Links
-        if (profile.equals("30M")) {
-            //fog1
-            I.addLink("fog1", "cloud1", new QoSProfile(80, 21 / 2.0), new QoSProfile(80, 1.2 / 2.0));
-            I.addLink("fog1", "cloud2", new QoSProfile(80, 21 / 2.0), new QoSProfile(80, 1.2 / 2.0));
-
-        } else if (profile.equals("20M")) {
+        if (profile.equals("20M")) {
             //fog1
             I.addLink("fog1", "cloud1", new QoSProfile(asList(
                     //download
@@ -170,8 +144,8 @@ public class MainOriginal_Links_MSSearch {
 
         }
 
-        I.addLink("fog3", "cloud1", new QoSProfile(80, 21 / 2.0), new QoSProfile(80, 1.2 / 2.0));
-        I.addLink("fog3", "cloud2", new QoSProfile(80, 21 / 2.0), new QoSProfile(80, 1.2 / 2.0));
+        I.addLink("fog3", "cloud1", new QoSProfile(60, 60 / 2.0), new QoSProfile(80, 6 / 2.0));
+        I.addLink("fog3", "cloud2", new QoSProfile(80, 60 / 2.0), new QoSProfile(80, 6 / 2.0));
 
         if (profile2.equals("3G")) {
 
@@ -272,39 +246,27 @@ public class MainOriginal_Links_MSSearch {
         neededThings.add(new ExactThing("fire_sensor_1", new QoSProfile(100, 0.1), new QoSProfile(100, 0.5), 43200)); // 1 s and 1 Mbps
         neededThings.add(new ExactThing("lights_control_1", new QoSProfile(200, 0.9), new QoSProfile(200, 1.0), 2160)); // 110 ms and 1 Mbps
         neededThings.add(new ExactThing("thermostate_1", new QoSProfile(2000, 0.1), new QoSProfile(2000, 0.1), 1440)); // 0.5 s and 1 Mbps
-        if (video) {
-            neededThings.add(new ExactThing("videocamera_1", new QoSProfile(25, 0.1), new QoSProfile(50, 5), 1)); // 25 ms and 4Mbps for the HD videostreaming
-        }
-        neededThings.add(new ExactThing("weather_station_3", new QoSProfile(500, 0.1), new QoSProfile(5000, 0.2), 150));
+        neededThings.add(new ExactThing("videocamera_1", new QoSProfile(50, 0.1), new QoSProfile(50, 5), 1)); // 25 ms and 4Mbps for the HD videostreaming
+        neededThings.add(new ExactThing("weather_station_3", new QoSProfile(5000, 0.1), new QoSProfile(5000, 0.5), 150));
         
         
         //components
         //A.addComponent("A", asList("linux"), new Hardware(1, 1.2, 8), neededThings);
         A.addComponent("A", asList("linux"), new Hardware("tiny", 0.0), neededThings);
 
-        A.addComponent("B", asList("linux", "mySQL"), new Hardware("small", 0.0)); //cores ram storage
+        A.addComponent("B", asList("linux", "mySQL"), new Hardware("large", 0.0)); //cores ram storage
         //A.addComponent("B", asList("linux", "mySQL"), new Hardware("small", 0.0));
 
         A.addComponent("C", asList("linux", "php"), new Hardware("small", 0.0));
 
-        if (quality.equals("HD")) {
-            A.addLink("A", "B", 160, 0.5, 3.5); //160 ms and 10Mbps down and 1 Mbps up
-        } else if (quality.equals("SD")) {
-            A.addLink("A", "B", 160, 0.5, 0.7);
-        }
-
-        A.addLink("A", "C", 140, 0.4, 1.1);
-        A.addLink("B", "C", 100, 0.8, 1);
+        A.addLink("A", "B", 160, 0.5, 3.5); //160 ms and 10Mbps down and 1 Mbps up
+        A.addLink("A", "C", 140, 0.4, 0.9);
+        A.addLink("B", "C", 100, 0.3, 1.5);
 
         MonteCarloSearch s = new MonteCarloSearch(100000, A, I); //new Coordinates(43.740186, 10.364619));
 
         //s.addBusinessPolicies("C", asList("cloud2", "cloud1"));
         //s.addKeepLightNodes(asList("fog3"));
-        if (notFog3) {
-            s.addBusinessPolicies("A", asList("cloud2", "cloud1", "fog1", "fog2"));
-            s.addBusinessPolicies("B", asList("cloud2", "cloud1", "fog1", "fog2"));
-            s.addBusinessPolicies("C", asList("cloud2", "cloud1", "fog1", "fog2"));
-        }
 
         String filename
                 = "C:\\Users\\Stefano\\Dropbox\\_Dottorato\\2017_Fog_World_Congress\\results\\deployment_";
@@ -342,19 +304,16 @@ public class MainOriginal_Links_MSSearch {
                 
                 
                 Deployment chosenDeployment = l.get(n);
+                System.out.println(chosenDeployment);
                 s.executeDeployment(chosenDeployment);
-                s.addBusinessPolicies("B", asList(chosenDeployment.get(new SoftwareComponent("B")).getId()));
-                s.addBusinessPolicies("C", asList(chosenDeployment.get(new SoftwareComponent("B")).getId()));
+//                s.addBusinessPolicies("B", asList(chosenDeployment.get(new SoftwareComponent("B")).getId()));
+//                s.addBusinessPolicies("C", asList(chosenDeployment.get(new SoftwareComponent("C")).getId()));
 
             } else {
                 over = true;
             }
-            
 
-            
-            
-            
-            s.A = new SmallApp().SmallAppCreate();
+           // s.A = new SmallApp().SmallAppCreate();
 
         }
 
