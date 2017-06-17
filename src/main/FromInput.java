@@ -32,14 +32,19 @@ public class FromInput {
 
     public static void main(String[] args) {
 
+        if (args.length < 1) {
+          System.out.println("ERROR: first argument must be a json file");
+          System.exit(1);
+        }
+
         JsonObject rootJson = null;
         try {
             final JsonParser parser = new JsonParser();
             final JsonElement jsonElement = parser.parse(new FileReader(args[0]));
             rootJson = jsonElement.getAsJsonObject();
         } catch(FileNotFoundException e){
-            System.out.println(e);
-            System.exit(1);
+            System.out.println("ERROR: file not found");
+            System.exit(2);
         }
 
         Infrastructure I = jsonToInfrastructure(rootJson);
@@ -51,46 +56,56 @@ public class FromInput {
         //s.addBusinessPolicies("C", asList("cloud2", "cloud1"));
         //s.addKeepLightNodes(asList("fog3"));
 
-        String filename
-                = "C:\\Users\\Stefano\\Dropbox\\_Dottorato\\2017_Fog_World_Congress\\results\\deployment_";
+        String filename = args.length > 1 ? args[1] : null;
 
+        String csv = "";
         boolean over = false;
         int i = 0;
         while (!over) {
+            csv += String.join(";", new String[]{"Deployment",
+                                                 "QoS-assurance",
+                                                 "Hardware %",
+                                                 "Cost"}) + "\n";
 
             histogram = s.startSimulation(asList());
-            String name = filename + i + ".csv";
-            try {
-                PrintWriter writer = new PrintWriter(name, "UTF-8");
-                writer.println("Deployment ; QoS-assurance; Hardware %;Cost");
-                System.out.println("Deployment ; QoS-assurance ; Hardware %;Cost");
-                int j = 0;
-                for (Deployment dep : histogram.keySet()) {
-                    // histogram.replace(dep, new Couple((100 * histogram.get(dep).getA() / ((double) TIMES)), (100 * histogram.get(dep).getB() / (double) TIMES)));
-                    writer.println(dep + "; " + histogram.get(dep).getA() + ";" + histogram.get(dep).getB() + "; " + dep.deploymentMonthlyCost);
-                    System.out.println(j + " - "+dep + "; " + histogram.get(dep).getA() + "; " + histogram.get(dep).getB() + "; " + dep.deploymentMonthlyCost);
-                    j++;
-                }
-                writer.close();
-            } catch (IOException e) {
+
+            int j = 0;
+            for (Deployment dep : histogram.keySet()) {
+                // histogram.replace(dep, new Couple((100 * histogram.get(dep).getA() / ((double) TIMES)), (100 * histogram.get(dep).getB() / (double) TIMES)));
+                String[] data = new String[]{dep.toString(),
+                                             histogram.get(dep).getA().toString(),
+                                             histogram.get(dep).getB().toString(),
+                                             dep.deploymentMonthlyCost.toString()};
+                csv += String.join(";", data) + "\n";
+                System.out.println("" + j + " - " + String.join("\t", data)); // + " - "+dep + "; " + histogram.get(dep).getA() + "; " + histogram.get(dep).getB() + "; " + dep.deploymentMonthlyCost);
+                j++;
             }
+
+            if (filename != null){
+                String name = filename + i + ".csv";
+                System.out.println("Deployment write on file " + name);
+                try (PrintWriter writer = new PrintWriter(name, "UTF-8")) {
+                    writer.println(csv);
+                } catch (IOException e) {
+                    System.out.println("ERROR: cannot create csv file");
+                }
+            }
+            csv = "";
 
             i++;
 
             if (!histogram.isEmpty()) {
-
-                Scanner reader = new Scanner(System.in);  // Reading from System.in
                 ArrayList<Deployment> l = new ArrayList(histogram.keySet());
-                System.out.println(l);
+                Scanner reader = new Scanner(System.in);  // Reading from System.in
+                // System.out.println(l);
                 System.out.println("Enter a deployment number: ");
                 int n = reader.nextInt();
-
 
                 Deployment chosenDeployment = l.get(n);
                 System.out.println(chosenDeployment);
                 s.executeDeployment(chosenDeployment);
-//                s.addBusinessPolicies("B", asList(chosenDeployment.get(new SoftwareComponent("B")).getId()));
-//                s.addBusinessPolicies("C", asList(chosenDeployment.get(new SoftwareComponent("C")).getId()));
+//              s.addBusinessPolicies("B", asList(chosenDeployment.get(new SoftwareComponent("B")).getId()));
+//              s.addBusinessPolicies("C", asList(chosenDeployment.get(new SoftwareComponent("C")).getId()));
 
             } else {
                 over = true;
