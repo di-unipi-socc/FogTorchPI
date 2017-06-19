@@ -1,6 +1,5 @@
 package fogtorch.utils;
 
-import edu.princeton.cs.introcs.StdRandom;
 import java.util.ArrayList;
 import java.util.List;
 
