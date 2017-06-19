@@ -5,7 +5,6 @@ package di.unipi.socc.fogtorchpi.experiments;
 
 import di.unipi.socc.fogtorchpi.application.Application;
 import di.unipi.socc.fogtorchpi.application.ExactThing;
-import di.unipi.socc.fogtorchpi.application.SoftwareComponent;
 import di.unipi.socc.fogtorchpi.application.ThingRequirement;
 import di.unipi.socc.fogtorchpi.deployment.Deployment;
 import di.unipi.socc.fogtorchpi.deployment.MonteCarloSearch;
@@ -50,7 +49,7 @@ public class FromInput {
         Application A = jsonToApplication(rootJson);
 
         HashMap<Deployment, Couple<Double, Double>> histogram = new HashMap<>();
-        MonteCarloSearch s = new MonteCarloSearch(100000, A, I); //new Coordinates(43.740186, 10.364619));
+        MonteCarloSearch s = new MonteCarloSearch(100000, A, I);
 
         //s.addBusinessPolicies("C", asList("cloud2", "cloud1"));
         //s.addKeepLightNodes(asList("fog3"));
@@ -70,7 +69,7 @@ public class FromInput {
 
             int j = 0;
             for (Deployment dep : histogram.keySet()) {
-                // histogram.replace(dep, new Couple((100 * histogram.get(dep).getA() / ((double) TIMES)), (100 * histogram.get(dep).getB() / (double) TIMES)));
+                //histogram.replace(dep, new Couple((100 * histogram.get(dep).getA() / ((double) 100000)), (100 * histogram.get(dep).getB() / (double) 100000)));
                 String[] data = new String[]{dep.toString(),
                                              histogram.get(dep).getA().toString(),
                                              histogram.get(dep).getB().toString(),

@@ -26,7 +26,7 @@ import java.util.Scanner;
  *
  * @author Stefano
  */
-public class MainOriginal_Links_MSSearch {
+public class FWCMain {
 
     public static void main(String[] args) {
         HashMap<Deployment, Couple<Double, Double>> histogram = new HashMap<>();
