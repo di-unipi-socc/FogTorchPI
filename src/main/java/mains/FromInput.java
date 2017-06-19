@@ -1,7 +1,7 @@
 /**
  * Original file of paper revised according to FT refactoring with cost.
  */
-package main;
+package mains;
 
 import examples.SmallApp;
 import fogtorch.application.Application;
