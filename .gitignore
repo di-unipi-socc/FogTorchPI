@@ -20,3 +20,6 @@ nbdist/
 .nb-gradle/
 *.netbeans_automatic_build
 target/maven-archiver/pom.properties
+.idea/compiler.xml
+FogTorchPi.iml
+.idea/misc.xml
