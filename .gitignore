@@ -18,5 +18,3 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
-*.netbeans_automatic_build
-target/maven-archiver/pom.properties
