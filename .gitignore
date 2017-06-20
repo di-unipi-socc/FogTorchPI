@@ -24,3 +24,5 @@ target/maven-archiver/pom.properties
 FogTorchPi.iml
 .idea/misc.xml
 .idea/workspace.xml
+target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
+*.lst
