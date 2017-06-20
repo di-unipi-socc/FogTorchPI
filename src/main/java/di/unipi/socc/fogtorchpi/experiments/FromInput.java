@@ -46,6 +46,7 @@ public class FromInput {
         }
 
         Infrastructure I = jsonToInfrastructure(rootJson);
+        System.out.println(I);
         Application A = jsonToApplication(rootJson);
 
         HashMap<Deployment, Couple<Double, Double>> histogram = new HashMap<>();
