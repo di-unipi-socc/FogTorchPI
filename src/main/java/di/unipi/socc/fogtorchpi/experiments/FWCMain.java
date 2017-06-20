@@ -36,7 +36,7 @@ public class FWCMain {
         String profile = "20M";
 
         //String profile2 = "4G";
-        String profile2 = "4G";
+        String profile2 = "3G";
 
 
         Infrastructure I = new Infrastructure();
@@ -144,8 +144,8 @@ public class FWCMain {
 
         }
 
-        I.addLink("fog3", "cloud1", new QoSProfile(60, 60 / 2.0), new QoSProfile(80, 6 / 2.0));
-        I.addLink("fog3", "cloud2", new QoSProfile(80, 60 / 2.0), new QoSProfile(80, 6 / 2.0));
+        I.addLink("fog3", "cloud1", new QoSProfile(60, 60 / 2.0), new QoSProfile(60, 6 / 2.0));
+        I.addLink("fog3", "cloud2", new QoSProfile(60, 60 / 2.0), new QoSProfile(60, 6 / 2.0));
 
         if (profile2.equals("3G")) {
 
@@ -237,6 +237,7 @@ public class FWCMain {
         
         I.addThing("weather_station_3", "weather_station", 43.7464449, 10.4615923, "fog3", 0.01);
 
+        System.out.println(I);
 
         // System.out.println(I.L);
         Application A = new Application();
@@ -262,6 +263,8 @@ public class FWCMain {
         A.addLink("A", "B", 160, 0.5, 3.5); //160 ms and 10Mbps down and 1 Mbps up
         A.addLink("A", "C", 140, 0.4, 0.9);
         A.addLink("B", "C", 100, 0.3, 1.5);
+
+        System.out.println(A);
 
         MonteCarloSearch s = new MonteCarloSearch(100000, A, I); //new Coordinates(43.740186, 10.364619));
 

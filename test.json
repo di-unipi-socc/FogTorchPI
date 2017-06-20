@@ -13,29 +13,29 @@
                     "y": 3.0364791,
                     "hardware": {
                         "cores": 0,
-                        "cores_cost": 0,
+                        "cores_cost": 2.0,
                         "ram": 0,
-                        "ram_cost": 2.0,
-                        "storage": 3.0,
+                        "ram_cost": 3.0,
+                        "storage": 0,
                         "storage_cost": 1.0
                     }
                 },
                 {
                     "name": "cloud2",
                     "software": [
-                        ["linux", 0.0],
+                        ["linux", 50.0],
                         ["php", 0.0],
-                        ["mySQL", 45.0],
+                        ["mySQL", 60.0],
                         ["java", 0.0]
                     ],
                     "x": 44.123896,
                     "y": -122.781555,
                     "hardware": {
                         "cores": 0,
-                        "cores_cost": 0,
+                        "cores_cost": 4.0,
                         "ram": 0,
-                        "ram_cost": 4.0,
-                        "storage": 6.0,
+                        "ram_cost": 6.0,
+                        "storage": 0,
                         "storage_cost": 1.0
                     },
                     "vm_types": [
@@ -56,10 +56,10 @@
                     ],
                     "hardware": {
                         "cores": 2,
-                        "cores_cost": 4,
-                        "ram": 32,
-                        "ram_cost": 4.0,
-                        "storage": 5.0,
+                        "cores_cost": 4.0,
+                        "ram": 4,
+                        "ram_cost": 5.0,
+                        "storage": 32.0,
                         "storage_cost": 3.0
                     },
                     "x": 43.740186,
@@ -73,10 +73,10 @@
                     ],
                     "hardware": {
                         "cores": 2,
-                        "cores_cost": 2,
-                        "ram": 32,
+                        "cores_cost": 0.0,
+                        "ram": 2,
                         "ram_cost": 0.0,
-                        "storage": 0.0,
+                        "storage": 32,
                         "storage_cost": 0.0
                     },
                     "x": 43.7464449,
@@ -90,10 +90,10 @@
                     ],
                     "hardware": {
                         "cores": 4,
-                        "cores_cost": 12,
-                        "ram": 128,
-                        "ram_cost": 5.0,
-                        "storage": 6.0,
+                        "cores_cost": 5.0,
+                        "ram": 12,
+                        "ram_cost": 6.0,
+                        "storage": 128,
                         "storage_cost": 2.0
                     },
                     "x": 43.7381285,
@@ -113,8 +113,8 @@
                     },
                     {
                         "qos": {
-                            "latency": 40,
-                            "bandwidth": 2.25
+                            "latency": "MAX_INT",
+                            "bandwidth": 0.0
                         },
                         "percentage": 0.02
                     }
@@ -174,7 +174,7 @@
                 "to": "cloud1",
                 "download": [{
                     "qos": {
-                        "latency": 60,
+                        "latency": 80,
                         "bandwidth": 30
                     },
                     "percentage": 1
@@ -266,6 +266,74 @@
                 "upload": []
             },
             {
+                "from": "fog2",
+                "to": "cloud1",
+                "download": [{
+                    "qos": {
+                        "latency": 54,
+                        "bandwidth": 4.805
+                    },
+                    "percentage": 0.996
+                },
+                    {
+                        "qos": {
+                            "latency": "MAX_INT",
+                            "bandwidth": 0
+                        },
+                        "percentage": 0.004
+                    }
+                ],
+                "upload": [{
+                    "qos": {
+                        "latency": 54,
+                        "bandwidth": 1.445
+                    },
+                    "percentage": 0.996
+                },
+                    {
+                        "qos": {
+                            "latency": "MAX_INT",
+                            "bandwidth": 0
+                        },
+                        "percentage": 0.004
+                    }
+                ]
+            },
+            {
+                "from": "fog2",
+                "to": "cloud2",
+                "download": [{
+                    "qos": {
+                        "latency": 54,
+                        "bandwidth": 4.805
+                    },
+                    "percentage": 0.996
+                },
+                    {
+                        "qos": {
+                            "latency": "MAX_INT",
+                            "bandwidth": 0
+                        },
+                        "percentage": 0.004
+                    }
+                ],
+                "upload": [{
+                    "qos": {
+                        "latency": 54,
+                        "bandwidth": 1.445
+                    },
+                    "percentage": 0.996
+                },
+                    {
+                        "qos": {
+                            "latency": "MAX_INT",
+                            "bandwidth": 0
+                        },
+                        "percentage": 0.004
+                    }
+                ]
+            },
+            {
                 "from": "cloud1",
                 "to": "cloud2",
                 "download": [{
@@ -316,7 +384,7 @@
                 "x": 43.7464449,
                 "y": 10.4615923,
                 "fog_node": "fog2",
-                "cost": 0.01
+                "cost": 0.00
             },
             {
                 "name": "lights_control_2",
@@ -324,7 +392,7 @@
                 "x": 43.7464449,
                 "y": 10.4615923,
                 "fog_node": "fog2",
-                "cost": 0.03
+                "cost": 0.00
             },
             {
                 "name": "thermostate_2",
@@ -332,7 +400,7 @@
                 "x": 43.7464449,
                 "y": 10.4615923,
                 "fog_node": "fog2",
-                "cost": 0.01
+                "cost": 0.00
             },
             {
                 "name": "videocamera_2",
@@ -340,7 +408,7 @@
                 "x": 43.7464449,
                 "y": 10.4615923,
                 "fog_node": "fog2",
-                "cost": 30
+                "cost": 0
             },
             {
                 "name": "weather_station_3",
@@ -348,7 +416,7 @@
                 "x": 43.7464449,
                 "y": 10.4615923,
                 "fog_node": "fog3",
-                "cost": 0.01
+                "cost": 0.20
             }
         ]
     },
@@ -357,7 +425,7 @@
                 "name": "A",
                 "software": ["linux"],
                 "hardware": {
-                    "vm_type": "large",
+                    "vm_type": "tiny",
                     "cost": 0.0
                 },
                 "things": [{
@@ -397,7 +465,7 @@
                             },
                             "from": {
                                 "latency": 2000,
-                                "bandwidth": 1.0
+                                "bandwidth": 0.1
                             }
                         },
                         "invokes": 1440
@@ -454,23 +522,23 @@
         "links": [{
                 "from": "A",
                 "to": "B",
-                "latency": 1600,
-                "up": 0.5,
-                "down": 3.5
+                "latency": 160,
+                "up": 3.5,
+                "down": 0.5
             },
             {
                 "from": "A",
                 "to": "C",
                 "latency": 140,
-                "up": 0.4,
-                "down": 0.9
+                "up": 0.9,
+                "down": 0.4
             },
             {
                 "from": "B",
                 "to": "C",
                 "latency": 100,
-                "up": 0.3,
-                "down": 1.5
+                "up": 1.5,
+                "down": 0.3
             }
         ]
     }

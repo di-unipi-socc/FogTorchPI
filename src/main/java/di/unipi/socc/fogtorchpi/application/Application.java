@@ -51,8 +51,8 @@ public class Application {
         
         result+="}\n\nLambda = {\n";
         
-        for (QoSProfile l : L.values()){
-            result+="\t"+l;
+        for (Couple c : L.keySet()){
+            result+="(" + c + "\t"+ L.get(c) + ")";
             result+="\n";
         }
         
