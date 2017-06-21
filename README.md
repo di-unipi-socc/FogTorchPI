@@ -2,13 +2,15 @@
 
 _A tool for probabilistic QoS-assurance and resource consumption estimation of eligible deployments of Fog applications._
 
-FogTorchΠ is based upon the work described in
+This version of FogTorchΠ is based upon the work described in
 
 > [Antonio Brogi](http://pages.di.unipi.it/brogi), [Stefano Forti](http://pages.di.unipi.it/forti), [Ahmad Ibrahim](http://pages.di.unipi.it/ibrahim) <br>
 > **[How to best deploy your Fog applications, probably.](http://pages.di.unipi.it/forti/pdf/icfec17.pdf)** <br>
-> _Accepted at_ [IEEE International Conference on Fog and Edge Computing (ICFEC’2017)](http://fec-conf.gforge.inria.fr/index.html), May 2017, Madrid, Spain
+> Proceedings of [1st IEEE International Conference on Fog and Edge Computing (ICFEC’2017)](http://fec-conf.gforge.inria.fr/index.html), Madrid, O. Rana, R. Buyya, and A. Anjum, Eds., 2017, May 2017, Madrid, Spain.
 
 If you wish to reuse source code in this repo, please cite the above mentioned article.
+
+**Note**: a new and extended version of FogTorchΠ which estimates monthly deployment cost and permits input from file is available [here](https://github.com/di-unipi-socc/FogTorchPI/tree/costmodel).
 
 ## Intro
 
