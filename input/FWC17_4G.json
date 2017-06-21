@@ -270,32 +270,32 @@
                 "to": "cloud1",
                 "download": [{
                     "qos": {
-                        "latency": 54,
-                        "bandwidth": 4.805
+                        "latency": 53,
+                        "bandwidth": 11.335
                     },
-                    "percentage": 0.996
+                    "percentage": 0.993
                 },
                     {
                         "qos": {
                             "latency": "MAX_INT",
                             "bandwidth": 0
                         },
-                        "percentage": 0.004
+                        "percentage": 0.007
                     }
                 ],
                 "upload": [{
                     "qos": {
-                        "latency": 54,
-                        "bandwidth": 1.445
+                        "latency": 53,
+                        "bandwidth": 8.485
                     },
-                    "percentage": 0.996
+                    "percentage": 0.994
                 },
                     {
                         "qos": {
                             "latency": "MAX_INT",
                             "bandwidth": 0
                         },
-                        "percentage": 0.004
+                        "percentage": 0.006
                     }
                 ]
             },
@@ -304,32 +304,32 @@
                 "to": "cloud2",
                 "download": [{
                     "qos": {
-                        "latency": 54,
-                        "bandwidth": 4.805
+                        "latency": 53,
+                        "bandwidth": 11.335
                     },
-                    "percentage": 0.996
+                    "percentage": 0.993
                 },
                     {
                         "qos": {
                             "latency": "MAX_INT",
                             "bandwidth": 0
                         },
-                        "percentage": 0.004
+                        "percentage": 0.007
                     }
                 ],
                 "upload": [{
                     "qos": {
-                        "latency": 54,
-                        "bandwidth": 1.445
+                        "latency": 53,
+                        "bandwidth": 8.485
                     },
-                    "percentage": 0.996
+                    "percentage": 0.994
                 },
                     {
                         "qos": {
                             "latency": "MAX_INT",
                             "bandwidth": 0
                         },
-                        "percentage": 0.004
+                        "percentage": 0.006
                     }
                 ]
             },
