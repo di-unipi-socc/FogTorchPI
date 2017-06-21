@@ -230,10 +230,10 @@ public class FWCMain {
         I.addThing("thermostate_1", "thermostate", 43.7464449, 10.4615923, "fog1", 0.01);
         I.addThing("videocamera_1", "videocamera", 43.7464449, 10.4615923, "fog1", 30);
         
-        I.addThing("fire_sensor_2", "fire", 43.7464449, 10.4615923, "fog2", 0.01);
-        I.addThing("lights_control_2", "lights_control", 43.7464449, 10.4615923, "fog2", 0.03);
-        I.addThing("thermostate_2", "thermostate", 43.7464449, 10.4615923, "fog2", 0.01);
-        I.addThing("videocamera_2", "videocamera", 43.7464449, 10.4615923, "fog2", 30);
+        I.addThing("fire_sensor_2", "fire", 43.7464449, 10.4615923, "fog2", 0.00);
+        I.addThing("lights_control_2", "lights_control", 43.7464449, 10.4615923, "fog2", 0.00);
+        I.addThing("thermostate_2", "thermostate", 43.7464449, 10.4615923, "fog2", 0.00);
+        I.addThing("videocamera_2", "videocamera", 43.7464449, 10.4615923, "fog2", 0);
         
         I.addThing("weather_station_3", "weather_station", 43.7464449, 10.4615923, "fog3", 0.01);
 

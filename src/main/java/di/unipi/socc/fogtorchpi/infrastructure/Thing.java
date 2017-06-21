@@ -50,7 +50,7 @@ public class Thing {
     @Override
     public String toString(){
         String result = "<";
-        result = result + this.identifier + ", " + this.type + ", "+ this.getCoordinates();        
+        result = result + this.identifier + ", " + this.type + ", "+ this.getCoordinates() + ", " + this.cost;
         result += ">";
         return result; 
     }

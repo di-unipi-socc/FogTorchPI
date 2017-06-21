@@ -75,7 +75,9 @@ public class CloudDatacentre extends ComputationalNode {
     @Override
     public String toString(){
         String result = "<";
-        result = result + getId() + ", " + this.getSoftware()+ ", "+ this.getCoordinates();        
+        result = result + getId() + ", " + this.getSoftware()+ ", "+ this.getCoordinates()+ "\n" +
+                this.virtualMachines + " " + super.getHardware();
+        ;
         result += ">";
         return result; 
     }

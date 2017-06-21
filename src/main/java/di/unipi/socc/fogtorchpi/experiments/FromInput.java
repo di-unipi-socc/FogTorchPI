@@ -22,7 +22,6 @@ import java.io.FileNotFoundException;
 import com.google.gson.*;
 import java.util.List;
 
-
 public class FromInput {
 
     public static void main(String[] args) {

@@ -94,7 +94,9 @@ public class Hardware {
     
     @Override
     public String toString(){
-        return "CPU: " + this.cores + " RAM: " + this.ram + " HDD " + this.storage;
+        return "CPU: " + this.cores + " RAM: " + this.ram + " HDD: " + this.storage +
+                "\n"+
+                "CPU cost: " + this.cpuCost + " RAM cost: " + this.ramCost + " HDD cost: " + this.storageCost;
     }
     
     public Hardware(Hardware r, double ramCost, double cpuCost, double storageCost, String currency) {
