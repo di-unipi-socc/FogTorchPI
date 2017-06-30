@@ -48,7 +48,7 @@
                 }
             ],
             "fog": [{
-                    "name": "fog1",
+                    "name": "edge1",
                     "software": [
                         ["linux", 0.0],
                         ["php", 0.0],
@@ -66,7 +66,7 @@
                     "y": 10.364619
                 },
                 {
-                    "name": "fog2",
+                    "name": "edge2",
                     "software": [
                         ["linux", 0.0],
                         ["php", 0.0]
@@ -83,7 +83,7 @@
                     "y": 10.4615923
                 },
                 {
-                    "name": "fog3",
+                    "name": "edge3",
                     "software": [
                         ["linux", 0.0],
                         ["mySQL", 0.0]
@@ -102,7 +102,7 @@
             ]
         },
         "links": [{
-                "from": "fog1",
+                "from": "edge1",
                 "to": "cloud1",
                 "download": [{
                         "qos": {
@@ -136,7 +136,7 @@
                 ]
             },
             {
-                "from": "fog1",
+                "from": "edge1",
                 "to": "cloud2",
                 "download": [{
                         "qos": {
@@ -170,7 +170,7 @@
                 ]
             },
             {
-                "from": "fog3",
+                "from": "edge3",
                 "to": "cloud1",
                 "download": [{
                     "qos": {
@@ -188,7 +188,7 @@
                 }]
             },
             {
-                "from": "fog3",
+                "from": "edge3",
                 "to": "cloud2",
                 "download": [{
                     "qos": {
@@ -206,8 +206,8 @@
                 }]
             },
             {
-                "from": "fog1",
-                "to": "fog2",
+                "from": "edge1",
+                "to": "edge2",
                 "download": [{
                         "qos": {
                             "latency": 15,
@@ -226,8 +226,8 @@
                 "upload": []
             },
             {
-                "from": "fog1",
-                "to": "fog3",
+                "from": "edge1",
+                "to": "edge3",
                 "download": [{
                         "qos": {
                             "latency": 15,
@@ -246,8 +246,8 @@
                 "upload": []
             },
             {
-                "from": "fog2",
-                "to": "fog3",
+                "from": "edge2",
+                "to": "edge3",
                 "download": [{
                         "qos": {
                             "latency": 15,
@@ -266,7 +266,7 @@
                 "upload": []
             },
             {
-                "from": "fog2",
+                "from": "edge2",
                 "to": "cloud1",
                 "download": [{
                     "qos": {
@@ -300,7 +300,7 @@
                 ]
             },
             {
-                "from": "fog2",
+                "from": "edge2",
                 "to": "cloud2",
                 "download": [{
                     "qos": {
@@ -351,7 +351,7 @@
                 "type": "fire",
                 "x": 43.7464449,
                 "y": 10.4615923,
-                "fog_node": "fog1",
+                "fog_node": "edge1",
                 "cost": 0.01
             },
             {
@@ -359,7 +359,7 @@
                 "type": "lights_control",
                 "x": 43.7464449,
                 "y": 10.4615923,
-                "fog_node": "fog1",
+                "fog_node": "edge1",
                 "cost": 0.03
             },
             {
@@ -367,7 +367,7 @@
                 "type": "thermostate",
                 "x": 43.7464449,
                 "y": 10.4615923,
-                "fog_node": "fog1",
+                "fog_node": "edge1",
                 "cost": 0.01
             },
             {
@@ -375,7 +375,7 @@
                 "type": "videocamera",
                 "x": 43.7464449,
                 "y": 10.4615923,
-                "fog_node": "fog1",
+                "fog_node": "edge1",
                 "cost": 30
             },
             {
@@ -383,7 +383,7 @@
                 "type": "fire",
                 "x": 43.7464449,
                 "y": 10.4615923,
-                "fog_node": "fog2",
+                "fog_node": "edge2",
                 "cost": 0.00
             },
             {
@@ -391,7 +391,7 @@
                 "type": "lights_control",
                 "x": 43.7464449,
                 "y": 10.4615923,
-                "fog_node": "fog2",
+                "fog_node": "edge2",
                 "cost": 0.00
             },
             {
@@ -399,7 +399,7 @@
                 "type": "thermostate",
                 "x": 43.7464449,
                 "y": 10.4615923,
-                "fog_node": "fog2",
+                "fog_node": "edge2",
                 "cost": 0.00
             },
             {
@@ -407,22 +407,22 @@
                 "type": "videocamera",
                 "x": 43.7464449,
                 "y": 10.4615923,
-                "fog_node": "fog2",
+                "fog_node": "edge2",
                 "cost": 0
             },
             {
-                "name": "weather_station_3",
-                "type": "weather_station",
+                "name": "alarm_3",
+                "type": "alarm",
                 "x": 43.7464449,
                 "y": 10.4615923,
-                "fog_node": "fog3",
+                "fog_node": "edge3",
                 "cost": 0.01
             }
         ]
     },
     "application": {
         "components": [{
-                "name": "A",
+                "name": "IoTController",
                 "software": ["linux"],
                 "hardware": {
                     "vm_type": "tiny",
@@ -485,7 +485,7 @@
                         "invokes": 1
                     },
                     {
-                        "name": "weather_station_3",
+                        "name": "alarm_3",
                         "qos": {
                             "to": {
                                 "latency": 5000,
@@ -501,7 +501,7 @@
                 ]
             },
             {
-                "name": "B",
+                "name": "DataStorage",
                 "software": ["linux", "mySQL"],
                 "hardware": {
                     "vm_type": "xlarge",
@@ -510,7 +510,7 @@
                 "things": []
             },
             {
-                "name": "C",
+                "name": "Dashboard",
                 "software": ["linux", "php"],
                 "hardware": {
                     "vm_type": "small",
@@ -520,22 +520,22 @@
             }
         ],
         "links": [{
-                "from": "A",
-                "to": "B",
+                "from": "IoTController",
+                "to": "DataStorage",
                 "latency": 160,
                 "up": 3.5,
                 "down": 0.5
             },
             {
-                "from": "A",
-                "to": "C",
+                "from": "IoTController",
+                "to": "Dashboard",
                 "latency": 140,
                 "up": 0.9,
                 "down": 0.4
             },
             {
-                "from": "B",
-                "to": "C",
+                "from": "DataStorage",
+                "to": "Dashboard",
                 "latency": 100,
                 "up": 1.5,
                 "down": 0.3

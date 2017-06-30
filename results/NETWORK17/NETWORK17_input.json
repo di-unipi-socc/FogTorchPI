@@ -47,7 +47,7 @@
                     ]
                 }
             ],
-            "edge": [{
+            "fog": [{
                     "name": "edge1",
                     "software": [
                         ["linux", 0.0],
@@ -351,7 +351,7 @@
                 "type": "fire",
                 "x": 43.7464449,
                 "y": 10.4615923,
-                "edge_node": "edge1",
+                "fog_node": "edge1",
                 "cost": 0.01
             },
             {
@@ -359,7 +359,7 @@
                 "type": "lights_control",
                 "x": 43.7464449,
                 "y": 10.4615923,
-                "edge_node": "edge1",
+                "fog_node": "edge1",
                 "cost": 0.03
             },
             {
@@ -367,7 +367,7 @@
                 "type": "thermostate",
                 "x": 43.7464449,
                 "y": 10.4615923,
-                "edge_node": "edge1",
+                "fog_node": "edge1",
                 "cost": 0.01
             },
             {
@@ -375,7 +375,7 @@
                 "type": "videocamera",
                 "x": 43.7464449,
                 "y": 10.4615923,
-                "edge_node": "edge1",
+                "fog_node": "edge1",
                 "cost": 30
             },
             {
@@ -383,7 +383,7 @@
                 "type": "fire",
                 "x": 43.7464449,
                 "y": 10.4615923,
-                "edge_node": "edge2",
+                "fog_node": "edge2",
                 "cost": 0.00
             },
             {
@@ -391,7 +391,7 @@
                 "type": "lights_control",
                 "x": 43.7464449,
                 "y": 10.4615923,
-                "edge_node": "edge2",
+                "fog_node": "edge2",
                 "cost": 0.00
             },
             {
@@ -399,7 +399,7 @@
                 "type": "thermostate",
                 "x": 43.7464449,
                 "y": 10.4615923,
-                "edge_node": "edge2",
+                "fog_node": "edge2",
                 "cost": 0.00
             },
             {
@@ -407,7 +407,7 @@
                 "type": "videocamera",
                 "x": 43.7464449,
                 "y": 10.4615923,
-                "edge_node": "edge2",
+                "fog_node": "edge2",
                 "cost": 0
             },
             {
@@ -415,7 +415,7 @@
                 "type": "alarm",
                 "x": 43.7464449,
                 "y": 10.4615923,
-                "edge_node": "edge3",
+                "fog_node": "edge3",
                 "cost": 0.01
             }
         ]
