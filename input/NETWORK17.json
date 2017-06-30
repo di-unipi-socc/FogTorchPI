@@ -74,7 +74,7 @@
                     "hardware": {
                         "cores": 2,
                         "cores_cost": 0.0,
-                        "ram": 2,
+                        "ram": 4,
                         "ram_cost": 0.0,
                         "storage": 32,
                         "storage_cost": 0.0
