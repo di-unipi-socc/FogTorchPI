@@ -1,0 +1,545 @@
+{
+    "infrastructure": {
+        "nodes": {
+            "cloud": [{
+                    "name": "cloud1",
+                    "software": [
+                        ["linux", 0.0],
+                        ["php", 0.0],
+                        ["mySQL", 45.0],
+                        ["python", 0.0]
+                    ],
+                    "x": 52.195097,
+                    "y": 3.0364791,
+                    "hardware": {
+                        "cores": 0,
+                        "cores_cost": 2.0,
+                        "ram": 0,
+                        "ram_cost": 3.0,
+                        "storage": 0,
+                        "storage_cost": 1.0
+                    }
+                },
+                {
+                    "name": "cloud2",
+                    "software": [
+                        ["linux", 50.0],
+                        ["php", 0.0],
+                        ["mySQL", 60.0],
+                        ["java", 0.0]
+                    ],
+                    "x": 44.123896,
+                    "y": -122.781555,
+                    "hardware": {
+                        "cores": 0,
+                        "cores_cost": 4.0,
+                        "ram": 0,
+                        "ram_cost": 6.0,
+                        "storage": 0,
+                        "storage_cost": 1.0
+                    },
+                    "vm_types": [
+                        ["tiny", 7.0],
+                        ["small", 25.0],
+                        ["medium", 50.0],
+                        ["large", 100.0],
+                        ["xlarge", 200.0]
+                    ]
+                }
+            ],
+            "edge": [{
+                    "name": "edge1",
+                    "software": [
+                        ["linux", 0.0],
+                        ["php", 0.0],
+                        ["mySQL", 15.0]
+                    ],
+                    "hardware": {
+                        "cores": 2,
+                        "cores_cost": 4.0,
+                        "ram": 4,
+                        "ram_cost": 5.0,
+                        "storage": 32.0,
+                        "storage_cost": 3.0
+                    },
+                    "x": 43.740186,
+                    "y": 10.364619
+                },
+                {
+                    "name": "edge2",
+                    "software": [
+                        ["linux", 0.0],
+                        ["php", 0.0]
+                    ],
+                    "hardware": {
+                        "cores": 2,
+                        "cores_cost": 0.0,
+                        "ram": 4,
+                        "ram_cost": 0.0,
+                        "storage": 32,
+                        "storage_cost": 0.0
+                    },
+                    "x": 43.7464449,
+                    "y": 10.4615923
+                },
+                {
+                    "name": "edge3",
+                    "software": [
+                        ["linux", 0.0],
+                        ["mySQL", 0.0]
+                    ],
+                    "hardware": {
+                        "cores": 4,
+                        "cores_cost": 5.0,
+                        "ram": 12,
+                        "ram_cost": 6.0,
+                        "storage": 128,
+                        "storage_cost": 2.0
+                    },
+                    "x": 43.7381285,
+                    "y": 10.4552213
+                }
+            ]
+        },
+        "links": [{
+                "from": "edge1",
+                "to": "cloud1",
+                "download": [{
+                        "qos": {
+                            "latency": 40,
+                            "bandwidth": 5.25
+                        },
+                        "percentage": 0.98
+                    },
+                    {
+                        "qos": {
+                            "latency": "MAX_INT",
+                            "bandwidth": 0.0
+                        },
+                        "percentage": 0.02
+                    }
+                ],
+                "upload": [{
+                        "qos": {
+                            "latency": 40,
+                            "bandwidth": 2.25
+                        },
+                        "percentage": 0.98
+                    },
+                    {
+                        "qos": {
+                            "latency": "MAX_INT",
+                            "bandwidth": 0.0
+                        },
+                        "percentage": 0.02
+                    }
+                ]
+            },
+            {
+                "from": "edge1",
+                "to": "cloud2",
+                "download": [{
+                        "qos": {
+                            "latency": 40,
+                            "bandwidth": 5.25
+                        },
+                        "percentage": 0.98
+                    },
+                    {
+                        "qos": {
+                            "latency": "MAX_INT",
+                            "bandwidth": 0.0
+                        },
+                        "percentage": 0.02
+                    }
+                ],
+                "upload": [{
+                        "qos": {
+                            "latency": 40,
+                            "bandwidth": 2.25
+                        },
+                        "percentage": 0.98
+                    },
+                    {
+                        "qos": {
+                            "latency": "MAX_INT",
+                            "bandwidth": 0.0
+                        },
+                        "percentage": 0.02
+                    }
+                ]
+            },
+            {
+                "from": "edge3",
+                "to": "cloud1",
+                "download": [{
+                    "qos": {
+                        "latency": 80,
+                        "bandwidth": 30
+                    },
+                    "percentage": 1
+                }],
+                "upload": [{
+                    "qos": {
+                        "latency": 80,
+                        "bandwidth": 3
+                    },
+                    "percentage": 1
+                }]
+            },
+            {
+                "from": "edge3",
+                "to": "cloud2",
+                "download": [{
+                    "qos": {
+                        "latency": 80,
+                        "bandwidth": 30
+                    },
+                    "percentage": 1
+                }],
+                "upload": [{
+                    "qos": {
+                        "latency": 80,
+                        "bandwidth": 3
+                    },
+                    "percentage": 1
+                }]
+            },
+            {
+                "from": "edge1",
+                "to": "edge2",
+                "download": [{
+                        "qos": {
+                            "latency": 15,
+                            "bandwidth": 32
+                        },
+                        "percentage": 0.9
+                    },
+                    {
+                        "qos": {
+                            "latency": 15,
+                            "bandwidth": 16
+                        },
+                        "percentage": 0.1
+                    }
+                ],
+                "upload": []
+            },
+            {
+                "from": "edge1",
+                "to": "edge3",
+                "download": [{
+                        "qos": {
+                            "latency": 15,
+                            "bandwidth": 32
+                        },
+                        "percentage": 0.9
+                    },
+                    {
+                        "qos": {
+                            "latency": 15,
+                            "bandwidth": 16
+                        },
+                        "percentage": 0.1
+                    }
+                ],
+                "upload": []
+            },
+            {
+                "from": "edge2",
+                "to": "edge3",
+                "download": [{
+                        "qos": {
+                            "latency": 15,
+                            "bandwidth": 32
+                        },
+                        "percentage": 0.9
+                    },
+                    {
+                        "qos": {
+                            "latency": 15,
+                            "bandwidth": 16
+                        },
+                        "percentage": 0.1
+                    }
+                ],
+                "upload": []
+            },
+            {
+                "from": "edge2",
+                "to": "cloud1",
+                "download": [{
+                    "qos": {
+                        "latency": 53,
+                        "bandwidth": 11.335
+                    },
+                    "percentage": 0.993
+                },
+                    {
+                        "qos": {
+                            "latency": "MAX_INT",
+                            "bandwidth": 0
+                        },
+                        "percentage": 0.007
+                    }
+                ],
+                "upload": [{
+                    "qos": {
+                        "latency": 53,
+                        "bandwidth": 8.485
+                    },
+                    "percentage": 0.994
+                },
+                    {
+                        "qos": {
+                            "latency": "MAX_INT",
+                            "bandwidth": 0
+                        },
+                        "percentage": 0.006
+                    }
+                ]
+            },
+            {
+                "from": "edge2",
+                "to": "cloud2",
+                "download": [{
+                    "qos": {
+                        "latency": 53,
+                        "bandwidth": 11.335
+                    },
+                    "percentage": 0.993
+                },
+                    {
+                        "qos": {
+                            "latency": "MAX_INT",
+                            "bandwidth": 0
+                        },
+                        "percentage": 0.007
+                    }
+                ],
+                "upload": [{
+                    "qos": {
+                        "latency": 53,
+                        "bandwidth": 8.485
+                    },
+                    "percentage": 0.994
+                },
+                    {
+                        "qos": {
+                            "latency": "MAX_INT",
+                            "bandwidth": 0
+                        },
+                        "percentage": 0.006
+                    }
+                ]
+            },
+            {
+                "from": "cloud1",
+                "to": "cloud2",
+                "download": [{
+                    "qos": {
+                        "latency": 5,
+                        "bandwidth": 1000
+                    },
+                    "percentage": 1
+                }],
+                "upload": []
+            }
+        ],
+        "things": [{
+                "name": "fire_sensor_1",
+                "type": "fire",
+                "x": 43.7464449,
+                "y": 10.4615923,
+                "edge_node": "edge1",
+                "cost": 0.01
+            },
+            {
+                "name": "lights_control_1",
+                "type": "lights_control",
+                "x": 43.7464449,
+                "y": 10.4615923,
+                "edge_node": "edge1",
+                "cost": 0.03
+            },
+            {
+                "name": "thermostate_1",
+                "type": "thermostate",
+                "x": 43.7464449,
+                "y": 10.4615923,
+                "edge_node": "edge1",
+                "cost": 0.01
+            },
+            {
+                "name": "videocamera_1",
+                "type": "videocamera",
+                "x": 43.7464449,
+                "y": 10.4615923,
+                "edge_node": "edge1",
+                "cost": 30
+            },
+            {
+                "name": "fire_sensor_2",
+                "type": "fire",
+                "x": 43.7464449,
+                "y": 10.4615923,
+                "edge_node": "edge2",
+                "cost": 0.00
+            },
+            {
+                "name": "lights_control_2",
+                "type": "lights_control",
+                "x": 43.7464449,
+                "y": 10.4615923,
+                "edge_node": "edge2",
+                "cost": 0.00
+            },
+            {
+                "name": "thermostate_2",
+                "type": "thermostate",
+                "x": 43.7464449,
+                "y": 10.4615923,
+                "edge_node": "edge2",
+                "cost": 0.00
+            },
+            {
+                "name": "videocamera_2",
+                "type": "videocamera",
+                "x": 43.7464449,
+                "y": 10.4615923,
+                "edge_node": "edge2",
+                "cost": 0
+            },
+            {
+                "name": "alarm_3",
+                "type": "alarm",
+                "x": 43.7464449,
+                "y": 10.4615923,
+                "edge_node": "edge3",
+                "cost": 0.01
+            }
+        ]
+    },
+    "application": {
+        "components": [{
+                "name": "IoTController",
+                "software": ["linux"],
+                "hardware": {
+                    "vm_type": "tiny",
+                    "cost": 0.0
+                },
+                "things": [{
+                        "name": "fire_sensor_1",
+                        "qos": {
+                            "to": {
+                                "latency": 100,
+                                "bandwidth": 0.1
+                            },
+                            "from": {
+                                "latency": 100,
+                                "bandwidth": 0.5
+                            }
+                        },
+                        "invokes": 43200
+                    },
+                    {
+                        "name": "lights_control_1",
+                        "qos": {
+                            "to": {
+                                "latency": 200,
+                                "bandwidth": 0.9
+                            },
+                            "from": {
+                                "latency": 200,
+                                "bandwidth": 1.0
+                            }
+                        },
+                        "invokes": 2160
+                    },
+                    {
+                        "name": "thermostate_1",
+                        "qos": {
+                            "to": {
+                                "latency": 2000,
+                                "bandwidth": 0.1
+                            },
+                            "from": {
+                                "latency": 2000,
+                                "bandwidth": 0.1
+                            }
+                        },
+                        "invokes": 1440
+                    },
+                    {
+                        "name": "videocamera_1",
+                        "qos": {
+                            "to": {
+                                "latency": 50,
+                                "bandwidth": 0.1
+                            },
+                            "from": {
+                                "latency": 50,
+                                "bandwidth": 2.2
+                            }
+                        },
+                        "invokes": 1
+                    },
+                    {
+                        "name": "alarm_3",
+                        "qos": {
+                            "to": {
+                                "latency": 5000,
+                                "bandwidth": 0.1
+                            },
+                            "from": {
+                                "latency": 5000,
+                                "bandwidth": 0.5
+                            }
+                        },
+                        "invokes": 150
+                    }
+                ]
+            },
+            {
+                "name": "DataStorage",
+                "software": ["linux", "mySQL"],
+                "hardware": {
+                    "vm_type": "xlarge",
+                    "cost": 0.0
+                },
+                "things": []
+            },
+            {
+                "name": "Dashboard",
+                "software": ["linux", "php"],
+                "hardware": {
+                    "vm_type": "small",
+                    "cost": 0.0
+                },
+                "things": []
+            }
+        ],
+        "links": [{
+                "from": "IoTController",
+                "to": "DataStorage",
+                "latency": 160,
+                "up": 3.5,
+                "down": 0.5
+            },
+            {
+                "from": "IoTController",
+                "to": "Dashboard",
+                "latency": 140,
+                "up": 0.9,
+                "down": 0.4
+            },
+            {
+                "from": "DataStorage",
+                "to": "Dashboard",
+                "latency": 100,
+                "up": 1.5,
+                "down": 0.3
+            }
+        ]
+    }
+}
