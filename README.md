@@ -4,9 +4,9 @@ _A tool for probabilistic QoS-assurance, resource consumption and cost estimatio
 
 This version of FogTorchΠ exploits [Apache Maven](https://maven.apache.org/) building tool and json input. It is based upon the work described in
 
-> [Antonio Brogi](http://pages.di.unipi.it/brogi), [Stefano Forti](http://pages.di.unipi.it/forti), [Ahmad Ibrahim](http://pages.di.unipi.it/ibrahim) <br>
-> **Estimating QoS, resource consumption and cost of Fog application deployments.** <br>
-> _Submitted to_ [Fog World Congress 2017 (FWC'17)](https://www.fogworldcongress.com/cfp), Oct. 30 – Nov. 1, 2017, Santa Clara, California
+[//]: <> (> [Antonio Brogi](http://pages.di.unipi.it/brogi), [Stefano Forti](http://pages.di.unipi.it/forti), [Ahmad Ibrahim](http://pages.di.unipi.it/ibrahim) <br>)
+[//]: <> (> **Estimating QoS, resource consumption and cost of Fog application deployments.** <br>)
+[//]: <> (> _Submitted to_ [Fog World Congress 2017 (FWC'17)](https://www.fogworldcongress.com/cfp), Oct. 30 – Nov. 1, 2017, Santa Clara, California)
 
 If you wish to reuse source code in this repo, please cite the above mentioned article.
 
