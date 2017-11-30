@@ -18,3 +18,11 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+*.netbeans_automatic_build
+target/maven-archiver/pom.properties
+.idea/compiler.xml
+FogTorchPi.iml
+.idea/misc.xml
+.idea/workspace.xml
+target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
+*.lst
