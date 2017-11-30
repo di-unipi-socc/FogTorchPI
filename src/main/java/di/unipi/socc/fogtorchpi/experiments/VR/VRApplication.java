@@ -1,4 +1,4 @@
-package di.unipi.socc.fogtorchpi.experiments;
+package di.unipi.socc.fogtorchpi.experiments.VR;
 
 import di.unipi.socc.fogtorchpi.application.Application;
 import di.unipi.socc.fogtorchpi.application.ExactThing;

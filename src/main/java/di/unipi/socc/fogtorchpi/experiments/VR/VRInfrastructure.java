@@ -1,4 +1,4 @@
-package di.unipi.socc.fogtorchpi.experiments;
+package di.unipi.socc.fogtorchpi.experiments.VR;
 
 import di.unipi.socc.fogtorchpi.infrastructure.Infrastructure;
 import di.unipi.socc.fogtorchpi.utils.Couple;

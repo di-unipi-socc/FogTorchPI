@@ -1,19 +1,10 @@
-package di.unipi.socc.fogtorchpi.experiments;
+package di.unipi.socc.fogtorchpi.experiments.VR;
 
-import di.unipi.socc.fogtorchpi.application.Application;
-import di.unipi.socc.fogtorchpi.application.ExactThing;
-import di.unipi.socc.fogtorchpi.application.ThingRequirement;
 import di.unipi.socc.fogtorchpi.deployment.Deployment;
 import di.unipi.socc.fogtorchpi.deployment.MonteCarloSearch;
-import di.unipi.socc.fogtorchpi.infrastructure.Infrastructure;
 import di.unipi.socc.fogtorchpi.utils.Couple;
-import di.unipi.socc.fogtorchpi.utils.Hardware;
-import di.unipi.socc.fogtorchpi.utils.QoSProfile;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -23,10 +14,10 @@ import static java.util.Arrays.asList;
 /**
  * Created by Stefano on 21/10/2017.
  */
-public class FTPiVRSimpleGaussianNOBW {
+public class VRExample {
 
     private static final int SMARTPHONES = 4; //always 4
-    private static final int GATEWAYS = 16; // 1, 2, 4, 8, 16
+    private static final int GATEWAYS = 2; // 1, 2, 4, 8, 16
     private static final int TIMES = 100000;
     private static final int THREADS = 4;//*Runtime.getRuntime().availableProcessors();
 
