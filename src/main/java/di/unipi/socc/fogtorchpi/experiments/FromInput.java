@@ -1,6 +1,3 @@
-/**
- * Original file of paper revised according to FT refactoring with cost.
- */
 package di.unipi.socc.fogtorchpi.experiments;
 
 import di.unipi.socc.fogtorchpi.application.Application;
@@ -25,7 +22,6 @@ import java.io.FileNotFoundException;
 import com.google.gson.*;
 import java.util.List;
 
-
 public class FromInput {
 
     public static void main(String[] args) {
@@ -48,6 +44,7 @@ public class FromInput {
         Infrastructure I = jsonToInfrastructure(rootJson);
         System.out.println(I);
         Application A = jsonToApplication(rootJson);
+        System.out.println(A);
 
         HashMap<Deployment, Couple<Double, Double>> histogram = new HashMap<>();
         MonteCarloSearch s = new MonteCarloSearch(100000, A, I);
@@ -292,12 +289,12 @@ public class FromInput {
 
                     JsonObject from = qos.getAsJsonObject("from");
                     QoSProfile fromQos = new QoSProfile(
-                        to.getAsJsonPrimitive("latency").getAsInt(),
-                        to.getAsJsonPrimitive("bandwidth").getAsDouble()
+                        from.getAsJsonPrimitive("latency").getAsInt(),
+                        from.getAsJsonPrimitive("bandwidth").getAsDouble()
                     );
 
                     neededThings.add(new ExactThing(
-                        thingName, fromQos, toQos,
+                        thingName, toQos, fromQos,
                         eo.getAsJsonPrimitive("invokes").getAsInt()
                     ));
                 }
@@ -316,8 +313,8 @@ public class FromInput {
                 l.getAsJsonPrimitive("from").getAsString(),
                 l.getAsJsonPrimitive("to").getAsString(),
                 l.getAsJsonPrimitive("latency").getAsInt(),
-                l.getAsJsonPrimitive("up").getAsDouble(),
-                l.getAsJsonPrimitive("down").getAsDouble()
+                l.getAsJsonPrimitive("down").getAsDouble(),
+                l.getAsJsonPrimitive("up").getAsDouble()
             );
         }
         return A;
