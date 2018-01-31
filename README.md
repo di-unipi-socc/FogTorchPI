@@ -16,7 +16,7 @@ The cost model exploited by the tool is described in
 > [Antonio Brogi](http://pages.di.unipi.it/brogi), [Stefano Forti](http://pages.di.unipi.it/forti), [Ahmad Ibrahim](http://pages.di.unipi.it/ibrahim) <br>
 > **[Deploying Fog applications: How much does it cost, by the way?](http://pages.di.unipi.it/forti/pdf/closer18.pdf)** <br>
 > Accepted in [8th International Conference on Cloud Computing and Services Science (CLOSER’18)](http://closer.scitevents.org/), <br>
-> Macrh 2018, Funchal, Madeira, Portugal.
+> March 2018, Funchal, Madeira, Portugal.
 
 
 If you wish to reuse source code in this repo, please cite the above mentioned article.
