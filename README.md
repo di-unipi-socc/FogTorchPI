@@ -2,7 +2,7 @@
 
 _A tool for probabilistic QoS-assurance, resource consumption and cost estimation of eligible deployments of Fog applications._
 
-This version of FogTorchΠ exploits [Apache Maven](https://maven.apache.org/) building tool and has been adjusted to support multithreaded Monte Carlo simulations.
+This version of FogTorchΠ supports multithreaded Monte Carlo simulations.
 
 FogTorchΠ is based upon the work described in
 
