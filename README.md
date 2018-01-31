@@ -4,20 +4,22 @@ _A tool for probabilistic QoS-assurance, resource consumption and cost estimatio
 
 This version of FogTorchΠ exploits [Apache Maven](https://maven.apache.org/) building tool and has been adjusted to support multithreaded Monte Carlo simulations.
 
-# Example
-After cloning the repo and installing Maven, it is sufficient to run 
+FogTorchΠ is based upon the work described in
 
-```
-mvn clean install
-```
-from the FogTorchΠ  folder to create an executable jar with all needed dependencies (viz., [gson](https://github.com/google/gson)). Then running the command
+> [Antonio Brogi](http://pages.di.unipi.it/brogi), [Stefano Forti](http://pages.di.unipi.it/forti), [Ahmad Ibrahim](http://pages.di.unipi.it/ibrahim) <br>
+> **[How to best deploy your Fog applications, probably.](http://pages.di.unipi.it/forti/pdf/icfec17.pdf)** <br>
+> in Proceedings of [1st IEEE International Conference on Fog and Edge Computing (ICFEC’2017)](http://fec-conf.gforge.inria.fr/index.html), <br>
+> O. Rana, R. Buyya, and A. Anjum, Eds., 2017, May 2017, Madrid, Spain.
 
-```
-java -jar FogTorchPi-0.1-jar-with-dependencies.jar <input>.json <output>.csv
-```
+The cost model exploited by the tool is described in
 
-from the target folder, executes FogTorchΠ with the preset value of 100,000 simulations to estimate QoS-assurance, resource consumption and cost. 
+> [Antonio Brogi](http://pages.di.unipi.it/brogi), [Stefano Forti](http://pages.di.unipi.it/forti), [Ahmad Ibrahim](http://pages.di.unipi.it/ibrahim) <br>
+> **[Deploying Fog applications: How much does it cost, by the way?](http://pages.di.unipi.it/forti/pdf/closer18.pdf)** <br>
+> Accepted in [8th International Conference on Cloud Computing and Services Science (CLOSER’18)](http://closer.scitevents.org/), <br>
+> Macrh 2018, Funchal, Madeira, Portugal.
 
-A full input example is in file [input/FWC17_3G.json](https://github.com/di-unipi-socc/FogTorchPI/tree/costmodel/input/FWC17_3G.json) and [input/FWC17_4G.json](https://github.com/di-unipi-socc/FogTorchPI/tree/costmodel/input/FWC17_4G.json) and related results can be found in [results/FWC17](https://github.com/di-unipi-socc/FogTorchPI/tree/costmodel/results/FWC17), along with the Python script to plot the 3D visualisation.
+
+If you wish to reuse source code in this repo, please cite the above mentioned article.
+
 
 
