@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import static java.util.Collections.emptyList;
+
 
 /**
  *
@@ -14,6 +16,7 @@ import java.util.List;
 public class SoftwareComponent implements Comparable {
     String identifier;
     List<Software> softwareReqs;
+    List<String> securityRequirements;
     Hardware hw;
     public ArrayList<ThingRequirement> Theta;
 
@@ -22,7 +25,9 @@ public class SoftwareComponent implements Comparable {
         this.setSoftware(softwareReqs);
         this.Theta = new ArrayList<>(Theta);
         this.hw = new Hardware(hardwareReqs);
+        securityRequirements = emptyList();
     }
+
     
     public SoftwareComponent(String id){
         this.identifier  = id;
@@ -69,6 +74,10 @@ public class SoftwareComponent implements Comparable {
     public int compareTo(Object o) {
         SoftwareComponent s2 = (SoftwareComponent) o;
         return this.identifier.compareTo(s2.identifier);
+    }
+
+    public void addSecurityRequirements(List<String> securityRequirements){
+        this.securityRequirements = securityRequirements;
     }
     
 }

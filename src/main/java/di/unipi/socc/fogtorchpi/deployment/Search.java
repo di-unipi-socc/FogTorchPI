@@ -32,7 +32,7 @@ public class Search {
         D = new ArrayList<>();
         businessPolicies = new HashMap<String, HashSet<String>>();
         //keepLight = new ArrayList<>();
-        for (SoftwareComponent s: A.S){
+        for (SoftwareComponent s : A.S){
              K.put(s.getId(), new ArrayList<>());
         }
         //this.deploymentLocation = deploymentLocation;

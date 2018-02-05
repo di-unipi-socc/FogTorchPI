@@ -49,6 +49,23 @@ public class CloudDatacentre extends ComputationalNode {
         
     }
 
+    public CloudDatacentre(String identifier, List<Couple<String, Double>> software,  double x, double y, Hardware h, List<Couple<String, Double>> vmTypes, List<String> security){
+        super.setHardware(h);
+        super.setId(identifier);
+        super.setSoftware(software);
+        super.setCoordinates(x,y);
+        super.setKeepLight(false);
+        super.setSecurityMeasures(security);
+
+        this.virtualMachines = new HashMap<>();
+
+        for ( Couple c : vmTypes ){
+            this.virtualMachines.put(identifier, new Hardware((String)c.getA(), (Double)(c.getB())));
+        }
+
+
+    }
+
     @Override
     public boolean isCompatible(SoftwareComponent component) {
         List<Software> softwareRequirements = component.getSoftwareRequirements();

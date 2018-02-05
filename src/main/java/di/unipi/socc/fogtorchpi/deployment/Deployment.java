@@ -84,6 +84,38 @@ public class Deployment extends TreeMap<SoftwareComponent, ComputationalNode> {
     void removeCost(SoftwareComponent s, ComputationalNode n, Infrastructure I){
         this.deploymentMonthlyCost.remove(n.computeCost(s, I));
     }
+
+    public double computeDeploymentSecurityScore(){
+        double score = 0;
+        for (ComputationalNode n : this.values()){
+            score += n.computeNodeSecurityScore();
+        }
+        return score;
+    }
+
+    public double computeDeploymentSecurityScoreByType(String type){
+        double score = 0;
+        for (ComputationalNode n : this.values()){
+            score += n.computeNodeSecurityScoreByType(type);
+        }
+        return score;
+    }
+
+    public double computeDeploymentSecurityScoreByComponent(SoftwareComponent c){
+        double score = 0;
+
+        score += this.get(c).computeNodeSecurityScore();
+
+        return score;
+    }
+
+    public double computeDeploymentSecurityScoreByComponentAndType(SoftwareComponent c, String type){
+        double score = 0;
+
+        score += this.get(c).computeNodeSecurityScoreByType(type);
+
+        return score;
+    }
     
 
 }

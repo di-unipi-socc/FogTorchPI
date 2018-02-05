@@ -5,6 +5,10 @@
  */
 package di.unipi.socc.fogtorchpi.utils;
 
+import java.util.List;
+
+import static java.util.Arrays.asList;
+
 /**
  *
  * @author Stefano
@@ -13,7 +17,6 @@ public class Constants {
     public static final int MAX_RAM = 4;
     public static final int MAX_HDD = 128;
     public static final int MAX_CORES = 8;
-    
     
    public static Hardware getVMHardwareSpec(String vmName){  
         Hardware result = null;
@@ -38,5 +41,10 @@ public class Constants {
             }
         return result;
    }
+
+
+
+
+   
     
 }

@@ -3,11 +3,10 @@ package di.unipi.socc.fogtorchpi.infrastructure;
 import di.unipi.socc.fogtorchpi.infrastructure.FogNode;
 import di.unipi.socc.fogtorchpi.application.SoftwareComponent;
 import di.unipi.socc.fogtorchpi.deployment.Deployment;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
+
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Set;
+
 import di.unipi.socc.fogtorchpi.utils.Couple;
 import di.unipi.socc.fogtorchpi.utils.Hardware;
 import di.unipi.socc.fogtorchpi.utils.QoSProfile;
@@ -27,6 +26,16 @@ public class Infrastructure {
         F = new HashMap<>();
         T = new HashMap<>();
         L = new HashMap<>();
+    }
+
+    public void setSecurityMeasures(String n, List<String> measures){
+        if (C.containsKey(n)){
+            ComputationalNode node = C.get(n);
+            node.setSecurityMeasures(measures);
+        } else if (F.containsKey(n)){
+            ComputationalNode node = F.get(n);
+            node.setSecurityMeasures(measures);
+        }
     }
 
 
@@ -49,6 +58,20 @@ public class Infrastructure {
     public void addFogNode(String identifier, List<Couple<String, Double>> software, Hardware hardware, double x, double y) {
         F.put(identifier,new FogNode(identifier, software, hardware, x, y));
         L.put(new Couple(identifier,identifier), new QoSProfile(0, Double.MAX_VALUE));
+    }
+
+    public int getSecurityScore(String n){
+        int score = 0;
+        if (C.containsKey(n)){
+
+            ComputationalNode node = C.get(n);
+            score = node.computeNodeSecurityScore();
+        } else if (F.containsKey(n)){
+
+            ComputationalNode node = F.get(n);
+            score = node.computeNodeSecurityScore();
+        }
+        return score;
     }
     
     public void addThing(String identifier, String type, double x, double y, String fogNode) {   

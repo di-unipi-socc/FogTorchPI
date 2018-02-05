@@ -10,12 +10,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import di.unipi.socc.fogtorchpi.application.SoftwareComponent;
 import di.unipi.socc.fogtorchpi.application.ThingRequirement;
-import di.unipi.socc.fogtorchpi.utils.Coordinates;
-import di.unipi.socc.fogtorchpi.utils.Cost;
-import di.unipi.socc.fogtorchpi.utils.Couple;
-import di.unipi.socc.fogtorchpi.utils.Hardware;
-import di.unipi.socc.fogtorchpi.utils.QoSProfile;
-import di.unipi.socc.fogtorchpi.utils.Software;
+import di.unipi.socc.fogtorchpi.utils.*;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.HashMap;
@@ -34,7 +30,8 @@ public abstract class ComputationalNode implements Comparable {
     private Hardware hw;
     public double heuristic;
     private boolean keepLight;
-    
+
+    private List<SecurityCounterMeasure> securityMeasures;
 
     public ComputationalNode() {
 
@@ -132,7 +129,53 @@ public abstract class ComputationalNode implements Comparable {
         return Double.compare(s2.heuristic, this.heuristic);
     }
 
+    public List<SecurityCounterMeasure> getSecurityMeasures() {
+        return securityMeasures;
+    }
 
+    public void setSecurityMeasures(List<String> sm) {
+        List<SecurityCounterMeasure> measures = new ArrayList<SecurityCounterMeasure>();
+        for(String measure : sm){
+            SecurityCounterMeasure newSecurityMeasure = new SecurityCounterMeasure(measure);
+            measures.add(newSecurityMeasure);
+        }
+        this.securityMeasures = measures;
+    }
 
+    public ArrayList<String> getSecurityMeasuresByType(String type){
+        ArrayList<String> result = new ArrayList<>();
+        for (SecurityCounterMeasure s : this.securityMeasures){
+            if (SecurityTaxonomy.getSecurityMeasuresByType(type).contains(s)){
+                result.add(s.toString());
+            }
+        }
+        return result;
+    }
 
+    public int computeNodeSecurityScore(){
+        int result = 0;
+        for (SecurityCounterMeasure s: this.securityMeasures){
+            result+=s.getWeight();
+        }
+        return result;
+    }
+
+    public int computeNodeSecurityScoreByType(String type){
+        int result = 0;
+        List<String> measures = SecurityTaxonomy.getSecurityMeasuresByType(type);
+        for (SecurityCounterMeasure s: this.securityMeasures) {
+            if (measures.contains(s.getName())) {
+                result += s.getWeight();
+            }
+        }
+        return result;
+    }
+
+    public boolean supportsSecurityRequirements(List<String> requirements){
+        ArrayList<String> measures = new ArrayList<>();
+        for (SecurityCounterMeasure s : this.securityMeasures){
+            measures.add(s.toString());
+        }
+        return measures.containsAll(requirements);
+    }
 }

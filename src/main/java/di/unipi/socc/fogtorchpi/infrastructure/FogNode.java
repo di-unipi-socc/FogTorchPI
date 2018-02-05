@@ -3,6 +3,8 @@ package di.unipi.socc.fogtorchpi.infrastructure;
 import di.unipi.socc.fogtorchpi.application.ExactThing;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
+
 import di.unipi.socc.fogtorchpi.application.SoftwareComponent;
 import di.unipi.socc.fogtorchpi.application.ThingRequirement;
 import di.unipi.socc.fogtorchpi.utils.Constants;
@@ -26,6 +28,17 @@ public class FogNode extends ComputationalNode{
         super.setCoordinates(x,y);
         connectedThings = new HashSet<>();
         super.setKeepLight(false);
+    }
+
+
+    public FogNode(String identifier, Collection<Couple<String, Double>> software, Hardware hw, double x, double y, List<String> security){
+        super.setId(identifier);
+        super.setHardware(hw);
+        super.setSoftware(software);
+        super.setCoordinates(x,y);
+        connectedThings = new HashSet<>();
+        super.setKeepLight(false);
+        super.setSecurityMeasures(security);
     }
 
     

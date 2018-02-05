@@ -7,8 +7,18 @@ package di.unipi.socc.fogtorchpi.utils;
 
 public class Coordinates {
     private double lat, lng;
+    private String location;
+
+
+
+    public Coordinates (String location, double lat, double lng){
+        this.location =location;
+        this.lat = lat;
+        this.lng = lng;
+    }
 
     public Coordinates (double lat, double lng){
+        this.location = "undef";
         this.lat = lat;
         this.lng = lng;
     }
@@ -38,5 +48,13 @@ public class Coordinates {
     
     public String toString(){
         return "("+ this.lat + ", " + this.lng + ")";
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getLocation() {
+        return location;
     }
 }

@@ -4,9 +4,14 @@ import di.unipi.socc.fogtorchpi.utils.Couple;
 import di.unipi.socc.fogtorchpi.utils.Hardware;
 import di.unipi.socc.fogtorchpi.utils.QoSProfile;
 import di.unipi.socc.fogtorchpi.application.SoftwareComponent;
+import di.unipi.socc.fogtorchpi.utils.Software;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import static java.util.Arrays.asList;
+import static java.util.Collections.emptyList;
 
 
 /**
@@ -33,11 +38,18 @@ public class Application {
     }
 
     public void addComponent(String id, List<String> softwareReqs, Hardware hardwareReqs, ArrayList<ThingRequirement> Theta) {
-        S.add(new SoftwareComponent(id, softwareReqs, hardwareReqs, Theta));   
+        SoftwareComponent newComponent = new SoftwareComponent(id, softwareReqs, hardwareReqs, Theta);
+        S.add(new SoftwareComponent(id, softwareReqs, hardwareReqs, Theta));
+    }
+
+    public void addComponent(String id, List<String> softwareReqs, Hardware hardwareReqs, ArrayList<ThingRequirement> Theta, List securityReqs) {
+        SoftwareComponent newComponent = new SoftwareComponent(id, softwareReqs, hardwareReqs, Theta);
+        newComponent.addSecurityRequirements(securityReqs);
+        S.add(newComponent);
     }
     
     public void addComponent(String id, List<String> softwareReqs, Hardware hardwareReqs) {
-        S.add(new SoftwareComponent(id, softwareReqs, hardwareReqs, new ArrayList<>()));   
+        S.add(new SoftwareComponent(id, softwareReqs, hardwareReqs, new ArrayList<>()));
     }
     
     @Override
