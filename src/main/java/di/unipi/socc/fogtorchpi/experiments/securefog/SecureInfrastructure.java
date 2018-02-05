@@ -21,7 +21,7 @@ public class SecureInfrastructure {
         //Change the access to Internet
         String profile = "20M";
         //String profile2 = "4G";
-        String profile2 = "3G";
+        String profile2 = "4G";
 
         List<String> allCountermeasures = SecurityTaxonomy.getSecurityMeasuresByType("");
 
@@ -76,16 +76,37 @@ public class SecureInfrastructure {
 
         I.setSecurityMeasures("cloud1", allCountermeasures);
         I.setSecurityMeasures("cloud2", allCountermeasures);
-        I.setSecurityMeasures("fog1", asList(SecurityParameters.AUTHENTICATION, SecurityParameters.PERMISSION_MODEL,
-                SecurityParameters.ACCESS_LOGS, SecurityParameters.FIREWALL, SecurityParameters.ENCRYPTION, SecurityParameters.PUBLICK_KEY,
-                SecurityParameters.WIRELESS_SECURITY, SecurityParameters.ANTI_TAMPERING));
-        I.setSecurityMeasures("fog2", asList(SecurityParameters.AUTHENTICATION, SecurityParameters.PERMISSION_MODEL,
-                SecurityParameters.ACCESS_LOGS, SecurityParameters.FIREWALL, SecurityParameters.ENCRYPTION, SecurityParameters.PUBLICK_KEY,
+        I.setSecurityMeasures("fog1", asList(
+                SecurityParameters.AUTHENTICATION,
+                SecurityParameters.PERMISSION_MODEL,
+                SecurityParameters.ACCESS_LOGS,
+                SecurityParameters.FIREWALL,
+                SecurityParameters.ENCRYPTION,
+                SecurityParameters.PUBLICK_KEY,
                 SecurityParameters.WIRELESS_SECURITY));
-        I.setSecurityMeasures("fog3", asList(SecurityParameters.AUTHENTICATION, SecurityParameters.PERMISSION_MODEL,
-                SecurityParameters.ACCESS_LOGS, SecurityParameters.FIREWALL, SecurityParameters.ENCRYPTION, SecurityParameters.PUBLICK_KEY,
-                SecurityParameters.WIRELESS_SECURITY, SecurityParameters.ANTI_TAMPERING, SecurityParameters.CERTIFICATE, SecurityParameters.BACKUP,
-                SecurityParameters.IDS_NETWORK, SecurityParameters.IDS_HOST ));
+        I.setSecurityMeasures("fog2", asList(
+                SecurityParameters.AUTHENTICATION,
+                SecurityParameters.PERMISSION_MODEL,
+                SecurityParameters.ACCESS_LOGS,
+                SecurityParameters.FIREWALL,
+                SecurityParameters.ENCRYPTION,
+                SecurityParameters.PUBLICK_KEY,
+                SecurityParameters.WIRELESS_SECURITY,
+                SecurityParameters.ANTI_TAMPERING));
+        I.setSecurityMeasures("fog3", asList(
+                SecurityParameters.AUTHENTICATION,
+                SecurityParameters.PERMISSION_MODEL,
+                SecurityParameters.ACCESS_LOGS,
+                SecurityParameters.FIREWALL,
+                SecurityParameters.ENCRYPTION,
+                SecurityParameters.PUBLICK_KEY,
+                SecurityParameters.WIRELESS_SECURITY,
+                SecurityParameters.ANTI_TAMPERING,
+                SecurityParameters.CERTIFICATE,
+                SecurityParameters.BACKUP,
+                SecurityParameters.IDS_NETWORK,
+                SecurityParameters.IDS_HOST
+        ));
 
 
         //Links

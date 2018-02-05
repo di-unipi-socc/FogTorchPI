@@ -5,6 +5,7 @@ import di.unipi.socc.fogtorchpi.application.ExactThing;
 import di.unipi.socc.fogtorchpi.application.ThingRequirement;
 import di.unipi.socc.fogtorchpi.utils.Hardware;
 import di.unipi.socc.fogtorchpi.utils.QoSProfile;
+import di.unipi.socc.fogtorchpi.utils.SecurityParameters;
 
 import java.util.ArrayList;
 
@@ -29,17 +30,38 @@ public class SecureApplication {
 
 
         //components
-        //A.addComponent("A", asList("linux"), new Hardware(1, 1.2, 8), neededThings);
-        A.addComponent("A", asList("linux"), new Hardware("tiny", 0.0), neededThings);
+        //A.addComponent("IoTController", asList("linux"), new Hardware(1, 1.2, 8), neededThings);
+        A.addComponent("IoTController", asList("linux"), new Hardware("tiny", 0.0), neededThings,
+                asList(SecurityParameters.ANTI_TAMPERING,
+                        SecurityParameters.WIRELESS_SECURITY,
+                        SecurityParameters.ENCRYPTION));
 
-        A.addComponent("B", asList("linux", "mySQL"), new Hardware("large", 0.0)); //cores ram storage
-        //A.addComponent("B", asList("linux", "mySQL"), new Hardware("small", 0.0));
+        A.addComponent("DataStorage", asList("linux", "mySQL"), new Hardware("large", 0.0)
+                 ,asList(
+                        SecurityParameters.ENCRYPTED_STORAGE,
+                        SecurityParameters.AUDIT,
+                        SecurityParameters.RESTORE_POINTS,
+                        SecurityParameters.BACKUP,
+                        SecurityParameters.ENCRYPTION
+                )
+        ); //cores ram storage
+        //A.addComponent("DataStorage", asList("linux", "mySQL"), new Hardware("small", 0.0));
 
-        A.addComponent("C", asList("linux", "php"), new Hardware("small", 0.0));
+        A.addComponent("Dashboard", asList("linux", "php"), new Hardware("small", 0.0)
+                ,
+                asList(
+                        SecurityParameters.ACCESS_LOGS,
+                        SecurityParameters.FIREWALL,
+                        SecurityParameters.IDS_NETWORK,
+                        SecurityParameters.ENCRYPTION,
+                        SecurityParameters.PERMISSION_MODEL,
+                        SecurityParameters.AUTHENTICATION
+                )
+        );
 
-        A.addLink("A", "B", 160, 0.5, 3.5); //160 ms and 10Mbps down and 1 Mbps up
-        A.addLink("A", "C", 140, 0.4, 0.9);
-        A.addLink("B", "C", 100, 0.3, 1.5);
+        A.addLink("IoTController", "DataStorage", 160, 0.5, 3.5); //160 ms and 10Mbps down and 1 Mbps up
+        A.addLink("IoTController", "Dashboard", 140, 0.4, 0.9);
+        A.addLink("DataStorage", "Dashboard", 100, 0.3, 1.5);
 
 
         return A;

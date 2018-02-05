@@ -17,6 +17,12 @@ public class Coordinates {
         this.lng = lng;
     }
 
+    public Coordinates (String location){
+        this.location =location;
+        this.lat = 0.0;
+        this.lng = 0.0;
+    }
+
     public Coordinates (double lat, double lng){
         this.location = "undef";
         this.lat = lat;

@@ -53,7 +53,7 @@ public class Search {
     private boolean findCompatibleNodes() {
         for (SoftwareComponent s : A.S) {
             for (CloudDatacentre n : I.C.values()) {
-                if (n.isCompatible(s) && checkThings(s, n)
+                if (n.isCompatible(s) && checkThings(s, n) && (n.supportsSecurityRequirements(s.getSecurityRequirements()))
                         && ((businessPolicies.containsKey(s.getId()) 
                         && businessPolicies.get(s.getId()).contains(n.getId()))
                         || !businessPolicies.containsKey(s.getId()))) {
@@ -66,7 +66,7 @@ public class Search {
         for (SoftwareComponent s : A.S) {
             for (FogNode n : I.F.values()) {
                 //System.out.println(s.getId() + " " + n.getId() + " "+ checkThings(s,n));
-                if (n.isCompatible(s) && checkThings(s, n)
+                if (n.isCompatible(s) && checkThings(s, n) && (n.supportsSecurityRequirements(s.getSecurityRequirements()))
                         && ((businessPolicies.containsKey(s.getId()) && businessPolicies.get(s.getId()).contains(n.getId()))
                         || !businessPolicies.containsKey(s.getId()))) {
                     K.get(s.getId()).add(n);

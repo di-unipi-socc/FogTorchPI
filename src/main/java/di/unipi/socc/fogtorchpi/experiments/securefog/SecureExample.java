@@ -23,7 +23,7 @@ import static java.util.Arrays.asList;
  */
 public class SecureExample {
 
-    private static final int TIMES = 2;
+    private static final int TIMES = 20000;
     private static final int THREADS = 2; //*Runtime.getRuntime().availableProcessors();
     private static int COMPONENTS = 3; // number of app components
 

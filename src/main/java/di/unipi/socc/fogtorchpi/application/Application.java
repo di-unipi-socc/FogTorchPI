@@ -47,6 +47,12 @@ public class Application {
         newComponent.addSecurityRequirements(securityReqs);
         S.add(newComponent);
     }
+
+    public void addComponent(String id, List<String> softwareReqs, Hardware hardwareReqs, List securityReqs) {
+        SoftwareComponent newComponent = new SoftwareComponent(id, softwareReqs, hardwareReqs, new ArrayList<>());
+        newComponent.addSecurityRequirements(securityReqs);
+        S.add(newComponent);
+    }
     
     public void addComponent(String id, List<String> softwareReqs, Hardware hardwareReqs) {
         S.add(new SoftwareComponent(id, softwareReqs, hardwareReqs, new ArrayList<>()));

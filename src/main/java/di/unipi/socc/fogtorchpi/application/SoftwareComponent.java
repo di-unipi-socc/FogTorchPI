@@ -28,7 +28,6 @@ public class SoftwareComponent implements Comparable {
         securityRequirements = emptyList();
     }
 
-    
     public SoftwareComponent(String id){
         this.identifier  = id;
     }
@@ -39,6 +38,11 @@ public class SoftwareComponent implements Comparable {
             boolean add = this.softwareReqs.add(new Software(s));
         }
     }
+
+    public List<String> getSecurityRequirements() {
+        return securityRequirements;
+    }
+
 
     public List<Software> getSoftwareRequirements() {
         return softwareReqs;
