@@ -173,8 +173,10 @@ public abstract class ComputationalNode implements Comparable {
 
     public boolean supportsSecurityRequirements(List<String> requirements){
         ArrayList<String> measures = new ArrayList<>();
-        for (SecurityCounterMeasure s : this.securityMeasures){
-            measures.add(s.toString());
+        if (this.securityMeasures != null) {
+            for (SecurityCounterMeasure s : this.securityMeasures) {
+                measures.add(s.toString());
+            }
         }
         return measures.containsAll(requirements);
     }

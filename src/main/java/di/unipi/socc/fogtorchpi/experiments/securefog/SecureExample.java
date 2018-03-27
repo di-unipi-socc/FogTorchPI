@@ -75,7 +75,7 @@ public class SecureExample {
         DecimalFormat df = new DecimalFormat("#.00");
         df.setDecimalFormatSymbols(new DecimalFormatSymbols(Locale.ENGLISH));
 
-        boolean details = false;
+        boolean details = true;
 
         System.out.println("\n***** Security Assessment *****\n");
         j = 0;
