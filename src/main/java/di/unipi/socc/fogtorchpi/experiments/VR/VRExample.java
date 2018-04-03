@@ -19,7 +19,7 @@ public class VRExample {
     private static final int SMARTPHONES = 4; //always 4
     private static final int GATEWAYS = 2; // 1, 2, 4, 8, 16
     private static final int TIMES = 100000;
-    private static final int THREADS = 4;//*Runtime.getRuntime().availableProcessors();
+    private static final int THREADS = 2;//*Runtime.getRuntime().availableProcessors();
 
 
     public static void main(String[] args) {
