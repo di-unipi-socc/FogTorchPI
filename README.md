@@ -21,5 +21,12 @@ The cost model exploited by the tool is described in
 
 If you wish to reuse source code in this repo, please cite the above mentioned articles.
 
+### Other FogTorchΠ Projects
+
+FogTorchΠ has been also extended and used to simulate mobile task offloading in the context of Edge, as described in
+
+- Vincenzo De Maio and Ivona Brandic. _"First Hop Mobile Offloading of DAG Computations."_, to appear in CCGRID'18. [Code](https://bitbucket.org/vindem/fogtorchpi-extended).
+
+
 
 
