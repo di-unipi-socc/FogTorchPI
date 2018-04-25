@@ -14,14 +14,14 @@ A complete overview of FogTorchΠ and of the usefulness of predictive analysis t
 FogTorchΠ is based upon the work described in:
 
 > [Antonio Brogi](http://pages.di.unipi.it/brogi), [Stefano Forti](http://pages.di.unipi.it/forti), [Ahmad Ibrahim](http://pages.di.unipi.it/ibrahim) <br>
-> **[How to best deploy your Fog applications, probably.](http://pages.di.unipi.it/forti/pdf/icfec17.pdf)** <br>
+> **[How to best deploy your Fog applications, probably.](http://pages.di.unipi.it/forti/pdf/conferences/2017/icfec17.pdf)** <br>
 > in Proceedings of the [1st IEEE International Conference on Fog and Edge Computing (ICFEC’2017)](http://fec-conf.gforge.inria.fr/index.html), <br>
 > O. Rana, R. Buyya, and A. Anjum, Eds., 2017, May 2017, Madrid, Spain.
 
 The cost model exploited by the tool is described in
 
 > [Antonio Brogi](http://pages.di.unipi.it/brogi), [Stefano Forti](http://pages.di.unipi.it/forti), [Ahmad Ibrahim](http://pages.di.unipi.it/ibrahim) <br>
-> **[Deploying Fog applications: How much does it cost, by the way?](http://pages.di.unipi.it/forti/pdf/closer18.pdf)** <br>
+> **[Deploying Fog applications: How much does it cost, by the way?](http://pages.di.unipi.it/forti/pdf/conferences/2018/closer18.pdf)** <br>
 > in Proceedings of the [8th International Conference on Cloud Computing and Services Science (CLOSER’18)](http://closer.scitevents.org/), <br>
 > March 2018, Funchal, Madeira, Portugal.
 
