@@ -4,7 +4,14 @@ _A tool for probabilistic QoS-assurance, resource consumption and cost estimatio
 
 This version of FogTorchΠ supports multithreaded Monte Carlo simulations.
 
-FogTorchΠ is based upon the work described in
+A complete overview of FogTorchΠ and of the usefulness of predictive analysis to perform Fog application deployment can be found here:
+
+> [Antonio Brogi](http://pages.di.unipi.it/brogi), [Stefano Forti](http://pages.di.unipi.it/forti), [Ahmad Ibrahim](http://pages.di.unipi.it/ibrahim) <br>
+> **[Predictive Analysis to Support Fog Application Deployment](http://pages.di.unipi.it/forti/pdf/chapters/2018/C09_Predictive%20Analysis%20to%20Support%20Fog%20Application%20Deployment_PP.pdf)** <br>
+> in [Fog and Edge Computing: Principles and Paradigms](http://www.cloudbus.org/fog/book/), Rajkumar Buyya and Satish N. Srirama (eds.), <br>
+> Wiley, 2018 _(In press)_.
+
+FogTorchΠ is based upon the work described in:
 
 > [Antonio Brogi](http://pages.di.unipi.it/brogi), [Stefano Forti](http://pages.di.unipi.it/forti), [Ahmad Ibrahim](http://pages.di.unipi.it/ibrahim) <br>
 > **[How to best deploy your Fog applications, probably.](http://pages.di.unipi.it/forti/pdf/icfec17.pdf)** <br>
@@ -18,9 +25,9 @@ The cost model exploited by the tool is described in
 > in Proceedings of the [8th International Conference on Cloud Computing and Services Science (CLOSER’18)](http://closer.scitevents.org/), <br>
 > March 2018, Funchal, Madeira, Portugal.
 
-If you wish to reuse source code in this repo, please cite the above mentioned articles.
+If you wish to reuse source code in this repo, please consider citing the above mentioned articles.
 
-More details about the model used by FogTorch can be found in:
+More details about the theoretical model used by FogTorchΠ can be found in:
 
 > Antonio Brogi and Stefano Forti <br>
 > [**QoS-aware Deployment of IoT Applications Through the Fog.**](http://ieeexplore.ieee.org/document/7919155/) <br>
@@ -31,7 +38,3 @@ More details about the model used by FogTorch can be found in:
 FogTorchΠ has been also extended and used to simulate mobile task offloading in the context of Edge, as described in
 
 - Vincenzo De Maio and Ivona Brandic. _"First Hop Mobile Offloading of DAG Computations."_, to appear in CCGRID'18. [Code](https://bitbucket.org/vindem/fogtorchpi-extended).
-
-
-
-
