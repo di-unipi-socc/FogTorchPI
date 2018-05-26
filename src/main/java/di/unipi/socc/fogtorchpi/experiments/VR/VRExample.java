@@ -2,6 +2,9 @@ package di.unipi.socc.fogtorchpi.experiments.VR;
 
 import di.unipi.socc.fogtorchpi.deployment.Deployment;
 import di.unipi.socc.fogtorchpi.deployment.MonteCarloSearch;
+import di.unipi.socc.fogtorchpi.deployment.ParallelMonteCarloSearch;
+import di.unipi.socc.fogtorchpi.experiments.smartbuilding.SmartBuildingApplication;
+import di.unipi.socc.fogtorchpi.experiments.smartbuilding.SmartBuildingInfrastructure;
 import di.unipi.socc.fogtorchpi.utils.Couple;
 
 import java.util.ArrayList;
@@ -23,84 +26,95 @@ public class VRExample {
 
 
     public static void main(String[] args) {
-        ConcurrentHashMap<Deployment, Couple<Double, Double>> histogram = new ConcurrentHashMap<>();
-        ArrayList<MonteCarloSearch> MCSearches = new ArrayList<>();
 
-        for (int i = 0; i < THREADS ; i++){
-            MCSearches.add(new MonteCarloSearch(
-                    TIMES / THREADS,
-                    new VRApplication(GATEWAYS, SMARTPHONES).createApp(),
-                    new VRInfrastructure(GATEWAYS, SMARTPHONES).createInfrastructure(),
-                    asList(),
-                    histogram
-            ));
-        }
-
-
-        for (MonteCarloSearch s : MCSearches) {
-            for (int i = 0; i < GATEWAYS; i++) {
+        ParallelMonteCarloSearch search = new ParallelMonteCarloSearch(new VRApplication(GATEWAYS, SMARTPHONES), new VRInfrastructure(GATEWAYS, SMARTPHONES), TIMES, THREADS);
+        for (int i = 0; i < GATEWAYS; i++) {
                 for (int j = 0; j < SMARTPHONES; j++) {
-                    s.addBusinessPolicies("client_" + i + "_" + j, asList("sp_" + i + "_" + j));
+                    search.addBusinessPolicies("client_" + i + "_" + j, asList("sp_" + i + "_" + j));
                 }
             }
-        }
-
-        List<Thread> threads = new ArrayList<>(THREADS);
-
-        for (MonteCarloSearch s : MCSearches){
-            threads.add(new Thread(s));
-        }
-
-        long timeStart = System.currentTimeMillis();
-
-        for (Thread t : threads) {
-            t.start();
-        }
-
-        for (Thread thread : threads) {
-            try {
-                thread.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-
-        long timeEnd = System.currentTimeMillis();
-
-        int j = 0;
-        for (Deployment dep : histogram.keySet()) {
-            histogram.replace(dep, new Couple((100 * histogram.get(dep).getA() / ((double) TIMES)), 100*(dep.consumedResources.getA() + dep.consumedResources.getB()) / 2));
-            System.out.println(j + " - " + dep + "; " + histogram.get(dep).getA() + "; " + histogram.get(dep).getB() + "; " + dep.deploymentMonthlyCost);
-            j++;
-        }
-
-        System.out.println("------------------\n***Simulation ended in " + ((timeEnd - timeStart)/1000) + "s!");
-/*
-        String filename
-                = "C:\\Users\\Stefano\\Dropbox\\_Dottorato\\2017_Transactions_on_Service_Computing";
 
 
-        s1.startSimulation(asList(), histogram);
+            search.start();
 
-        String name = filename + ".csv";
-        try {
-            PrintWriter writer = new PrintWriter(name, "UTF-8");
-            writer.println("Deployment ; QoS-assurance; Hardware %;Cost");
-            System.out.println("Deployment ; QoS-assurance ; Hardware %;Cost");
-            int j = 0;
-
-            for (Deployment dep : histogram.keySet()) {
-                writer.println(dep + "; " + histogram.get(dep).getA() + ";" + histogram.get(dep).getB() + "; " + dep.deploymentMonthlyCost);
-                System.out.println(j + " - " + dep + "; " + histogram.get(dep).getA() + "; " + histogram.get(dep).getB() + "; " + dep.deploymentMonthlyCost);
-                j++;
-            }
-            writer.close();
-        } catch (IOException e) {
-            System.out.println("HELLO");
-            e.printStackTrace();
-        }
-
-*/
+//        ConcurrentHashMap<Deployment, Couple<Double, Double>> histogram = new ConcurrentHashMap<>();
+//        ArrayList<MonteCarloSearch> MCSearches = new ArrayList<>();
+//
+//        for (int i = 0; i < THREADS ; i++){
+//            MCSearches.add(new MonteCarloSearch(
+//                    TIMES / THREADS,
+//                    new VRApplication(GATEWAYS, SMARTPHONES).createApp(),
+//                    new VRInfrastructure(GATEWAYS, SMARTPHONES).createInfrastructure(),
+//                    asList(),
+//                    histogram
+//            ));
+//        }
+//
+//
+//        for (MonteCarloSearch s : MCSearches) {
+//            for (int i = 0; i < GATEWAYS; i++) {
+//                for (int j = 0; j < SMARTPHONES; j++) {
+//                    s.addBusinessPolicies("client_" + i + "_" + j, asList("sp_" + i + "_" + j));
+//                }
+//            }
+//        }
+//
+//        List<Thread> threads = new ArrayList<>(THREADS);
+//
+//        for (MonteCarloSearch s : MCSearches){
+//            threads.add(new Thread(s));
+//        }
+//
+//        long timeStart = System.currentTimeMillis();
+//
+//        for (Thread t : threads) {
+//            t.start();
+//        }
+//
+//        for (Thread thread : threads) {
+//            try {
+//                thread.join();
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//
+//        long timeEnd = System.currentTimeMillis();
+//
+//        int j = 0;
+//        for (Deployment dep : histogram.keySet()) {
+//            histogram.replace(dep, new Couple((100 * histogram.get(dep).getA() / ((double) TIMES)), 100*(dep.consumedResources.getA() + dep.consumedResources.getB()) / 2));
+//            System.out.println(j + " - " + dep + "; " + histogram.get(dep).getA() + "; " + histogram.get(dep).getB() + "; " + dep.deploymentMonthlyCost);
+//            j++;
+//        }
+//
+//        System.out.println("------------------\n***Simulation ended in " + ((timeEnd - timeStart)/1000) + "s!");
+///*
+//        String filename
+//                = "C:\\Users\\Stefano\\Dropbox\\_Dottorato\\2017_Transactions_on_Service_Computing";
+//
+//
+//        s1.startSimulation(asList(), histogram);
+//
+//        String name = filename + ".csv";
+//        try {
+//            PrintWriter writer = new PrintWriter(name, "UTF-8");
+//            writer.println("Deployment ; QoS-assurance; Hardware %;Cost");
+//            System.out.println("Deployment ; QoS-assurance ; Hardware %;Cost");
+//            int j = 0;
+//
+//            for (Deployment dep : histogram.keySet()) {
+//                writer.println(dep + "; " + histogram.get(dep).getA() + ";" + histogram.get(dep).getB() + "; " + dep.deploymentMonthlyCost);
+//                System.out.println(j + " - " + dep + "; " + histogram.get(dep).getA() + "; " + histogram.get(dep).getB() + "; " + dep.deploymentMonthlyCost);
+//                j++;
+//            }
+//            writer.close();
+//        } catch (IOException e) {
+//            System.out.println("HELLO");
+//            e.printStackTrace();
+//        }
+//
+//*/
 
 
     }

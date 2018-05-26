@@ -3,11 +3,12 @@ package di.unipi.socc.fogtorchpi.experiments.VR;
 import di.unipi.socc.fogtorchpi.infrastructure.Infrastructure;
 import di.unipi.socc.fogtorchpi.utils.Couple;
 import di.unipi.socc.fogtorchpi.utils.Hardware;
+import di.unipi.socc.fogtorchpi.utils.InfrastructureFactory;
 import di.unipi.socc.fogtorchpi.utils.QoSProfile;
 
 import static java.util.Arrays.asList;
 
-public class VRInfrastructure {
+public class VRInfrastructure extends InfrastructureFactory {
 
     private int SMARTPHONES;
     private int GATEWAYS  ;

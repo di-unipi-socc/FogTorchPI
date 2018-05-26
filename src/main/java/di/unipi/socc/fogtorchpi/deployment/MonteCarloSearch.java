@@ -64,14 +64,13 @@ public class MonteCarloSearch implements Runnable {
 
             search.findDeployments(true);
 
-
             double pos = search.D.size();
             double size = search.D.size();
 
             for (Deployment d : search.D) {
                 if (histogram.containsKey(d)) {
                     Double newCount = histogram.get(d).getA() + 1.0; //montecarlo frequency
-                    Double newPos = histogram.get(d).getB() + (pos / size);
+                    Double newPos = histogram.get(d).getB() + (pos / size); //
                     histogram.replace(d, new Couple(newCount, newPos));
                 } else {
                     histogram.put(d, new Couple(1.0, pos / size));

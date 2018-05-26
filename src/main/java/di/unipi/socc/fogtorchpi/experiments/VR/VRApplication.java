@@ -3,6 +3,7 @@ package di.unipi.socc.fogtorchpi.experiments.VR;
 import di.unipi.socc.fogtorchpi.application.Application;
 import di.unipi.socc.fogtorchpi.application.ExactThing;
 import di.unipi.socc.fogtorchpi.application.ThingRequirement;
+import di.unipi.socc.fogtorchpi.utils.AppFactory;
 import di.unipi.socc.fogtorchpi.utils.Hardware;
 import di.unipi.socc.fogtorchpi.utils.QoSProfile;
 
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 
 import static java.util.Arrays.asList;
 
-public class VRApplication {
+public class VRApplication extends AppFactory {
     private int SMARTPHONES;
     private int GATEWAYS  ;
 

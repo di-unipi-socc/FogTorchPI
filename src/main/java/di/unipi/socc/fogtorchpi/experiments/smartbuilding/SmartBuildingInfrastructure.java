@@ -1,14 +1,11 @@
 package di.unipi.socc.fogtorchpi.experiments.smartbuilding;
 
 import di.unipi.socc.fogtorchpi.infrastructure.Infrastructure;
-import di.unipi.socc.fogtorchpi.utils.Couple;
-import di.unipi.socc.fogtorchpi.utils.Hardware;
-import di.unipi.socc.fogtorchpi.utils.QoS;
-import di.unipi.socc.fogtorchpi.utils.QoSProfile;
+import di.unipi.socc.fogtorchpi.utils.*;
 
 import static java.util.Arrays.asList;
 
-public class SmartBuildingInfrastructure {
+public class SmartBuildingInfrastructure extends InfrastructureFactory {
 
     public SmartBuildingInfrastructure(){
     }
