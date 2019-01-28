@@ -8,8 +8,8 @@ A complete overview of FogTorchΠ and of the usefulness of predictive analysis t
 
 > [Antonio Brogi](http://pages.di.unipi.it/brogi), [Stefano Forti](http://pages.di.unipi.it/forti), [Ahmad Ibrahim](http://pages.di.unipi.it/ibrahim) <br>
 > **[Predictive Analysis to Support Fog Application Deployment](http://pages.di.unipi.it/forti/pdf/chapters/2018/C09_Predictive%20Analysis%20to%20Support%20Fog%20Application%20Deployment_PP.pdf)** <br>
-> in [Fog and Edge Computing: Principles and Paradigms](http://www.cloudbus.org/fog/book/), Rajkumar Buyya and Satish N. Srirama (eds.), <br>
-> Wiley, 2018 _(In press)_.
+> in [Fog and Edge Computing: Principles and Paradigms](https://www.wiley.com/en-it/Fog+and+Edge+Computing:+Principles+and+Paradigms-p-9781119524984), Rajkumar Buyya and Satish N. Srirama (eds.), <br>
+> Wiley, 2019.
 
 FogTorchΠ is based upon the work described in:
 
