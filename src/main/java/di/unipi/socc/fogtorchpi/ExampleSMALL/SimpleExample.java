@@ -56,7 +56,8 @@ public class SimpleExample {
             long timeEnd = System.currentTimeMillis();
 
             int j = 0;
-            System.out.println("GA");
+
+            System.out.println("GA ");
             for (Deployment dep : histogram.keySet()) {
                 histogram.replace(dep, new Couple((100 * histogram.get(dep).getA() / ((double) TIMES)),
                         100 * (dep.consumedResources.getA() + dep.consumedResources.getB()) / 2));
