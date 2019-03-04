@@ -53,7 +53,7 @@
                             <archive>
                                 <manifest>
                                     <addClasspath>true</addClasspath>
-                                    <mainClass>package di.unipi.socc.fogtorchpi.ExampleBIG.SimpleExample</mainClass>
+                                    <mainClass>di.unipi.socc.fogtorchpi.ExampleBIG.SimpleExample</mainClass>
                                 </manifest>
                             </archive>
                             <descriptorRefs>
