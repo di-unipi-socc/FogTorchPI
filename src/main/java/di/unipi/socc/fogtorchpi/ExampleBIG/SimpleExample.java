@@ -14,10 +14,10 @@ import static java.util.Arrays.asList;
 
 public class SimpleExample {
     
-    private static final int TIMES = 4;
+    private static final int TIMES = 10;
     private static final int THREADS = 1; //*Runtime.getRuntime().availableProcessors();
 
-    static String nameExperiment = "BigExample4apps";
+    static String nameExperiment = "BigExample";
 
     public static void main(String[] args) {
 
@@ -37,7 +37,7 @@ public class SimpleExample {
             System.out.println(" GA + MONTECARLO SEARCH ");
             ConcurrentHashMap<Deployment, Couple<Double, Double>> histogram = new ConcurrentHashMap<>();
             HashMap<String, List<String>> tracePopulation = new HashMap<>();
-            GAMonteCarloSearch search = new GAMonteCarloSearch(TIMES, new SimpleApp().createApp(), new SimpleInfrastructure().createInfrastructure(), asList(), histogram, tracePopulation, 50, 100, 0.1,writerFit);
+            GAMonteCarloSearch search = new GAMonteCarloSearch(TIMES*10, new SimpleApp().createApp(), new SimpleInfrastructure().createInfrastructure(), asList(), histogram, tracePopulation, 50, 100, 0.1,writerFit);
 
             long timeStart = System.currentTimeMillis();
             search.run();

@@ -118,6 +118,7 @@ public class GASearch {
         Deployment deployment = new Deployment();
 
         Boolean b = findCompatibleNodes();
+
         Collections.sort(A.S, (Object o1, Object o2) -> {
 
             SoftwareComponent s1 = (SoftwareComponent) o1;
@@ -127,11 +128,6 @@ public class GASearch {
 
         return geneticSearch(deployment);
     }
-
-
-
-
-
 
     /**
      * It prunes the search space till the first result.

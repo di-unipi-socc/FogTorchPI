@@ -16,7 +16,7 @@ import static java.util.Arrays.asList;
 
 public class SimpleExample {
     
-    private static final int TIMES = 10;
+    private static final int TIMES = 1000;
     private static final int THREADS = 1; //*Runtime.getRuntime().availableProcessors();
 
 

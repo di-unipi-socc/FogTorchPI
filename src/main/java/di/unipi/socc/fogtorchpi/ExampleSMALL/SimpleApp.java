@@ -40,36 +40,35 @@ public class SimpleApp extends AppFactory {
         A.addLink("B", "C", 80, 1, 5);
         A.addLink("B", "D", 80, 1, 5);
 
-
-
-        A.addComponent("A1", asList("linux"), new Hardware(1,0.5,1), neededThings);
-        A.addComponent("B1", asList("linux"), new Hardware(1,1,5)); //cores ram storage
-        A.addLink("A1", "B1", 80, 1, 5);
-
-        A.addComponent("C1", asList("linux"), new Hardware(1,0.5,1), neededThings);
-        A.addComponent("D1", asList("linux"), new Hardware(1,1,5)); //cores ram storage
-        A.addLink("B1", "C1", 80, 1, 5);
-        A.addLink("B1", "D1", 80, 1, 5);
-
-
-        A.addComponent("A2", asList("linux"), new Hardware(1,0.5,1), neededThings);
-        A.addComponent("B2", asList("linux"), new Hardware(1,1,5)); //cores ram storage
-        A.addLink("A2", "B2", 80, 1, 5);
-
-        A.addComponent("C2", asList("linux"), new Hardware(1,0.5,1), neededThings);
-        A.addComponent("D2", asList("linux"), new Hardware(1,1,5)); //cores ram storage
-        A.addLink("B2", "C2", 80, 1, 5);
-        A.addLink("B2", "D2", 80, 1, 5);
-
-
-        A.addComponent("A3", asList("linux"), new Hardware(1,0.5,1), neededThings);
-        A.addComponent("B3", asList("linux"), new Hardware(1,1,5)); //cores ram storage
-        A.addLink("A3", "B3", 80, 1, 5);
-
-        A.addComponent("C3", asList("linux"), new Hardware(1,0.5,1), neededThings);
-        A.addComponent("D3", asList("linux"), new Hardware(1,1,5)); //cores ram storage
-        A.addLink("B3", "C3", 80, 1, 5);
-        A.addLink("B3", "D3", 80, 1, 5);
+//
+//        A.addComponent("A1", asList("linux"), new Hardware(1,0.5,1), neededThings);
+//        A.addComponent("B1", asList("linux"), new Hardware(1,1,5)); //cores ram storage
+//        A.addLink("A1", "B1", 80, 1, 5);
+//
+//        A.addComponent("C1", asList("linux"), new Hardware(1,0.5,1), neededThings);
+//        A.addComponent("D1", asList("linux"), new Hardware(1,1,5)); //cores ram storage
+//        A.addLink("B1", "C1", 80, 1, 5);
+//        A.addLink("B1", "D1", 80, 1, 5);
+//
+//
+//        A.addComponent("A2", asList("linux"), new Hardware(1,0.5,1), neededThings);
+//        A.addComponent("B2", asList("linux"), new Hardware(1,1,5)); //cores ram storage
+//        A.addLink("A2", "B2", 80, 1, 5);
+//
+//        A.addComponent("C2", asList("linux"), new Hardware(1,0.5,1), neededThings);
+//        A.addComponent("D2", asList("linux"), new Hardware(1,1,5)); //cores ram storage
+//        A.addLink("B2", "C2", 80, 1, 5);
+//        A.addLink("B2", "D2", 80, 1, 5);
+//
+//
+//        A.addComponent("A3", asList("linux"), new Hardware(1,0.5,1), neededThings);
+//        A.addComponent("B3", asList("linux"), new Hardware(1,1,5)); //cores ram storage
+//        A.addLink("A3", "B3", 80, 1, 5);
+//
+//        A.addComponent("C3", asList("linux"), new Hardware(1,0.5,1), neededThings);
+//        A.addComponent("D3", asList("linux"), new Hardware(1,1,5)); //cores ram storage
+//        A.addLink("B3", "C3", 80, 1, 5);
+//        A.addLink("B3", "D3", 80, 1, 5);
 
 
 

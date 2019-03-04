@@ -27,7 +27,7 @@ public class SimpleApp extends AppFactory {
     public Application createApp() {
         Application A = new Application();
         
-        int N = 20; // number of apps
+        int N = 10; // number of apps
         
         for (int i = 0; i < N; i++){
             
