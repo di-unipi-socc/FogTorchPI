@@ -105,14 +105,5 @@ public class ParallelMonteCarloSearch {
             }
             j++;
         }
-
-        //System.out.println("------------------\n***Simulation ended in " + ((timeEnd - timeStart) / 1000) + "s!");
-        //try {
-//            this.writter.write("------------------\n***Simulation ended in " + ((timeEnd - timeStart) / 1000) + "s!");
-       // } catch (IOException e) {
-        //    e.printStackTrace();
-       // }
     }
-    
-
 }

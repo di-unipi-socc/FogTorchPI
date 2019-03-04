@@ -273,13 +273,13 @@ public class GASearch {
         HashMap<Integer,Double> offspringFitness = new HashMap<>();
 
         int idDep = 0;
-//        print("Population.size "+Population + " Total de: "+populationSize);
+        print("Population.size "+Population + " Total de: "+populationSize);
         while (Population.size()<populationSize){ //WARNING at least one deployment must be valid
             oneRandomSearch(deployment);
 
             if (D.size()==0) continue; //return new Couple(new ArrayList<>(),new ArrayList<>());
             Deployment one = (Deployment) D.get(0).clone();
-//            print(one);
+            print(one);
             Population.add(one);
             //PopulationFitness.put(idDep,computeFitness(one));
             idDep++;
@@ -319,7 +319,7 @@ public class GASearch {
 
 //        PopulationFitness.put(idDep,computeFitness(one));
 
-//        print("INIT");
+        print("INIT");
 //        print(Population.size());
 //        int e=0;
 //        for (Deployment d : Population){
@@ -340,8 +340,9 @@ public class GASearch {
             int validDep = 0;
             for (int j=0;j<populationSize;) { //J is incremented when the crossover of parents is ok
                 //Random selection of two fathers in proportion to the fitness values
-                Deployment parent1 = tournamentSelection(Population,PopulationFitness,2);
-                Deployment parent2 = tournamentSelection(Population,PopulationFitness,2);
+
+                Deployment parent1 = tournamentSelection(Population,PopulationFitness,populationSize/10);
+                Deployment parent2 = tournamentSelection(Population,PopulationFitness,populationSize/10);
 
                 ArrayList<Deployment> kids = crossover(parent1,parent2);
                 boolean bothkids=true;
@@ -358,6 +359,7 @@ public class GASearch {
                         offspringFitness.put(validDep+populationSize, fitnessChild); //WARNING  KEY: j+population
                         validDep++;
                         j++;
+//                        print("CROSSOVING "+j);
                     }
                 }
             }

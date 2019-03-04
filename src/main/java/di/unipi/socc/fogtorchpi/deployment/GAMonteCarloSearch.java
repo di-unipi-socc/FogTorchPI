@@ -123,9 +123,11 @@ public class GAMonteCarloSearch implements Runnable {
             I.L.get(c2).bestQoS(); //BUT this, not ... ? Why?
         }
 
+        System.out.println(" BEST");
         Couple<ArrayList<Deployment>,HashMap<Integer,Double>> c = search.findDeployments();
         Population = c.getA();
         PopulationFitness =c.getB();
+        System.out.println(" END BEST");
 
 //        System.out.println("BEST _ Population: " + Population);
         for (Deployment d : Population) {
@@ -142,10 +144,11 @@ public class GAMonteCarloSearch implements Runnable {
             I.L.get(c2).worstQoS();
 //            print(i+" I.L "+I.L.get(c));
         }
-
+        System.out.println(" WORST");
         c = search.findDeployments();
         Population = c.getA();
         PopulationFitness = c.getB();
+        System.out.println(" END WORST");
 //        System.out.println("WORST _ Population: " + Population);
 
         for (Deployment d : Population) {
