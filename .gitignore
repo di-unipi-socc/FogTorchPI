@@ -1,0 +1,41 @@
+*.class
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+*.csv
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+*.netbeans_automatic_build
+target/maven-archiver/pom.properties
+.idea/compiler.xml
+FogTorchPi.iml
+.idea/misc.xml
+.idea/workspace.xml
+target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
+*.lst
+/target/
+nbactions.xml
+.DS_Store
+.idea/vcs.xml
+.idea/modules.xml
+.idea/libraries/Maven__com_google_code_gson_gson_2_8_1.xml
+.idea/encodings.xml
+.idea/.name
+new_changes.patch
+new_changes1.patch
+*.txt
+./results/IEServices19/ExampleSMALL.txt
+./results/IEServices19/olderResults/simpleExample1_4apps.txt
