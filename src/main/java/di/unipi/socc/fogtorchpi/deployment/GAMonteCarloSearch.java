@@ -171,15 +171,15 @@ public class GAMonteCarloSearch implements Runnable {
             //We need to validate the all deployments on that Infra.
             for (Deployment dep : globalPopulation) {
 //                print("Size dep:"+dep.size());
-                if (dep.size()==16) { //CHECK COHERENCY OF DEPLOYMENTS according with APP.combinations
+//                if (dep.size()==16) { //CHECK COHERENCY OF DEPLOYMENTS according with APP.combinations
                     if (search.validDeployment(dep)) {
                         search.D.add(dep);
                     } else {
                           System.out.println(".");
                     }
-                }else{
-                    System.out.println("A deployment inconsistent");
-                }
+//                }else{
+//                    System.out.println("A deployment inconsistent");
+//                }
             }
 
 
