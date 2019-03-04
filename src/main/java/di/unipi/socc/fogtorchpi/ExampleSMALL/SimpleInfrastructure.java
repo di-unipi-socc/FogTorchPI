@@ -120,9 +120,6 @@ public class SimpleInfrastructure extends InfrastructureFactory {
         );
 
 
-
-
-
         I.addLink("fog1", "cloud2",
                 new    QoSProfile(asList(
                         new Couple(new QoS(80, 6), 1.0))), //Download link
@@ -156,8 +153,13 @@ public class SimpleInfrastructure extends InfrastructureFactory {
                 ));
 */
 
-        I.addThing("t", "type", 43.7464449, 10.4615923, "fog1", 0.01);
-        //I.addThing("t2", "type", 23.7464449, 10.4615923, "fog2", 0.01);
+        I.addThing("t0", "type", 43.7464449, 10.4615923, "fog1", 0.01);
+        I.addThing("t1", "type", 23.7464449, 10.4615923, "fog2", 0.01);
+        I.addThing("t2", "type", 23.7464449, 10.4615923, "fog3", 0.01);
+
+        I.addThing("t3", "type", 23.7464449, 10.4615923, "fog1", 0.01);
+        I.addThing("t4", "type", 23.7464449, 10.4615923, "fog2", 0.01);
+
 
         return I;
     }

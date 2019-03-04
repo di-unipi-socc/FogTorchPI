@@ -585,6 +585,8 @@ public class SimpleInfrastructure extends InfrastructureFactory {
         I.addThing("t3", "type",131.511008,36.975181,"fog-30",0.321537);
         I.addThing("t4", "type",-114.618477,-31.913444,"fog-31",0.296001);
         I.addThing("t5", "type",-85.757805,60.987156,"fog-40",0.279004);
+
+
         I.addThing("t6", "type",-43.687571,-63.595119,"fog-60",0.138648);
         I.addThing("t7", "type",-71.864997,6.932862,"fog-67",0.279353);
         I.addThing("t8", "type",-150.219546,57.611220,"fog-70",0.186103);

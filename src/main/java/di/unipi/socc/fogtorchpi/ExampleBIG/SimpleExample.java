@@ -15,11 +15,14 @@ import static java.util.Arrays.asList;
 public class SimpleExample {
     
     private static final int TIMES = 10;
-    private static final int THREADS = 1; //*Runtime.getRuntime().availableProcessors();
+    private static final int THREADS = 4; //*Runtime.getRuntime().availableProcessors();
 
-    static String nameExperiment = "BigExample";
+    static String nameExperiment = "BigExample10";
 
+    
     public static void main(String[] args) {
+
+        System.out.println(" APPS 10");
 
         BufferedWriter writer = null;
         BufferedWriter writerFit = null;
@@ -49,7 +52,7 @@ public class SimpleExample {
 
             for (Deployment dep : histogram.keySet()) {
 
-                histogram.replace(dep, new Couple((100 * histogram.get(dep).getA() / ((double) TIMES)),
+                histogram.replace(dep, new Couple((100 * histogram.get(dep).getA() / ((double) TIMES*10)),
                         100 * (dep.consumedResources.getA() + dep.consumedResources.getB()) / 2));
 
                 System.out.println(j + " - " + dep + "; " + histogram.get(dep).getA() + "; "
@@ -66,16 +69,16 @@ public class SimpleExample {
             writertimes.write(" GA Search -  Simulation ends: "+(timeEnd-timeStart)+"\n");
 
 
-            System.out.println("EX");
-            timeStart = System.currentTimeMillis();
-
-            ParallelMonteCarloSearch search2 = new ParallelMonteCarloSearch(new SimpleApp(), new SimpleInfrastructure(), TIMES, THREADS,writer);
-            search2.start();
-
-            timeEnd = System.currentTimeMillis();
-
-            System.out.println(" EX - END: "+(timeEnd-timeStart));
-            writertimes.write(" Exhaustive Search -  Simulation ends: "+(timeEnd-timeStart)+"\n");
+//            System.out.println("EX");
+//            timeStart = System.currentTimeMillis();
+//
+//            ParallelMonteCarloSearch search2 = new ParallelMonteCarloSearch(new SimpleApp(), new SimpleInfrastructure(), TIMES, THREADS,writer);
+//            search2.start();
+//
+//            timeEnd = System.currentTimeMillis();
+//
+//            System.out.println(" EX - END: "+(timeEnd-timeStart));
+//            writertimes.write(" Exhaustive Search -  Simulation ends: "+(timeEnd-timeStart)+"\n");
 
         } catch (Exception e) {
             e.printStackTrace();

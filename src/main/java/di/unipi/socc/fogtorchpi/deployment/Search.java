@@ -145,9 +145,9 @@ public class Search {
         SoftwareComponent s = selectUndeployedComponent(deployment);
         if (K.get(s.getId()) != null) {
             for (ComputationalNode n : K.get(s.getId())) { // for all nodes compatible with s
-                //System.out.println(steps + " Checking " + s.getId() + " onto node " + n.getId());
+//                System.out.println(steps + " Checking " + s.getId() + " onto node " + n.getId());
                 if (isValid(deployment, s, n)) {
-                    //System.out.println(steps + " Deploying " + s.getId() + " onto node " + n.getId());
+//                    System.out.println(steps + " Deploying " + s.getId() + " onto node " + n.getId());
                     deploy(deployment, s, n);
                     Deployment result = search(deployment);
                     if (result != null) {
@@ -155,7 +155,7 @@ public class Search {
                     }
                     undeploy(deployment, s, n);
                 }
-                //System.out.println(steps + " Undeploying " + s.getId() + " from node " + n.getId());
+//                System.out.println(steps + " Undeploying " + s.getId() + " from node " + n.getId());
             }
         }
         return null;
@@ -177,14 +177,14 @@ public class Search {
         //System.out.println(K.get(s.getId()));
         for (ComputationalNode n : Ks) { // for all nodes compatible with s
             steps++;
-            //System.out.println(steps + " Checking " + s.getId() + " onto " + n.getId());
+//            System.out.println(steps + " Checking " + s.getId() + " onto " + n.getId());
             if (isValid(deployment, s, n)) {
-                //System.out.println(steps + " Deploying " + s.getId() + " onto " + n.getId());
+//                System.out.println(steps + " Deploying " + s.getId() + " onto " + n.getId());
                 deploy(deployment, s, n);
                 exhaustiveSearch(deployment);
                 undeploy(deployment, s, n);
             }
-            //System.out.println(steps + " Undeploying " + s.getId() + " from " + n.getId());
+//            System.out.println(steps + " Undeploying " + s.getId() + " from " + n.getId());
         }
 
     }

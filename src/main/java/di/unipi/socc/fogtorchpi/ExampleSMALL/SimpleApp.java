@@ -27,18 +27,39 @@ public class SimpleApp extends AppFactory {
     @Override
     public Application createApp(){
      Application A = new Application();
-        ArrayList<ThingRequirement> neededThings = new ArrayList<>();
 
-        neededThings.add(new ExactThing("t", new QoSProfile(45, 0.1), new QoSProfile(45, 3), 30)); // 1 s and 1 Mbps
 
-        A.addComponent("A", asList("linux"), new Hardware(1,0.5,1), neededThings);
-        A.addComponent("B", asList("linux"), new Hardware(1,1,5)); //cores ram storage
-        A.addLink("A", "B", 80, 1, 5);
+        int N = 2; // number of apps
 
-        A.addComponent("C", asList("linux"), new Hardware(1,0.5,1), neededThings);
-        A.addComponent("D", asList("linux"), new Hardware(1,1,5)); //cores ram storage
-        A.addLink("B", "C", 80, 1, 5);
-        A.addLink("B", "D", 80, 1, 5);
+        for (int i = 0; i < N; i++){
+
+            ArrayList<ThingRequirement> neededThings = new ArrayList<>();
+            neededThings.add(new ExactThing("t" + i, new QoSProfile(45, 0.1), new QoSProfile(45, 3), 30)); // 1 s and 1 Mbps
+
+            A.addComponent("A"+i, asList("linux"), new Hardware(1, 0.5, 1), neededThings);
+            A.addComponent("B"+i, asList("linux"), new Hardware(1, 1, 5)); //cores ram storage
+            A.addLink("A"+i, "B"+i, 80, 1, 5);
+
+            A.addComponent("C"+i, asList("linux"), new Hardware(1, 0.5, 1), neededThings);
+            A.addComponent("D"+i, asList("linux"), new Hardware(1, 1, 5)); //cores ram storage
+            A.addLink("B"+i, "C"+i, 80, 1, 5);
+            A.addLink("B"+i, "D"+i, 80, 1, 5);
+
+        }
+
+//
+//        ArrayList<ThingRequirement> neededThings = new ArrayList<>();
+//
+//        neededThings.add(new ExactThing("t", new QoSProfile(45, 0.1), new QoSProfile(45, 3), 30)); // 1 s and 1 Mbps
+//
+//        A.addComponent("A", asList("linux"), new Hardware(1,0.5,1), neededThings);
+//        A.addComponent("B", asList("linux"), new Hardware(1,1,5)); //cores ram storage
+//        A.addLink("A", "B", 80, 1, 5);
+//
+//        A.addComponent("C", asList("linux"), new Hardware(1,0.5,1), neededThings);
+//        A.addComponent("D", asList("linux"), new Hardware(1,1,5)); //cores ram storage
+//        A.addLink("B", "C", 80, 1, 5);
+//        A.addLink("B", "D", 80, 1, 5);
 
 //
 //        A.addComponent("A1", asList("linux"), new Hardware(1,0.5,1), neededThings);

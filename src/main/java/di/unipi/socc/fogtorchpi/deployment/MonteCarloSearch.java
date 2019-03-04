@@ -59,10 +59,11 @@ public class MonteCarloSearch implements Runnable {
 
             for (Couple c: I.L.keySet()) {
                 I.L.get(c).sampleQoS();
+
             }
 
-//            search.findDeployments(SearchType.GENETIC);
             search.findDeployments(SearchType.EXHAUSTIVE);
+//            search.findDeployments(SearchType.HEURISTIC);
             //search.findDeployments(SearchType.RANDOM);
 
             double pos = search.D.size();

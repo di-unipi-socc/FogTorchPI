@@ -42,7 +42,7 @@ public class SimpleApp extends AppFactory {
             A.addComponent("D"+i, asList("linux"), new Hardware(1, 1, 5)); //cores ram storage
             A.addLink("B"+i, "C"+i, 80, 1, 5);
             A.addLink("B"+i, "D"+i, 80, 1, 5);
-            
+
         }
         
         return A;

@@ -196,6 +196,7 @@ public class GASearch {
      */
     private void oneRandomSearch(Deployment deployment) {
         if (isComplete(deployment)) {
+//            print("D1"+deployment);
             D.add((Deployment) deployment.clone());
             return; //ONLY ONE
         }

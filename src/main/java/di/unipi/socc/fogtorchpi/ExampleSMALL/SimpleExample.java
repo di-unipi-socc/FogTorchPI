@@ -17,7 +17,7 @@ import static java.util.Arrays.asList;
 public class SimpleExample {
     
     private static final int TIMES = 1000;
-    private static final int THREADS = 1; //*Runtime.getRuntime().availableProcessors();
+    private static final int THREADS = 4; //*Runtime.getRuntime().availableProcessors();
 
 
     private static int numberGeneration = 40;
@@ -25,7 +25,7 @@ public class SimpleExample {
     private static double mutationProb = 0.1;
 
 
-    static String nameExperiment = "ExampleSMALL";
+    static String nameExperiment = "ExampleSMALL4apps";
 
 
     public static void main(String[] args) {
