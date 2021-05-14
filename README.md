@@ -6,7 +6,7 @@ This version of FogTorchΠ combines Monte Carlo simulations with genetic algorit
 
 > [Antonio Brogi](http://pages.di.unipi.it/brogi), [Stefano Forti](http://pages.di.unipi.it/forti), [Carlos Guerrero](http://www.guerrerotome.com), [Isaac Lera](https://www.uib.es/es/personal/ABTIxNTgx/) <br>
 > **[Meet Genetic Algorithms in Monte Carlo: Optimised Placement of Multi-Service Applications in the Fog.](https://doi.org/10.1109/EDGE.2019.00016)** <br>
-> in [IEEE EDGE 2019](http://fec-conf.gforge.inria.fr/index.html), pp. 13-17.
+> IEEE EDGE 2019, pp. 13-17.
 
 A complete overview of FogTorchΠ and of the usefulness of predictive analysis to perform Fog application deployment can be found here:
 
